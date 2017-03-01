@@ -1,0 +1,13 @@
+.Stimulus-box {
+    display: flex;
+    justify-content: space-between;
+    border-style: solid;
+}
+
+
+.Word-box {
+    width: 200px;
+    vertical-align: top;
+    text-align: center;
+}
+
