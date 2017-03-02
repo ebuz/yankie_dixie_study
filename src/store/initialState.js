@@ -10,7 +10,7 @@ export const partnerInfo = {
     peerSocket: null,
     readyToStart: false,
     audio: null,
-    volume: 0
+    volume: 1
 }
 
 export const instructions = {
