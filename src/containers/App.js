@@ -4,10 +4,9 @@ import TrialContainer from './TrialContainer'
 import MicSetupContainer from './MicSetupContainer'
 import ConsentContainer from './ConsentContainer'
 import InstructionsContainer from './InstructionsContainer'
-import PartnerStatusContainer from './PartnerStatusContainer'
 import './App.css';
 
-let App = ({location, haveMic, finished_instructions, consented, nextTrial}) => {
+const App = ({location, haveMic, finished_instructions, consented, nextTrial}) => {
     if(!haveMic) {
         return(
             <div className="Main-box">
@@ -15,34 +14,31 @@ let App = ({location, haveMic, finished_instructions, consented, nextTrial}) => 
             </div>
         )
     }
-    if(!finished_instructions) {
+    if(haveMic && !finished_instructions) {
         return(
             <div className="Main-box">
                 <InstructionsContainer />
-                <PartnerStatusContainer />
             </div>
         )
     }
-    if(!consented) {
+    if(haveMic && !consented) {
         return(
             <div className="Main-box">
                 <ConsentContainer />
-                <PartnerStatusContainer />
             </div>
         )
     }
-    if(nextTrial !== null) {
+    if(haveMic && nextTrial !== null) {
         let participantRole = location.query.participantRole || 'speaker';
         return(
             <div className="Main-box">
                 <TrialContainer participantRole={participantRole} />
-                <PartnerStatusContainer />
             </div>
         )
     }
     return (
         <div>
-            <p> all done </p>
+            <p> finished Study---thanks for participating! </p>
         </div>
     );
 };
@@ -53,7 +49,7 @@ const nextTrial = (trials) => {
     return nextTrial;
 };
 
-let mapStateToAppProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         nextTrial: nextTrial(state.trials),
         consented: state.consent.consented,
@@ -62,5 +58,5 @@ let mapStateToAppProps = (state) => {
     }
 };
 
-export default connect(mapStateToAppProps)(App);
+export default connect(mapStateToProps)(App);
 

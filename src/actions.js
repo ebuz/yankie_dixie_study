@@ -139,6 +139,7 @@ export const partnerResponse = (trialId, response, data = {}) =>
                 data: data
             };
             dispatch(responseAction);
+            dispatch(readyToStart());
             state.partnerInfo.peerSocket.emit('action', responseAction);
             setTimeout(() => {
                 dispatch(endTrial(trialId))
@@ -251,5 +252,4 @@ export const getPartner = () =>
         dispatch(createdConnection(new P2P(io(`${location.protocol}//${location.hostname}:8090`),
             {autoUpgrade: true, peerOpts: {stream: getState().selfInfo.micInput}})));
 };
-
 

@@ -10,6 +10,7 @@ export const END_TRIAL = 'END_TRIAL';
 export const CONSENT = 'CONSENT';
 export const FINISHED_INSTRUCTIONS = 'FINISHED_INSTRUCTIONS';
 
+
 // partner related actions
 export const GOT_PEERID = 'GOT_PEERID';
 export const CREATED_CONNECTION = 'CREATED_CONNECTION';
@@ -19,7 +20,7 @@ export const PARTNER_NOT_READY = 'PARTNER_NOT_READY';
 export const READY_TO_START = 'READY_TO_START';
 export const NOT_READY_TO_START = 'NOT_READY_TO_START';
 
-//export const LOAD_MIC = 'LOAD_MIC';
+
 export const GOT_MIC = 'GOT_MIC';
 export const MIC_ERROR = 'MIC_ERROR';
 export const GOT_AUDIO_CONTEXT = 'GOT_AUDIO_CONTEXT';

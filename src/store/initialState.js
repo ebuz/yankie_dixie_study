@@ -24,7 +24,7 @@ export const consent = {
 }
 
 export const trials = [
-        {stimuli: ['word1', 'word2', 'word3'],
+        {stimuli: ['cab', 'surf', 'gab'],
             target: 0,
             response: null,
             displayed_words: false,
@@ -32,7 +32,7 @@ export const trials = [
             completed: false,
             data: {}
         },
-        {stimuli: ['word4', 'word5', 'word6'],
+        {stimuli: ['miss', 'wood', 'void'],
             target: 1,
             response: null,
             displayed_words: false,
@@ -40,7 +40,7 @@ export const trials = [
             completed: false,
             data: {}
         },
-        {stimuli: ['word7', 'word8', 'word9'],
+        {stimuli: ['raft', 'bill', 'pill'],
             target: 2,
             response: null,
             displayed_words: false,
