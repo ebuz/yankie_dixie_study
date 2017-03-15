@@ -1,7 +1,26 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import MicSetup from '../components/MicSetup';
 import { getAudioContext, getMic } from '../actions';
 
+const MicSetup = ({haveMic, setupMic}) => {
+    if(haveMic){
+        return null;
+    }
+    return(
+        <div className="MicSetup-box">
+            <p> This task requires a microphone.</p>
+            <button type="button" onClick={setupMic}>
+                Click to start microphone
+            </button>
+    </div>
+    )
+}
+
+const mapStateToProps = (state) => {
+    return {
+        haveMic: state.selfInfo.micInput
+    }
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -12,4 +31,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(MicSetup);
+export default connect(mapStateToProps, mapDispatchToProps)(MicSetup);

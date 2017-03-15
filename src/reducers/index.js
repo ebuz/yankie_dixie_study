@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import trials from './trialsReducer';
+import trialBlocks from './trialBlocksReducer';
 import * as types from '../actionTypes'
 
-function consent(state = {}, action) {
+function consent(state = {consented: false, instructions: ''}, action) {
     switch (action.type) {
         case types.CONSENT:
             return {...state, consented: true}
@@ -11,7 +11,7 @@ function consent(state = {}, action) {
     }
 };
 
-function instructions(state = {}, action) {
+function instructions(state = {finished_instructions: false, instructions: ''}, action) {
     switch (action.type) {
         case types.FINISHED_INSTRUCTIONS:
             return {...state, finished_instructions: true}
@@ -20,7 +20,15 @@ function instructions(state = {}, action) {
     }
 };
 
-function partnerInfo(state = {peerId: null, peerSocket: null, readyToStart: false, audio: null, volume: false}, action) {
+const partnerInfoInitialState = {
+    peerId: null,
+    peerSocket: null,
+    readyToStart: false,
+    audio: null,
+    volume: 1
+}
+
+const partnerInfo = (state = partnerInfoInitialState, action) => {
     switch (action.type) {
         case types.PARTNER_READY:
         case types.PARTNER_NOT_READY:
@@ -38,7 +46,14 @@ function partnerInfo(state = {peerId: null, peerSocket: null, readyToStart: fals
     }
 };
 
-function selfInfo(state = {peerId: null, readyToStart: false, micInput: null, speakerOutput: null}, action) {
+const selfInfoInitialState = {
+    peerId: null,
+    readyToStart: false,
+    micInput: null,
+    speakerOutput: null
+}
+
+const selfInfo = (state = selfInfoInitialState, action) => {
     switch (action.type) {
         case types.READY_TO_START:
         case types.NOT_READY_TO_START:
@@ -57,7 +72,7 @@ function selfInfo(state = {peerId: null, readyToStart: false, micInput: null, sp
 };
 
 const reducer = combineReducers({
-    trials,
+    trialBlocks,
     consent,
     instructions,
     partnerInfo,

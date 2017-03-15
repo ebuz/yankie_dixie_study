@@ -1,38 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TrialContainer from './TrialContainer'
-import MicSetupContainer from './MicSetupContainer'
-import ConsentContainer from './ConsentContainer'
-import InstructionsContainer from './InstructionsContainer'
+import SetupContainer from './SetupContainer'
+import TrialBlocksContainer from './TrialBlocksContainer'
 import './App.css';
 
-const App = ({location, haveMic, finished_instructions, consented, nextTrial}) => {
-    if(!haveMic) {
+const App = ({location, finishedStudy}) => {
+    if(!finishedStudy){
         return(
             <div className="Main-box">
-                <MicSetupContainer />
-            </div>
-        )
-    }
-    if(haveMic && !finished_instructions) {
-        return(
-            <div className="Main-box">
-                <InstructionsContainer />
-            </div>
-        )
-    }
-    if(haveMic && !consented) {
-        return(
-            <div className="Main-box">
-                <ConsentContainer />
-            </div>
-        )
-    }
-    if(haveMic && nextTrial !== null) {
-        let participantRole = location.query.participantRole || 'speaker';
-        return(
-            <div className="Main-box">
-                <TrialContainer participantRole={participantRole} />
+                <SetupContainer location={location} />
+                <TrialBlocksContainer location={location} />
             </div>
         )
     }
@@ -43,18 +20,12 @@ const App = ({location, haveMic, finished_instructions, consented, nextTrial}) =
     );
 };
 
-const nextTrial = (trials) => {
-    let nextTrial = trials.findIndex(trial => {return(!trial.completed)});
-    nextTrial = nextTrial === -1 ? null : nextTrial
-    return nextTrial;
-};
-
 const mapStateToProps = (state) => {
     return {
-        nextTrial: nextTrial(state.trials),
-        consented: state.consent.consented,
-        finished_instructions: state.instructions.finished_instructions,
-        haveMic: state.selfInfo.micInput
+        finishedStudy: state.consent.consented &&
+        state.instructions.finished_instructions &&
+        state.trialBlocks.every((block) =>
+            {return block.trials.every((trial) => {return trial.completed})})
     }
 };
 

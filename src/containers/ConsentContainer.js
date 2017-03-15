@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { participantConsent, getPartner} from '../actions';
 
-const Consent = ({instructions, onConsent}) => {
+const Consent = ({haveMic, readInstructions, consent, onConsent}) => {
+    if(haveMic === null || !haveMic || !readInstructions || consent.consented){
+        return null;
+    }
     return (
         <div className="Consent-box">
-            <p>{instructions}</p>
+            <p>{consent.instructions}</p>
             <button type='button' onClick={onConsent}>
                 I consent to participate
             </button>
@@ -15,7 +18,9 @@ const Consent = ({instructions, onConsent}) => {
 
 const mapStateToProps = (state) => {
     return {
-        instructions: state.consent.instructions
+        haveMic: state.selfInfo.micInput,
+        readInstructions: state.instructions.finished_instructions,
+        consent: state.consent
     }
 };
 

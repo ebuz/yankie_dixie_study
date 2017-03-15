@@ -1,3 +1,7 @@
+// TO IMPLEMENT!!!!
+export const FINISHED_BLOCK_INSTRUCTIONS = 'FINISHED_BLOCK_INSTRUCTIONS';
+
+// TO ADJUST!!!!
 // trial related actions
 export const START_TRIAL = 'START_TRIAL';
 export const DISPLAY_WORDS = 'DISPLAY_WORDS';

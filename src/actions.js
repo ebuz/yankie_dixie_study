@@ -71,11 +71,12 @@ export const participantConsent = (data = {}) => ({
     data: data
 });
 
-export const cueSpeaker = (trialId, participantRole = 'partner', data = {}) =>
+export const cueSpeaker = (blockId, trialId, participantRole = 'partner', data = {}) =>
     (dispatch, getState) => {
         let state = getState();
         let cueAction = {
             type: types.CUE_SPEAKER,
+            blockId: blockId,
             id: trialId,
             data: data
         };
@@ -88,11 +89,12 @@ export const cueSpeaker = (trialId, participantRole = 'partner', data = {}) =>
         }
     }
 
-export const displayWords = (trialId, participantRole = 'partner', data = {}) =>
+export const displayWords = (blockId, trialId, participantRole = 'partner', data = {}) =>
     (dispatch, getState) => {
         let state = getState();
         let displayAction = {
             type: types.DISPLAY_WORDS,
+            blockId: blockId,
             id: trialId,
             data: data
         };
@@ -100,16 +102,17 @@ export const displayWords = (trialId, participantRole = 'partner', data = {}) =>
         if(participantRole === 'speaker'){
             state.partnerInfo.peerSocket.emit('action', displayAction);
             setTimeout(() => {
-                dispatch(cueSpeaker(trialId, participantRole))
+                dispatch(cueSpeaker(blockId, trialId, participantRole))
             }, 1500);
         }
     };
 
-export const startTrial = (trialId, participantRole = 'partner', data = {}) =>
+export const startTrial = (blockId, trialId, participantRole = 'partner', data = {}) =>
     (dispatch, getState) => {
         let state = getState();
         let startAction = {
             type: types.START_TRIAL,
+            blockId: blockId,
             id: trialId,
             data: data
         };
@@ -117,23 +120,25 @@ export const startTrial = (trialId, participantRole = 'partner', data = {}) =>
         if(participantRole === 'speaker'){
             state.partnerInfo.peerSocket.emit('action', startAction);
             // start recorder and or begin playback
-            dispatch(displayWords(trialId, participantRole));
+            dispatch(displayWords(blockId, trialId, participantRole));
             dispatch(mutePartner());
         }
     };
 
-export const endTrial = (trialId, data = {}) => ({
+export const endTrial = (blockId, trialId, data = {}) => ({
     type: types.END_TRIAL,
+    blockId: blockId,
     id: trialId,
     data: data
 });
 
-export const partnerResponse = (trialId, response, data = {}) =>
+export const partnerResponse = (blockId, trialId, response, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        if (state.trials[trialId].speaker_cued && state.trials[trialId].response === null){
+        if (state.trialBlocks[blockId].trials[trialId].speaker_cued && state.trialBlocks[blockId].trials[trialId].response === null){
             let responseAction = {
                 type: types.PARTNER_RESPONSE,
+                blockId: blockId,
                 id: trialId,
                 response: response,
                 data: data
@@ -142,8 +147,8 @@ export const partnerResponse = (trialId, response, data = {}) =>
             dispatch(readyToStart());
             state.partnerInfo.peerSocket.emit('action', responseAction);
             setTimeout(() => {
-                dispatch(endTrial(trialId))
-                state.partnerInfo.peerSocket.emit('action', endTrial(trialId));
+                dispatch(endTrial(blockId, trialId))
+                state.partnerInfo.peerSocket.emit('action', endTrial(blockId, trialId));
             }, 3000);
         }
     };
@@ -252,4 +257,10 @@ export const getPartner = () =>
         dispatch(createdConnection(new P2P(io(`${location.protocol}//${location.hostname}:8090`),
             {autoUpgrade: true, peerOpts: {stream: getState().selfInfo.micInput}})));
 };
+
+export const finishedBlockInstructions = (blockId, data = {}) => ({
+    type: types.FINISHED_BLOCK_INSTRUCTIONS,
+    blockId: blockId,
+    data: data
+});
 

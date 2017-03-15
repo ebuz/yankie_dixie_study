@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { partnerResponse } from '../actions';
 import './Stimuli.css'
 
-const Stimuli = ({participantRole, trialId, trialData, onWordClick}) => {
+const Stimuli = ({participantRole, blockId, trialId, trialData, onWordClick}) => {
     let words = trialData.stimuli.map((value, index) => {
         return <WordBox key={index} id={index} word={value}
             cued={participantRole === 'speaker' && index === trialData.target && trialData.speaker_cued}
             selected={index === trialData.response}
             onClick={() => {
                 if(participantRole === 'partner') {
-                    return onWordClick(trialId, index);}
+                    return onWordClick(blockId, trialId, index);}
                 return {};}} />
     });
     return (
@@ -22,8 +22,8 @@ const Stimuli = ({participantRole, trialId, trialData, onWordClick}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onWordClick: (trialId, index) => {
-            dispatch(partnerResponse(trialId, index));
+        onWordClick: (blockId, trialId, index) => {
+            dispatch(partnerResponse(blockId, trialId, index));
         }
     };
 };

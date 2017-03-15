@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { finishedInstructions } from '../actions';
 
-let InstructionsContainer = ({instructions, onFinished}) => {
+const Instructions = ({haveMic, instructions, onFinished}) => {
+    if(haveMic === null || !haveMic || instructions.finished_instructions){
+        return null;
+    }
     return (
         <div className="Instructions-box">
-            <p>{instructions}</p>
+            <p>{instructions.instructions}</p>
             <button type='button' onClick={onFinished}>
                 I understand these instructions
             </button>
@@ -13,13 +16,14 @@ let InstructionsContainer = ({instructions, onFinished}) => {
     );
 };
 
-const mapStateToInstructionsProps = (state) => {
+const mapStateToProps = (state) => {
     return {
-        instructions: state.instructions.instructions
+        haveMic: state.selfInfo.micInput,
+        instructions: state.instructions
     }
 };
 
-const mapDispatchToInstructionsProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onFinished: () => {
             dispatch(finishedInstructions());
@@ -27,7 +31,5 @@ const mapDispatchToInstructionsProps = (dispatch) => {
     };
 };
 
-InstructionsContainer = connect(mapStateToInstructionsProps,
-    mapDispatchToInstructionsProps)(InstructionsContainer)
 
-export default InstructionsContainer
+export default connect(mapStateToProps, mapDispatchToProps)(Instructions)

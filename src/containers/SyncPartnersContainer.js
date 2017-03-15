@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { readyToStart, startTrial } from '../actions';
 
-const SyncPartners = ({havePartner, trialId, participantRole, readyToStart, partnerReady, notifyPartner, initiateTrial}) => {
+const SyncPartners = ({havePartner, blockId, trialId, participantRole, readyToStart, partnerReady, notifyPartner, initiateTrial}) => {
     if (havePartner && !readyToStart){
         return (<div className="PartnerSync-box">
             <button type='button' onClick={notifyPartner}>
@@ -13,7 +13,7 @@ const SyncPartners = ({havePartner, trialId, participantRole, readyToStart, part
     }
     if (partnerReady && participantRole === 'speaker'){
         return (<div className="PartnerSync-box">
-            <button type='button' onClick={() => {initiateTrial(trialId, participantRole)}}>
+            <button type='button' onClick={() => {initiateTrial(blockId, trialId, participantRole)}}>
                 Click to start the trial
             </button>
         </div>
@@ -39,9 +39,9 @@ const mapDispatchToProps = (dispatch) => {
         notifyPartner: () => {
             dispatch(readyToStart());
         },
-        initiateTrial: (trialId, participantRole) => {
+        initiateTrial: (blockId, trialId, participantRole) => {
             dispatch(readyToStart());
-            dispatch(startTrial(trialId, participantRole));
+            dispatch(startTrial(blockId, trialId, participantRole));
         }
     };
 };
