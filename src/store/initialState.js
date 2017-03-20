@@ -20,6 +20,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: '/stimuli/testword.ogg',
                 data: {}
             },
             {stimuli: ['miss', 'wood', 'void'],
@@ -28,6 +29,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: '/stimuli/testword.ogg',
                 data: {}
             },
             {stimuli: ['raft', 'bill', 'pill'],
@@ -36,6 +38,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: '/stimuli/testword.ogg',
                 data: {}
             }]
     },
@@ -50,6 +53,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: null,
                 data: {}
             },
             {stimuli: ['rush', 'jig', 'jerk'],
@@ -58,6 +62,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: null,
                 data: {}
             },
             {stimuli: ['daunt', 'taunt', 'lake'],
@@ -66,6 +71,7 @@ export const trialBlocks = [
                 displayed_words: false,
                 speaker_cued: false,
                 completed: false,
+                pre_recorded_audio: null,
                 data: {}
             }]}
 ]

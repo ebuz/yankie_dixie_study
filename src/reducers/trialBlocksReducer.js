@@ -6,6 +6,7 @@ const trial_shape = {stimuli: ['word99', 'word98', 'word97'],
     displayed_words: false,
     speaker_cued: false,
     completed: false,
+    pre_recorded_audio: '/stimuli/testword.ogg',
     data: {}
 };
 

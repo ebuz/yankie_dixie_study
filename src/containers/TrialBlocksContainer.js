@@ -7,7 +7,7 @@ const TrialBlocks = ({location, finishedSetup, blockId}) => {
         return null;
     }
     let participantRole = location.query.participantRole || 'speaker';
-    if((blockId + 1) % 2 === 0){
+    if((blockId + 1) % 2 === 1){
         participantRole = participantRole === 'speaker' ? 'partner' : 'speaker'
     }
     return(

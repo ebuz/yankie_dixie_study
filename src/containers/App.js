@@ -15,7 +15,7 @@ const App = ({location, finishedStudy}) => {
     }
     return (
         <div>
-            <p> finished Study---thanks for participating! </p>
+            <p> You finished the study---thanks for participating! </p>
         </div>
     );
 };

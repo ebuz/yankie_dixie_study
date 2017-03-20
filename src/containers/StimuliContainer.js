@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { partnerResponse } from '../actions';
+import { response } from '../actions';
 import './Stimuli.css'
 
 const Stimuli = ({participantRole, blockId, trialId, trialData, onWordClick}) => {
@@ -23,7 +23,7 @@ const Stimuli = ({participantRole, blockId, trialId, trialData, onWordClick}) =>
 const mapDispatchToProps = (dispatch) => {
     return {
         onWordClick: (blockId, trialId, index) => {
-            dispatch(partnerResponse(blockId, trialId, index));
+            dispatch(response(blockId, trialId, index));
         }
     };
 };

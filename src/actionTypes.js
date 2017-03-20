@@ -27,6 +27,7 @@ export const NOT_READY_TO_START = 'NOT_READY_TO_START';
 
 export const GOT_MIC = 'GOT_MIC';
 export const MIC_ERROR = 'MIC_ERROR';
+export const GOT_RECORDER = 'GOT_RECORDER';
 export const GOT_AUDIO_CONTEXT = 'GOT_AUDIO_CONTEXT';
 
 export const GOT_PARTNER_AUDIO = 'PARTNER_AUDIO';

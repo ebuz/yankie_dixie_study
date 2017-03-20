@@ -50,6 +50,7 @@ const selfInfoInitialState = {
     peerId: null,
     readyToStart: false,
     micInput: null,
+    recorder: null,
     speakerOutput: null
 }
 
@@ -64,6 +65,8 @@ const selfInfo = (state = selfInfoInitialState, action) => {
             return {...state, micInput: action.micInput}
         case types.MIC_ERROR:
             return {...state, micInput: false}
+        case types.GOT_RECORDER:
+            return {...state, recorder: action.recorder}
         case types.GOT_AUDIO_CONTEXT:
             return {...state, speakerOutput: action.speakerOutput}
         default:
