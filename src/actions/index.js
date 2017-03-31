@@ -2,6 +2,7 @@ import 'webrtc-adapter';
 import io from 'socket.io-client';
 import P2P from 'socket.io-p2p';
 import AudioRecorder from './AudioRecorder';
+import { sha3_224 } from 'js-sha3';
 
 import * as types from '../actionTypes';
 
@@ -141,7 +142,7 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
             });
             state.selfInfo.recorder.record().then((blob) => {
                 let filename = [blockId, trialId].join('_') + '.ogg';
-                saveRecording(blob, state.selfInfo.peerId, filename);
+                saveRecording(blob, state.selfInfo.publicId, filename);
             });
             dispatch(mutePartner());
             dispatch(displayWords(blockId, trialId, myRole));
@@ -269,9 +270,10 @@ export const getMic = () =>
     }).catch(() => dispatch(micError()));
 };
 
-export const foundPartner = (peerId, data = {}) => ({
+export const foundPartner = (peerId, publicId, data = {}) => ({
     type: types.FOUND_PARTNER,
     peerId: peerId,
+    publicId: publicId,
     data: data
 })
 
@@ -288,14 +290,16 @@ export const createdConnection = (peerSocket, data = {}) =>
             data: data
         })
         peerSocket.on('idOffer', (data) => {
-            dispatch(foundPartner(data.peerId));
+            dispatch(foundPartner(data.peerId, data.publicId));
             peerSocket.usePeerConnection = true;
         });
         peerSocket.on('askId', (data) => {
-            dispatch(foundPartner(data.peerId));
+            dispatch(foundPartner(data.peerId, data.publicId));
             dispatch(gotId(peerSocket.peerId));
             peerSocket.usePeerConnection = true;
-            peerSocket.emit('idOffer', { peerId: peerSocket.peerId });
+            peerSocket.emit('idOffer',
+                { peerId: peerSocket.peerId,
+                    publicId: getState().selfInfo.publicId });
         });
         peerSocket.on('imReady', (data) => {
             dispatch(partnerReady());
@@ -314,7 +318,8 @@ export const createdConnection = (peerSocket, data = {}) =>
         });
         peerSocket.on('upgrade', () => {
             dispatch(gotId(peerSocket.peerId));
-            peerSocket.emit('askId', { peerId: peerSocket.peerId });
+            peerSocket.emit('askId', { peerId: peerSocket.peerId,
+                    publicId: getState().selfInfo.publicId });
         });
         peerSocket.on('stream', (stream) => {
             dispatch(gotPartnerAudio(stream));
@@ -332,4 +337,39 @@ export const finishedBlockInstructions = (blockId, data = {}) => ({
     blockId: blockId,
     data: data
 });
+
+export const gotPublicId = (publicId) => ({
+    type: types.GOT_PUBLICID,
+    publicId: publicId,
+})
+
+export const gotMturkInfo = (urlParams) =>
+    (dispatch, getState) => {
+        if (urlParams.query.workerId) {
+            dispatch({
+                type: types.GOT_WORKERID,
+                workerId: urlParams.query.workerId
+            });
+            dispatch(gotPublicId(sha3_224(urlParams.query.workerId)));
+        }
+        if (urlParams.query.hitId) {
+            dispatch({
+                type: types.GOT_HITID,
+                hitId: urlParams.query.hitId
+            });
+        }
+        if (urlParams.query.assignmentId) {
+            dispatch({
+                type: types.GOT_ASSIGNMENTID,
+                assignmentId: urlParams.query.assignmentId
+            });
+        }
+        if (urlParams.query.turkSubmitTo) {
+            dispatch({
+                type: types.GOT_TURKSUBMITTO,
+                turkSubmitTo: urlParams.query.turkSubmitTo
+            });
+        }
+    };
+
 

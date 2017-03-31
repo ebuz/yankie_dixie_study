@@ -1,7 +1,12 @@
-// TO IMPLEMENT!!!!
+// mturk actions
+export const GOT_TURKSUBMITTO = 'GOT_TURKSUBMITTO';
+export const GOT_WORKERID = 'GOT_WORKERID';
+export const GOT_HITID = 'GOT_HITID';
+export const GOT_ASSIGNMENTID = 'GOT_ASSIGNMENTID';
+
+// trial block actions
 export const FINISHED_BLOCK_INSTRUCTIONS = 'FINISHED_BLOCK_INSTRUCTIONS';
 
-// TO ADJUST!!!!
 // trial related actions
 export const START_TRIAL = 'START_TRIAL';
 export const DISPLAY_WORDS = 'DISPLAY_WORDS';
@@ -16,6 +21,7 @@ export const FINISHED_INSTRUCTIONS = 'FINISHED_INSTRUCTIONS';
 
 
 // partner related actions
+export const GOT_PUBLICID = 'GOT_PUBLICID';
 export const GOT_PEERID = 'GOT_PEERID';
 export const CREATED_CONNECTION = 'CREATED_CONNECTION';
 export const PARTNER_READY = 'PARTNER_READY';

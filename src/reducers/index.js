@@ -21,6 +21,7 @@ function instructions(state = {finished_instructions: false, instructions: ''}, 
 };
 
 const partnerInfoInitialState = {
+    publicId: null,
     peerId: null,
     peerSocket: null,
     readyToStart: false,
@@ -38,7 +39,7 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
         case types.GOT_PARTNER_AUDIO:
             return {...state, audio: action.audio}
         case types.FOUND_PARTNER:
-            return {...state, peerId: action.peerId}
+            return {...state, peerId: action.peerId, publicId: action.publicId}
         case types.CREATED_CONNECTION:
             return {...state, peerSocket: action.peerSocket}
         default:
@@ -46,7 +47,30 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
     }
 };
 
+const mturkInfoInitialState = {
+    workerId: null,
+    hidId: null,
+    assignmentId: null,
+    turkSubmitTo: null
+}
+
+const mturkInfo = (state = mturkInfoInitialState, action) => {
+    switch (action.type) {
+        case types.GOT_TURKSUBMITTO:
+            return {...state, turkSubmitTo: action.turkSubmitTo};
+        case types.GOT_WORKERID:
+            return {...state, workerId: action.workerId};
+        case types.GOT_HITID:
+            return {...state, hitId: action.hitId};
+        case types.GOT_ASSIGNMENTID:
+            return {...state, assignmentId: action.assignmentId };
+        default:
+            return state;
+    }
+}
+
 const selfInfoInitialState = {
+    publicId: null,
     peerId: null,
     readyToStart: false,
     micInput: null,
@@ -59,6 +83,8 @@ const selfInfo = (state = selfInfoInitialState, action) => {
         case types.READY_TO_START:
         case types.NOT_READY_TO_START:
             return {...state, readyToStart: action.type === types.READY_TO_START}
+        case types.GOT_PUBLICID:
+            return {...state, publicId: action.publicId}
         case types.GOT_PEERID:
             return {...state, peerId: action.peerId}
         case types.GOT_MIC:
@@ -79,7 +105,8 @@ const reducer = combineReducers({
     consent,
     instructions,
     partnerInfo,
-    selfInfo
+    selfInfo,
+    mturkInfo
 });
 
 export default reducer;
