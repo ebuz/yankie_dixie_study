@@ -1,12 +1,23 @@
 .Stimulus-box {
-    display: flex;
-    justify-content: space-between;
     border-style: solid;
 }
 
+.Options-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 
-.Word-box {
-    width: 200px;
+.Selected-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: 'grey';
+}
+
+.Color-box {
+    width: 100px;
+    height: 100px;
     vertical-align: top;
     text-align: center;
 }

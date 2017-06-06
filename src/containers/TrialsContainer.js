@@ -20,7 +20,7 @@ const getNextTrialId = (blockId, trialBlocks) => {
     let trialId = trials.findIndex(trial => {return(!trial.completed)})
     return {trialId: trialId,
         trialData: trials[trialId],
-        trialStarted: trials[trialId].displayed_words};
+        trialStarted: trials[trialId].displayed_pictures};
 };
 
 const mapStateToProps = (state, ownProps) => {

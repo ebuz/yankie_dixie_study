@@ -3,38 +3,59 @@ import { connect } from 'react-redux';
 import { response } from '../actions';
 import './Stimuli.css'
 
-const Stimuli = ({participantRole, blockId, trialId, trialData, onWordClick}) => {
-    let words = trialData.stimuli.map((value, index) => {
-        return <WordBox key={index} id={index} word={value}
-            cued={participantRole === 'speaker' && index === trialData.target && trialData.speaker_cued}
-            selected={index === trialData.response}
-            onClick={() => {
-                if(participantRole === 'partner') {
-                    return onWordClick(blockId, trialId, index);}
-                return {};}} />
-    });
+const Stimuli = ({participantRole, blockId, trialId, trialData, onColorClick}) => {
+    let colorOptions = [];
+    let selectedColors = [];
+    if(participantRole === 'partner') {
+        let options = [0, 1, 2, 3].filter((el) => {
+            return !trialData.response.includes(el);
+        });
+        colorOptions = options.map((value, index) => {
+            return <ColorBox color={trialData.stimuli[value]}
+                onClick={() => {
+                    return onColorClick(blockId, trialId, value);
+                }} />
+        });
+        selectedColors = trialData.response.map((value, index) => {
+            return <ColorBox color={trialData.stimuli[value]} />
+        });
+    } else {
+        colorOptions = trialData.speaker_order.map((value, index) => {
+            return <ColorBox color={trialData.stimuli[value]} />
+        });
+    }
     return (
         <div className="Stimulus-box">
-            {words}
+            <div className="Options-box">
+                {colorOptions}
+            </div>
+            <br />
+            <hr />
+            <div className="Selected-box">
+                {selectedColors}
+            </div>
         </div>
     );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onWordClick: (blockId, trialId, index) => {
+        onColorClick: (blockId, trialId, index) => {
             dispatch(response(blockId, trialId, index));
         }
     };
 };
 
-const WordBox = ({word, cued, selected, onClick}) => {
-    let style = selected ? {backgroundColor: 'grey'} : {};
-    style = {...style, borderStyle: cued ? 'dashed': 'solid'};
-    style = {...style, borderColor: cued ? 'black': 'white'};
+const ColorBox = ({color, onClick}) => {
+    let style = {}
+    if (color === null){
+        style = {...style, borderStyle: 'dashed', backgroundColor: 'white' };
+    } else {
+        style = {...style, borderStyle: 'solid', backgroundColor: color };
+    }
     return (
-        <div style={style} className="Word-box" onClick={onClick}>
-            {word}
+        <div style={style} className="Color-box" onClick={onClick}>
+            {color === null ? '?' : ''}
         </div>
     );
 };

@@ -179,27 +179,32 @@ export const partnerResponse = (blockId, trialId, theResponse, myRole, data = {}
             data: data
         });
         if(myRole === 'speaker'){
-            setTimeout(() => {
-                getState().selfInfo.recorder.stop();
-            }, 1000);
+            let trial = getState().trialBlocks[blockId].trials[trialId];
+            if(trial.response.length >= trial.stimuli.length - 1){
+                setTimeout(() => {
+                    getState().selfInfo.recorder.stop();
+                }, 1000);
+            }
         }
 }
 
 export const response = (blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        if (state.trialBlocks[blockId].trials[trialId].speaker_cued && state.trialBlocks[blockId].trials[trialId].response === null){
-            const myRole = 'partner';
-            const theirRole = myRole === 'speaker' ? 'partner' : 'speaker';
-            dispatch(partnerResponse(blockId, trialId, myResponse, myRole));
-            dispatch(readyToStart());
-            state.partnerInfo.peerSocket.emit('createAction', {
-                actionCreator: 'partnerResponse',
-                actionArgs: [blockId, trialId, myResponse, theirRole]
-            });
+        const myRole = 'partner';
+        const theirRole = 'speaker';
+        dispatch(partnerResponse(blockId, trialId, myResponse, myRole));
+        dispatch(readyToStart());
+        state.partnerInfo.peerSocket.emit('createAction', {
+            actionCreator: 'partnerResponse',
+            actionArgs: [blockId, trialId, myResponse, theirRole]
+        });
+        let trial = state.trialBlocks[blockId].trials[trialId];
+        if(trial.response.length >= trial.stimuli.length - 1){
             setTimeout(() => {
                 dispatch(endTrial(blockId, trialId))
-                state.partnerInfo.peerSocket.emit('action', endTrial(blockId, trialId));
+                state.partnerInfo.peerSocket.emit('action',
+                    endTrial(blockId, trialId));
             }, 3000);
         }
     };

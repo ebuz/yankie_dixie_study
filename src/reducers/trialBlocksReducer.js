@@ -1,28 +1,25 @@
 import * as types from '../actionTypes'
 
-const trial_shape = {stimuli: ['word99', 'word98', 'word97'],
-    target: 0,
-    response: null,
-    displayed_words: false,
-    speaker_cued: false,
-    completed: false,
-    pre_recorded_audio: '/stimuli/testword.ogg',
+const trial_shape = {
+    stimuli: ['red', 'blue', 'green', 'navy'],
+    speaker_order: [1, 2, 0, 3],
+    response: [],
+    displayed_pictures: false,
     data: {}
 };
 
 const trial = (state = trial_shape, action) => {
     switch (action.type) {
         case types.START_TRIAL:
-            return {...state, displayed_words: false, response: null,
-                speaker_cued: false, completed: false};
+            return state;
         case types.END_TRIAL:
             return {...state, completed: true};
         case types.DISPLAY_WORDS:
-            return {...state, displayed_words: true};
+            return {...state, displayed_pictures: true};
         case types.CUE_SPEAKER:
             return {...state, speaker_cued: true};
         case types.PARTNER_RESPONSE:
-            return {...state, response: action.response};
+            return {...state, response: state.response.concat(action.response)};
         default:
             return state;
     }
