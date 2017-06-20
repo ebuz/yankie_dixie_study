@@ -19,6 +19,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             },
             {stimuli: ['green', 'pink', 'red', 'blue'],
@@ -26,6 +28,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             },
             {stimuli: ['lime', 'red', 'blue', 'green'],
@@ -33,6 +37,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             }
         ]
@@ -47,6 +53,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             },
             {stimuli: ['green', 'pink', 'red', 'blue'],
@@ -54,6 +62,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             },
             {stimuli: ['lime', 'red', 'blue', 'green'],
@@ -61,6 +71,8 @@ export const trialBlocks = [
                 response: [],
                 displayed_pictures: false,
                 completed: false,
+                mock_recording: null,
+                speaker_recording: null,
                 data: {}
             }
         ]

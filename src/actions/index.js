@@ -88,9 +88,6 @@ export const cueSpeaker = (blockId, trialId, participantRole = 'partner', data =
         dispatch(cueAction);
         if(myRole === 'speaker'){
             state.partnerInfo.peerSocket.emit('action', cueAction);
-            setTimeout(() => {
-                dispatch(unMutePartner());
-            }, 1000);
         }
     }
 
@@ -114,7 +111,7 @@ export const displayWords = (blockId, trialId, participantRole = 'partner', data
         }
     };
 
-const saveRecording = (blob, id, filename = 'introduction.ogg') => {
+export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
     let formD = new FormData();
     formD.append('recording', blob, filename);
     fetch(
@@ -140,14 +137,9 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
                 actionCreator: 'startTrial',
                 actionArgs: [blockId, trialId, theirRole]
             });
-            state.selfInfo.recorder.record().then((blob) => {
-                let filename = [blockId, trialId].join('_') + '.ogg';
-                saveRecording(blob, state.selfInfo.publicId, filename);
-            });
-            dispatch(mutePartner());
             dispatch(displayWords(blockId, trialId, myRole));
         } else {
-            const file_to_play = state.trialBlocks[blockId].trials[trialId].pre_recorded_audio;
+            const file_to_play = state.trialBlocks[blockId].trials[trialId].mock_recording;
             if(file_to_play){
                 fetch(file_to_play).then(fileResponse => {
                     return fileResponse.arrayBuffer()
@@ -156,11 +148,77 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
                     state.selfInfo.speakerOutput.decodeAudioData(buffer).then(decoded => {
                         source.buffer = decoded;
                         source.connect(state.selfInfo.speakerOutput.destination);
-                        source.start(0)})
+                        // start playing mock recording after length of recording
+                        // consider adding slush to account for file transfer time
+                        // consider adding slush for recording onset time
+                        let slush = 0; // value in seconds
+                        source.start(decoded.duration + slush);
+                    })
                 })
             }
         }
     };
+
+export const recordingState = (recording_state) => ({
+    type: types.RECORDING_STATE,
+    recording_state: recording_state
+});
+
+export const speakerRecording = (blockId, trialId, recordingUrl) => ({
+    type: types.SPEAKER_RECORDING,
+    blockId: blockId,
+    id: trialId,
+    speaker_recording: recordingUrl
+});
+
+export const gotDirections = (blockId, trialId, recordingUrl) =>
+    (dispatch, getState) => {
+        dispatch(speakerRecording(blockId, trialId, recordingUrl));
+        let state = getState();
+        fetch(recordingUrl).then(fileResponse => {
+            return fileResponse.arrayBuffer()
+        }).then(buffer => {
+            let source = state.selfInfo.speakerOutput.createBufferSource();
+            state.selfInfo.speakerOutput.decodeAudioData(buffer).then(decoded => {
+                source.buffer = decoded;
+                source.connect(state.selfInfo.speakerOutput.destination);
+                source.start(0);
+            });
+        });
+    };
+
+export const sendDirections = (blockId, trialId, blob, id, filename) =>
+    (dispatch, getState) => {
+        dispatch(recordingState('uploading'));
+        let state = getState();
+        let formD = new FormData();
+        formD.append('recording', blob, filename);
+        fetch(
+            `/recording/${id}`,
+            {method: 'post', body: formD}
+        ).then(() => {
+            dispatch(recordingState('inactive'));
+            dispatch(speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
+            state.partnerInfo.peerSocket.emit('createAction', {
+                actionCreator: 'gotDirections',
+                actionArgs: [blockId, trialId, `/recordings/${id}/${filename}`]
+            });
+        });
+}
+
+export const stopRecording = () =>
+    (dispatch, getState) => {
+        getState().selfInfo.recorder.stop();
+};
+
+export const recordDirections = (blockId, trialId, data = {}) =>
+    (dispatch, getState) => {
+        getState().selfInfo.recorder.record().then((blob) => {
+            dispatch(sendDirections(blockId, trialId, blob,
+                getState().selfInfo.publicId, `${blockId}_${trialId}.ogg`));
+        });
+        dispatch(recordingState('recording'));
+};
 
 export const endTrial = (blockId, trialId, data = {}) => ({
     type: types.END_TRIAL,
@@ -178,14 +236,6 @@ export const partnerResponse = (blockId, trialId, theResponse, myRole, data = {}
             response: theResponse,
             data: data
         });
-        if(myRole === 'speaker'){
-            let trial = getState().trialBlocks[blockId].trials[trialId];
-            if(trial.response.length >= trial.stimuli.length - 1){
-                setTimeout(() => {
-                    getState().selfInfo.recorder.stop();
-                }, 1000);
-            }
-        }
 }
 
 export const response = (blockId, trialId, myResponse, data = {}) =>
@@ -284,7 +334,8 @@ export const foundPartner = (peerId, publicId, data = {}) => ({
 
 const remoteCommands = {
     startTrial: startTrial,
-    partnerResponse: partnerResponse
+    partnerResponse: partnerResponse,
+    gotDirections: gotDirections
 };
 
 export const createdConnection = (peerSocket, data = {}) =>
@@ -326,15 +377,12 @@ export const createdConnection = (peerSocket, data = {}) =>
             peerSocket.emit('askId', { peerId: peerSocket.peerId,
                     publicId: getState().selfInfo.publicId });
         });
-        peerSocket.on('stream', (stream) => {
-            dispatch(gotPartnerAudio(stream));
-        });
     }
 
 export const getPartner = () =>
     (dispatch, getState) => {
         dispatch(createdConnection(new P2P(io(),
-            {autoUpgrade: true, peerOpts: {trickle: true, stream: getState().selfInfo.micInput}})));
+            {autoUpgrade: true, peerOpts: {trickle: true}})));
 };
 
 export const finishedBlockInstructions = (blockId, data = {}) => ({

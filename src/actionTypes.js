@@ -12,6 +12,7 @@ export const START_TRIAL = 'START_TRIAL';
 export const DISPLAY_WORDS = 'DISPLAY_WORDS';
 export const CUE_SPEAKER = 'CUE_SPEAKER';
 export const PARTNER_RESPONSE = 'PARTNER_RESPONSE';
+export const SPEAKER_RECORDING = 'SPEAKER_RECORDING';
 export const END_TRIAL = 'END_TRIAL';
 
 
@@ -34,6 +35,7 @@ export const NOT_READY_TO_START = 'NOT_READY_TO_START';
 export const GOT_MIC = 'GOT_MIC';
 export const MIC_ERROR = 'MIC_ERROR';
 export const GOT_RECORDER = 'GOT_RECORDER';
+export const RECORDING_STATE = 'RECORDING_STATE';
 export const GOT_AUDIO_CONTEXT = 'GOT_AUDIO_CONTEXT';
 
 export const GOT_PARTNER_AUDIO = 'PARTNER_AUDIO';

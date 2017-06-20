@@ -8,10 +8,11 @@ const Trials = ({blockId, participantRole, finished_instructions, trialId, trial
         return null;
     }
     if(!trialStarted){
-        return <SyncPartnersContainer blockId={blockId} trialId={trialId} participantRole={participantRole}/>;
+        return <SyncPartnersContainer blockId={blockId} trialId={trialId}
+            participantRole={participantRole} />;
     }
-    return <StimuliContainer blockId={blockId} participantRole={participantRole} trialId={trialId}
-        trialData={trialData}
+    return <StimuliContainer blockId={blockId}
+        participantRole={participantRole} trialId={trialId} trialData={trialData}
     />
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { response } from '../actions';
 import './Stimuli.css'
+import RecorderControlsContainer from './RecorderControlsContainer';
 
 const Stimuli = ({participantRole, blockId, trialId, trialData, onColorClick}) => {
     let colorOptions = [];
@@ -34,6 +35,8 @@ const Stimuli = ({participantRole, blockId, trialId, trialData, onColorClick}) =
             <div className="Selected-box">
                 {selectedColors}
             </div>
+            <RecorderControlsContainer participantRole={participantRole}
+                blockId={blockId} trialId={trialId}/>
         </div>
     );
 };

@@ -75,6 +75,7 @@ const selfInfoInitialState = {
     readyToStart: false,
     micInput: null,
     recorder: null,
+    recording_state: '',
     speakerOutput: null
 }
 
@@ -93,6 +94,8 @@ const selfInfo = (state = selfInfoInitialState, action) => {
             return {...state, micInput: false}
         case types.GOT_RECORDER:
             return {...state, recorder: action.recorder}
+        case types.RECORDING_STATE:
+            return {...state, recording_state: action.recording_state}
         case types.GOT_AUDIO_CONTEXT:
             return {...state, speakerOutput: action.speakerOutput}
         default:
