@@ -22,3 +22,17 @@
     text-align: center;
 }
 
+.Picture-box {
+    width: 200px;
+    height: 200px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.Word-box {
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    text-align: center;
+}
+

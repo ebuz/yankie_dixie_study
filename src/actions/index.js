@@ -120,6 +120,12 @@ export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
     )
 }
 
+export const playedInstructions = (blockId, trialId) => ({
+    type: types.INSTRUCTIONS_PLAYED,
+    blockId: blockId,
+    id: trialId
+});
+
 export const startTrial = (blockId, trialId, participantRole = 'partner', data = {}) =>
     (dispatch, getState) => {
         let state = getState();
@@ -151,8 +157,15 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
                         // start playing mock recording after length of recording
                         // consider adding slush to account for file transfer time
                         // consider adding slush for recording onset time
-                        let slush = 0; // value in seconds
-                        source.start(decoded.duration + slush);
+                        let delay = decoded.duration + 0; // value in seconds
+                        source.start(delay);
+                        let playedInstructionsAction =
+                            playedInstructions(blockId, trialId);
+                        setTimeout(() => {
+                            dispatch(playedInstructionsAction);
+                            state.partnerInfo.peerSocket.emit('action',
+                                playedInstructionsAction);
+                        }, delay * 1000);
                     })
                 })
             }
@@ -183,6 +196,9 @@ export const gotDirections = (blockId, trialId, recordingUrl) =>
                 source.buffer = decoded;
                 source.connect(state.selfInfo.speakerOutput.destination);
                 source.start(0);
+                let playedInstructionsAction = playedInstructions(blockId, trialId);
+                dispatch(playedInstructionsAction);
+                state.partnerInfo.peerSocket.emit('action', playedInstructionsAction);
             });
         });
     };

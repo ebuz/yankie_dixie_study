@@ -6,6 +6,7 @@ const trial_shape = {
     response: [],
     displayed_pictures: false,
     completed: false,
+    instructions_played: false,
     mock_recording: null,
     speaker_recording: null,
     data: {}
@@ -23,6 +24,8 @@ const trial = (state = trial_shape, action) => {
             return {...state, speaker_cued: true};
         case types.SPEAKER_RECORDING:
             return {...state, speaker_recording: action.speaker_recording};
+        case types.INSTRUCTIONS_PLAYED:
+            return {...state, instructions_played: true};
         case types.PARTNER_RESPONSE:
             return {...state, response: state.response.concat(action.response)};
         default:
@@ -38,6 +41,7 @@ const trials = (state = [], action) => {
         case types.CUE_SPEAKER:
         case types.PARTNER_RESPONSE:
         case types.SPEAKER_RECORDING:
+        case types.INSTRUCTIONS_PLAYED:
             return state.map((item, index) => {
                 if(index !== action.id){
                     return item;
