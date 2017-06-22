@@ -10,7 +10,9 @@ const Stimuli = ({instructionsPlayed, participantRole, blockId, trialId, trialDa
     let displayInstructions = trialId === 0 && (blockId === 0 || blockId === 1);
     let instructionMsg = '';
     if(participantRole === 'partner') {
-        instructionMsg = displayInstructions ? "Wait and listen for your partner's instructions, then click the images in the order you hear them" : '';
+        if(displayInstructions){
+            instructionMsg = instructionsPlayed ? "Wait and listen for your partner's instructions" : "Click the images in the order you hear them";
+        }
         let options = [0, 1, 2, 3].filter((el) => {
             return !trialData.response.includes(el);
         });

@@ -95,7 +95,6 @@ export const displayWords = (blockId, trialId, participantRole = 'partner', data
     (dispatch, getState) => {
         let state = getState();
         const myRole = participantRole; //should this be in state?
-        const cue_delay = 1500;
         const displayAction = {
             type: types.DISPLAY_WORDS,
             blockId: blockId,
@@ -105,9 +104,7 @@ export const displayWords = (blockId, trialId, participantRole = 'partner', data
         dispatch(displayAction);
         if(myRole === 'speaker'){
             state.partnerInfo.peerSocket.emit('action', displayAction);
-            setTimeout(() => {
-                dispatch(cueSpeaker(blockId, trialId, myRole))
-            }, cue_delay);
+            dispatch(cueSpeaker(blockId, trialId, myRole));
         }
     };
 
@@ -157,11 +154,13 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
                         // start playing mock recording after length of recording
                         // consider adding slush to account for file transfer time
                         // consider adding slush for recording onset time
+                        console.log('got audio of duration ' + decoded.duration);
                         let delay = decoded.duration + 0; // value in seconds
-                        source.start(delay);
+                        console.log('delaying playback for ' + delay);
                         let playedInstructionsAction =
                             playedInstructions(blockId, trialId);
                         setTimeout(() => {
+                            source.start();
                             dispatch(playedInstructionsAction);
                             state.partnerInfo.peerSocket.emit('action',
                                 playedInstructionsAction);

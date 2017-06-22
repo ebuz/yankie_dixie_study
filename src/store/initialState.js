@@ -20,7 +20,7 @@ export const trialBlocks = [
                 displayed_pictures: false,
                 completed: false,
                 instructions_played: false,
-                mock_recording: null,
+                mock_recording: 'recordings/pre_recorded/0_0.ogg',
                 speaker_recording: null,
                 data: {}
             },
@@ -30,7 +30,7 @@ export const trialBlocks = [
                 displayed_pictures: false,
                 completed: false,
                 instructions_played: false,
-                mock_recording: null,
+                mock_recording: 'recordings/pre_recorded/0_1.ogg',
                 speaker_recording: null,
                 data: {}
             },
@@ -40,7 +40,7 @@ export const trialBlocks = [
                 displayed_pictures: false,
                 completed: false,
                 instructions_played: false,
-                mock_recording: null,
+                mock_recording: 'recordings/pre_recorded/0_2.ogg',
                 speaker_recording: null,
                 data: {}
             }
