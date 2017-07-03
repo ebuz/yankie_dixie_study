@@ -18,7 +18,7 @@ const Consent = ({haveMic, readInstructions, consent, onConsent}) => {
 
 const mapStateToProps = (state) => {
     return {
-        haveMic: state.selfInfo.micInput,
+        haveMic: state.selfInfo.micSelfCheck,
         readInstructions: state.instructions.finished_instructions,
         consent: state.consent
     }

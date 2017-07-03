@@ -26,7 +26,9 @@ const partnerInfoInitialState = {
     peerSocket: null,
     readyToStart: false,
     audio: null,
-    volume: 1
+    volume: 1,
+    micTestFile: null,
+    micCheck: false
 }
 
 const partnerInfo = (state = partnerInfoInitialState, action) => {
@@ -38,6 +40,10 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
             return {...state, volume: action.volume}
         case types.GOT_PARTNER_AUDIO:
             return {...state, audio: action.audio}
+        case types.GOT_PARTNER_MIC_TEST:
+            return {...state, micTestFile: action.micTestFile}
+        case types.MIC_PARTNER_CHECK:
+            return {...state, micCheck: true}
         case types.FOUND_PARTNER:
             return {...state, peerId: action.peerId, publicId: action.publicId}
         case types.CREATED_CONNECTION:
@@ -76,7 +82,9 @@ const selfInfoInitialState = {
     micInput: null,
     recorder: null,
     recording_state: '',
-    speakerOutput: null
+    speakerOutput: null,
+    micTestFile: null,
+    micSelfCheck: false
 }
 
 const selfInfo = (state = selfInfoInitialState, action) => {
@@ -98,6 +106,10 @@ const selfInfo = (state = selfInfoInitialState, action) => {
             return {...state, recording_state: action.recording_state}
         case types.GOT_AUDIO_CONTEXT:
             return {...state, speakerOutput: action.speakerOutput}
+        case types.MIC_TEST_FILE:
+            return {...state, micTestFile: action.micTestFile}
+        case types.MIC_SELF_CHECK:
+            return {...state, micSelfCheck: true}
         default:
             return state;
     }

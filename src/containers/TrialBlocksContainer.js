@@ -24,7 +24,7 @@ const nextTrialBlock = (trialBlocks) => {
 
 const mapStateToProps = (state) => {
     return {
-        finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micInput,
+        finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
         blockId: nextTrialBlock(state.trialBlocks)
     };
 };

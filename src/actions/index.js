@@ -226,6 +226,48 @@ export const stopRecording = () =>
         getState().selfInfo.recorder.stop();
 };
 
+export const gotMicTest = (micTestFile) => ({
+    type: types.MIC_TEST_FILE,
+    micTestFile: micTestFile
+});
+
+export const gotPartnerMicTest = (micTestFile) => ({
+    type: types.GOT_PARTNER_MIC_TEST,
+    micTestFile: micTestFile
+});
+
+export const workingPartnerMic = () => ({
+    type: types.MIC_PARTNER_CHECK,
+    micCheck: true
+});
+
+export const workingMic = () => ({
+    type: types.MIC_SELF_CHECK,
+    micSelfCheck: true
+});
+
+export const uploadTestRecording = (blob, id, filename = 'test_recording.ogg') =>
+    (dispatch, getState) => {
+        dispatch(recordingState('uploading'));
+        let formD = new FormData();
+        formD.append('recording', blob, filename);
+        fetch(
+            `/recording/${id}`,
+            {method: 'post', body: formD}
+        ).then(() => {
+            dispatch(recordingState('inactive'));
+            dispatch(gotMicTest(`/recordings/${id}/${filename}`));
+        });
+    };
+
+export const recordMicTest = (data = {}) =>
+    (dispatch, getState) => {
+        getState().selfInfo.recorder.record().then((blob) => {
+            dispatch(uploadTestRecording(blob, getState().selfInfo.publicId));
+        });
+        dispatch(recordingState('recording'));
+};
+
 export const recordDirections = (blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         getState().selfInfo.recorder.record().then((blob) => {
@@ -297,10 +339,14 @@ export const gotAudioContext = (speakerOutput, data = {}) => ({
     speakerOutput: speakerOutput
 });
 
-export const gotRecorder = (micInput, data = {}) => ({
-    type: types.GOT_RECORDER,
-    recorder: new AudioRecorder(micInput)
-})
+export const gotRecorder = (micInput, data = {}) =>
+    (dispatch, getState) => {
+        dispatch({
+            type: types.GOT_RECORDER,
+            recorder: new AudioRecorder(micInput)
+        });
+        dispatch(recordingState('inactive'));
+    };
 
 export const gotMic = (micInput, data = {}) =>
     (dispatch, getState) => {
@@ -359,18 +405,21 @@ export const createdConnection = (peerSocket, data = {}) =>
             type: types.CREATED_CONNECTION,
             peerSocket: peerSocket,
             data: data
-        })
+        });
         peerSocket.on('idOffer', (data) => {
             dispatch(foundPartner(data.peerId, data.publicId));
+            dispatch(gotPartnerMicTest(data.micTestFile));
             peerSocket.usePeerConnection = true;
         });
         peerSocket.on('askId', (data) => {
             dispatch(foundPartner(data.peerId, data.publicId));
+            dispatch(gotPartnerMicTest(data.micTestFile));
             dispatch(gotId(peerSocket.peerId));
             peerSocket.usePeerConnection = true;
-            peerSocket.emit('idOffer',
-                { peerId: peerSocket.peerId,
-                    publicId: getState().selfInfo.publicId });
+            peerSocket.emit('idOffer', { peerId: peerSocket.peerId,
+                publicId: getState().selfInfo.publicId,
+                micTestFile: getState().selfInfo.micTestFile
+            });
         });
         peerSocket.on('imReady', (data) => {
             dispatch(partnerReady());
@@ -390,7 +439,9 @@ export const createdConnection = (peerSocket, data = {}) =>
         peerSocket.on('upgrade', () => {
             dispatch(gotId(peerSocket.peerId));
             peerSocket.emit('askId', { peerId: peerSocket.peerId,
-                    publicId: getState().selfInfo.publicId });
+                publicId: getState().selfInfo.publicId,
+                micTestFile: getState().selfInfo.micTestFile
+            });
         });
     }
 

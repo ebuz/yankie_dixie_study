@@ -18,7 +18,7 @@ const Instructions = ({haveMic, instructions, onFinished}) => {
 
 const mapStateToProps = (state) => {
     return {
-        haveMic: state.selfInfo.micInput,
+        haveMic: state.selfInfo.micSelfCheck,
         instructions: state.instructions
     }
 };
