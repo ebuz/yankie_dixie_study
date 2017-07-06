@@ -212,10 +212,41 @@ export const sendDirections = (blockId, trialId, blob, id, filename) =>
         ).then(() => {
             dispatch(recordingState('inactive'));
             dispatch(speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
-            state.partnerInfo.peerSocket.emit('createAction', {
-                actionCreator: 'gotDirections',
-                actionArgs: [blockId, trialId, `/recordings/${id}/${filename}`]
-            });
+            const partner_rt_adjust = state.trialBlocks[blockId].trials[trialId].partner_rt_adjust;
+            if(partner_rt_adjust){
+                //respond on behalf of partner
+                //read in just-finished recording and get duration
+                console.log('will fake response for partner');
+                let reader = new FileReader();
+                reader.readAsArrayBuffer(blob);
+                reader.addEventListener("loadend", () => {
+                    console.log('re-loaded recording');
+                    state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
+                        let partner_rt = decoded.duration * partner_rt_adjust;
+                        console.log('setting partner response time to ' + partner_rt);
+                        setTimeout(() => {
+                            //respond for partner
+                            dispatch(partnerReady());
+                            state.partnerInfo.peerSocket.emit('action', {
+                                    type: types.READY_TO_START
+                                });
+                            dispatch(endTrial(blockId, trialId))
+                            state.partnerInfo.peerSocket.emit('action',
+                                endTrial(blockId, trialId));
+                        }, (partner_rt * 1000) + 3000);
+                    });
+                });
+                state.partnerInfo.peerSocket.emit('action',
+                    speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
+                let playedInstructionsAction = playedInstructions(blockId, trialId);
+                dispatch(playedInstructionsAction);
+                state.partnerInfo.peerSocket.emit('action', playedInstructionsAction);
+            } else {
+                state.partnerInfo.peerSocket.emit('createAction', {
+                    actionCreator: 'gotDirections',
+                    actionArgs: [blockId, trialId, `/recordings/${id}/${filename}`]
+                });
+            }
         });
 }
 

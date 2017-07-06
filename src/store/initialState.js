@@ -62,7 +62,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
-                partner_rt_adjust: 0,
+                partner_rt_adjust: 1,
                 data: {}
             },
             {stimuli: ['skull', 'scroll', 'clouds', 'blocks'],
@@ -73,7 +73,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
-                partner_rt_adjust: 0,
+                partner_rt_adjust: 1,
                 data: {}
             },
             {stimuli: ['cup', 'lightning', 'hot_dog', 'bear'],
@@ -84,7 +84,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
-                partner_rt_adjust: 0,
+                partner_rt_adjust: 1,
                 data: {}
             }
         ]
