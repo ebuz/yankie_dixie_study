@@ -9,6 +9,7 @@ const trial_shape = {
     instructions_played: false,
     mock_recording: null,
     speaker_recording: null,
+    partner_rt_adjust: null,
     data: {}
 };
 

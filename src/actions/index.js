@@ -153,10 +153,8 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
                         source.connect(state.selfInfo.speakerOutput.destination);
                         // start playing mock recording after length of recording
                         // consider adding slush to account for file transfer time
-                        // consider adding slush for recording onset time
-                        console.log('got audio of duration ' + decoded.duration);
+                        // consider adding slush to also account for recording onset time
                         let delay = decoded.duration + 0; // value in seconds
-                        console.log('delaying playback for ' + delay);
                         let playedInstructionsAction =
                             playedInstructions(blockId, trialId);
                         setTimeout(() => {
@@ -262,17 +260,21 @@ export const uploadTestRecording = (blob, id, filename = 'test_recording.ogg') =
 
 export const recordMicTest = (data = {}) =>
     (dispatch, getState) => {
-        getState().selfInfo.recorder.record().then((blob) => {
-            dispatch(uploadTestRecording(blob, getState().selfInfo.publicId));
+        let state = getState();
+        let micTestFile = `test_recording_${Date.now()}.` + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? 'webm' : 'ogg');
+        state.selfInfo.recorder.record().then((blob) => {
+            dispatch(uploadTestRecording(blob, state.selfInfo.publicId, micTestFile));
         });
         dispatch(recordingState('recording'));
 };
 
 export const recordDirections = (blockId, trialId, data = {}) =>
     (dispatch, getState) => {
-        getState().selfInfo.recorder.record().then((blob) => {
+        let state = getState();
+        state.selfInfo.recorder.record().then((blob) => {
             dispatch(sendDirections(blockId, trialId, blob,
-                getState().selfInfo.publicId, `${blockId}_${trialId}.ogg`));
+                state.selfInfo.publicId, `${blockId}_${trialId}.` + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? 'webm' : 'ogg')
+            ));
         });
         dispatch(recordingState('recording'));
 };
@@ -368,13 +370,12 @@ export const getAudioContext = () =>
 
 const constraints = {
     audio: {
-        mandatory: {
-            "googEchoCancellation": "false",
-            "googAutoGainControl": "false",
-            "googNoiseSuppression": "false",
-            "googHighpassFilter": "false"
-        },
-        optional: []
+        echoCancellation: false,
+        googEchoCancellation: false,
+        googAutoGainControl: false,
+        googNoiseSuppression: false,
+        googHighpassFilter: false,
+        googTypingNoiseDetection: false
     },
     video: false
 };

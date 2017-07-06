@@ -11,24 +11,25 @@ const Stimuli = ({instructionsPlayed, participantRole, blockId, trialId, trialDa
     let instructionMsg = '';
     if(participantRole === 'partner') {
         if(displayInstructions){
-            instructionMsg = instructionsPlayed ? "Wait and listen for your partner's instructions" : "Click the images in the order you hear them";
+            instructionMsg = instructionsPlayed ? "Click the images in the order you hear them" : "Wait and listen for your partner's instructions";
         }
         let options = [0, 1, 2, 3].filter((el) => {
             return !trialData.response.includes(el);
         });
         colorOptions = options.map((value, index) => {
             return <PictureBox picture={trialData.stimuli[value]}
+                key={index.toString()}
                 onClick={instructionsPlayed ? () => {
                     return onColorClick(blockId, trialId, value);
                 } : () => {}} />
         });
         selectedColors = trialData.response.map((value, index) => {
-            return <PictureBox picture={trialData.stimuli[value]} />
+            return <PictureBox key={index.toString()} picture={trialData.stimuli[value]} />
         });
     } else {
         instructionMsg = displayInstructions ? "When you are ready, click the button to start recording, then name each picture from left to right" : '';
         colorOptions = trialData.speaker_order.map((value, index) => {
-            return <PictureBox picture={trialData.stimuli[value]} />
+            return <PictureBox key={index.toString()} picture={trialData.stimuli[value]} />
         });
     }
     return (

@@ -3,20 +3,22 @@ window.MediaRecorder = window.MediaRecorder;
 export default class AudioRecorder {
     constructor(stream, onStart = null, onStop = null) {
         this.recordedChunks = [];
-        let recorderOptions = null;
+        this.recorderOptions = {};
         // mutually exclusive audio encoding formats beween chrome and firefox
-        if (window.MediaRecorder.isTypeSupported('audio/webm')) {
-          recorderOptions = {mimeType: 'audio/webm'};
-        } else if (window.MediaRecorder.isTypeSupported('audio/ogg')) {
-           recorderOptions = {mimeType: 'audio/ogg'};
+        if (window.MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+            this.recorderOptions = {mimeType: 'audio/webm;codecs=opus',
+                audioBitsPerSecond: 128000}; //chrome
+        } else if (window.MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')) {
+            this.recorderOptions = {mimeType: 'audio/ogg;codecs=opus',
+                audioBitsPerSecond: 64000 }; //firefox
         } else {
-            recorderOptions = {}; //let browser pick
+            this.recorderOptions = {}; //let browser pick
         }
-        this.mediaRecorder = new window.MediaRecorder(stream, recorderOptions);
+        this.mediaRecorder = new window.MediaRecorder(stream, this.recorderOptions);
         this.mediaRecorder.ondataavailable = (event) => {
-          if (event.data.size > 0) {
-            this.recordedChunks.push(event.data);
-          }
+            if (event.data.size > 0) {
+                this.recordedChunks.push(event.data);
+            }
         }
         if(onStart){
             this.mediaRecorder.onstart = onStart;
@@ -31,8 +33,6 @@ export default class AudioRecorder {
             };
         }
         this.finishedRecording = null;
-    }
-    handleDataAvailable(event) {
     }
     record(){
         return new Promise((resolve, reject) => {
@@ -54,9 +54,8 @@ export default class AudioRecorder {
     }
     makeRecording(){
         if(this.mediaRecorder.state === 'inactive' && this.recordedChunks.length > 0){
-            //unclear if this encoding option works
-            let audioOutputType = {'type': 'audio/ogg'};
-            this.finishedRecording = new Blob(this.recordedChunks, audioOutputType);
+            this.finishedRecording = new Blob(this.recordedChunks, {
+                type: this.recorderOptions.mimeType});
             this.recordedChunks = [];
         }
         return(this.finishedRecording);

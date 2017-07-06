@@ -22,6 +22,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: 'recordings/pre_recorded/0_0.ogg',
                 speaker_recording: null,
+                partner_rt_adjust: null,
                 data: {}
             },
             {stimuli: ['skull', 'scroll', 'clouds', 'blocks'],
@@ -32,6 +33,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: 'recordings/pre_recorded/0_1.ogg',
                 speaker_recording: null,
+                partner_rt_adjust: null,
                 data: {}
             },
             {stimuli: ['cup', 'lightning', 'hot_dog', 'bear'],
@@ -42,6 +44,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: 'recordings/pre_recorded/0_2.ogg',
                 speaker_recording: null,
+                partner_rt_adjust: null,
                 data: {}
             }
         ]
@@ -59,6 +62,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
+                partner_rt_adjust: 0,
                 data: {}
             },
             {stimuli: ['skull', 'scroll', 'clouds', 'blocks'],
@@ -69,6 +73,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
+                partner_rt_adjust: 0,
                 data: {}
             },
             {stimuli: ['cup', 'lightning', 'hot_dog', 'bear'],
@@ -79,6 +84,7 @@ export const trialBlocks = [
                 instructions_played: false,
                 mock_recording: null,
                 speaker_recording: null,
+                partner_rt_adjust: 0,
                 data: {}
             }
         ]
