@@ -81,7 +81,7 @@ const selfInfoInitialState = {
     readyToStart: false,
     micInput: null,
     recorder: null,
-    recording_state: '',
+    recording_state: null,
     speakerOutput: null,
     micTestFile: null,
     micSelfCheck: false

@@ -7,16 +7,14 @@ import { sha3_224 } from 'js-sha3';
 import * as types from '../actionTypes';
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-let timer = null;
 
 export const notReadyToStart = (data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
         dispatch({
             type: types.NOT_READY_TO_START,
             data: data
         });
-        state.partnerInfo.peerSocket.emit('notReady', {});
+        getState().partnerInfo.peerSocket.emit('notReady', {});
     };
 
 export const mutePartner = (data = {}) =>
@@ -41,14 +39,16 @@ export const unMutePartner = (volume = 1, data = {}) =>
         })
     };
 
+// ready timer instance
+let timer = null;
+
 export const readyToStart = (data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
         dispatch({
             type: types.READY_TO_START,
             data: data
         });
-        state.partnerInfo.peerSocket.emit('imReady', {});
+        getState().partnerInfo.peerSocket.emit('imReady', {});
         clearTimeout(timer);
         timer = setTimeout(() => {
             dispatch(notReadyToStart())
@@ -216,14 +216,11 @@ export const sendDirections = (blockId, trialId, blob, id, filename) =>
             if(partner_rt_adjust){
                 //respond on behalf of partner
                 //read in just-finished recording and get duration
-                console.log('will fake response for partner');
                 let reader = new FileReader();
                 reader.readAsArrayBuffer(blob);
                 reader.addEventListener("loadend", () => {
-                    console.log('re-loaded recording');
                     state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
                         let partner_rt = decoded.duration * partner_rt_adjust;
-                        console.log('setting partner response time to ' + partner_rt);
                         setTimeout(() => {
                             //respond for partner
                             dispatch(partnerReady());
@@ -310,12 +307,19 @@ export const recordDirections = (blockId, trialId, data = {}) =>
         dispatch(recordingState('recording'));
 };
 
-export const endTrial = (blockId, trialId, data = {}) => ({
-    type: types.END_TRIAL,
-    blockId: blockId,
-    id: trialId,
-    data: data
-});
+export const endTrial = (blockId, trialId, data = {}) =>
+    (dispatch, getState) => {
+        dispatch({
+            type: types.END_TRIAL,
+            blockId: blockId,
+            id: trialId,
+            data: data
+        });
+        let state = getState();
+        if(state.trialBlocks[blockId].trials.length === (trialId + 1)){
+            dispatch(notReadyToStart());
+        }
+    }
 
 export const partnerResponse = (blockId, trialId, theResponse, myRole, data = {}) =>
     (dispatch, getState) => {
