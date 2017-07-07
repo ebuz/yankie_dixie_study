@@ -1,6 +1,4 @@
 import 'webrtc-adapter';
-import io from 'socket.io-client';
-import P2P from 'socket.io-p2p';
 import AudioRecorder from './AudioRecorder';
 import { sha3_224 } from 'js-sha3';
 
@@ -14,7 +12,6 @@ export const notReadyToStart = (data = {}) =>
             type: types.NOT_READY_TO_START,
             data: data
         });
-        getState().partnerInfo.peerSocket.emit('notReady', {});
     };
 
 export const mutePartner = (data = {}) =>
@@ -48,7 +45,6 @@ export const readyToStart = (data = {}) =>
             type: types.READY_TO_START,
             data: data
         });
-        getState().partnerInfo.peerSocket.emit('imReady', {});
         clearTimeout(timer);
         timer = setTimeout(() => {
             dispatch(notReadyToStart())
@@ -75,10 +71,8 @@ export const participantConsent = (data = {}) => ({
     data: data
 });
 
-export const cueSpeaker = (blockId, trialId, participantRole = 'partner', data = {}) =>
+export const cueSpeaker = (blockId, trialId, data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
-        const myRole = participantRole; //should this be in state?
         const cueAction = {
             type: types.CUE_SPEAKER,
             blockId: blockId,
@@ -86,15 +80,10 @@ export const cueSpeaker = (blockId, trialId, participantRole = 'partner', data =
             data: data
         };
         dispatch(cueAction);
-        if(myRole === 'speaker'){
-            state.partnerInfo.peerSocket.emit('action', cueAction);
-        }
     }
 
-export const displayWords = (blockId, trialId, participantRole = 'partner', data = {}) =>
+export const displayWords = (blockId, trialId, data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
-        const myRole = participantRole; //should this be in state?
         const displayAction = {
             type: types.DISPLAY_WORDS,
             blockId: blockId,
@@ -102,10 +91,7 @@ export const displayWords = (blockId, trialId, participantRole = 'partner', data
             data: data
         };
         dispatch(displayAction);
-        if(myRole === 'speaker'){
-            state.partnerInfo.peerSocket.emit('action', displayAction);
-            dispatch(cueSpeaker(blockId, trialId, myRole));
-        }
+        dispatch(cueSpeaker(blockId, trialId));
     };
 
 export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
@@ -115,7 +101,7 @@ export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
         `/recording/${id}`,
         {method: 'post', body: formD}
     )
-}
+};
 
 export const playedInstructions = (blockId, trialId) => ({
     type: types.INSTRUCTIONS_PLAYED,
@@ -123,11 +109,20 @@ export const playedInstructions = (blockId, trialId) => ({
     id: trialId
 });
 
-export const startTrial = (blockId, trialId, participantRole = 'partner', data = {}) =>
+export const endTrial = (blockId, trialId, data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
-        const myRole = participantRole; //should this be in state?
-        const theirRole = myRole === 'speaker' ? 'partner' : 'speaker';
+        dispatch({
+            type: types.END_TRIAL,
+            blockId: blockId,
+            id: trialId,
+            data: data
+        });
+        dispatch(notReadyToStart());
+        dispatch(partnerNotReady());
+    };
+
+export const startTrial = (blockId, trialId, data = {}) =>
+    (dispatch, getState) => {
         const startAction = {
             type: types.START_TRIAL,
             blockId: blockId,
@@ -135,38 +130,43 @@ export const startTrial = (blockId, trialId, participantRole = 'partner', data =
             data: data
         };
         dispatch(startAction);
-        if(myRole === 'speaker'){
-            state.partnerInfo.peerSocket.emit('createAction', {
-                actionCreator: 'startTrial',
-                actionArgs: [blockId, trialId, theirRole]
-            });
-            dispatch(displayWords(blockId, trialId, myRole));
-        } else {
-            const file_to_play = state.trialBlocks[blockId].trials[trialId].mock_recording;
-            if(file_to_play){
-                fetch(file_to_play).then(fileResponse => {
-                    return fileResponse.arrayBuffer()
-                }).then(buffer => {
-                    let source = state.selfInfo.speakerOutput.createBufferSource();
-                    state.selfInfo.speakerOutput.decodeAudioData(buffer).then(decoded => {
+        dispatch(displayWords(blockId, trialId));
+    };
+
+export const waitOnPartnerToStartTrial = (blockId, trialId, data = {}) =>
+    (dispatch, getState) => {
+        let state = getState();
+        //delay start by some amount
+        let start_delay = 1000;
+        console.log(`delaying start by ${start_delay}`);
+        setTimeout(() => {
+            console.log(`simulate start of block ${blockId} trial ${trialId}`);
+            dispatch(partnerReady());
+            dispatch(startTrial(blockId, trialId, data));
+            const file_to_play =
+                state.trialBlocks[blockId].trials[trialId].mock_recording;
+            fetch(file_to_play).then(fileResponse => {
+                return fileResponse.arrayBuffer()
+            }).then(buffer => {
+                let source = state.selfInfo.speakerOutput.createBufferSource();
+                state.selfInfo.speakerOutput.decodeAudioData(buffer).then(
+                    decoded => {
                         source.buffer = decoded;
                         source.connect(state.selfInfo.speakerOutput.destination);
                         // start playing mock recording after length of recording
                         // consider adding slush to account for file transfer time
-                        // consider adding slush to also account for recording onset time
-                        let delay = decoded.duration + 0; // value in seconds
+                        // consider adding slush to also
+                        // account for recording onset time
+                        let delay = decoded.duration + 0 + 0; // value in seconds
                         let playedInstructionsAction =
                             playedInstructions(blockId, trialId);
                         setTimeout(() => {
                             source.start();
                             dispatch(playedInstructionsAction);
-                            state.partnerInfo.peerSocket.emit('action',
-                                playedInstructionsAction);
                         }, delay * 1000);
-                    })
-                })
-            }
-        }
+                    });
+            });
+        }, start_delay);
     };
 
 export const recordingState = (recording_state) => ({
@@ -195,7 +195,6 @@ export const gotDirections = (blockId, trialId, recordingUrl) =>
                 source.start(0);
                 let playedInstructionsAction = playedInstructions(blockId, trialId);
                 dispatch(playedInstructionsAction);
-                state.partnerInfo.peerSocket.emit('action', playedInstructionsAction);
             });
         });
     };
@@ -213,37 +212,21 @@ export const sendDirections = (blockId, trialId, blob, id, filename) =>
             dispatch(recordingState('inactive'));
             dispatch(speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
             const partner_rt_adjust = state.trialBlocks[blockId].trials[trialId].partner_rt_adjust;
-            if(partner_rt_adjust){
-                //respond on behalf of partner
-                //read in just-finished recording and get duration
-                let reader = new FileReader();
-                reader.readAsArrayBuffer(blob);
-                reader.addEventListener("loadend", () => {
-                    state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
-                        let partner_rt = decoded.duration * partner_rt_adjust;
-                        setTimeout(() => {
-                            //respond for partner
-                            dispatch(partnerReady());
-                            state.partnerInfo.peerSocket.emit('action', {
-                                    type: types.READY_TO_START
-                                });
-                            dispatch(endTrial(blockId, trialId))
-                            state.partnerInfo.peerSocket.emit('action',
-                                endTrial(blockId, trialId));
-                        }, (partner_rt * 1000) + 3000);
-                    });
+            //respond on behalf of partner
+            //read in just-finished recording and get duration
+            let reader = new FileReader();
+            reader.readAsArrayBuffer(blob);
+            reader.addEventListener("loadend", () => {
+                state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
+                    let partner_rt = decoded.duration * partner_rt_adjust;
+                    setTimeout(() => {
+                        //respond for partner
+                        dispatch(partnerReady());
+                        dispatch(endTrial(blockId, trialId))
+                    }, (partner_rt * 1000) + 3000);
                 });
-                state.partnerInfo.peerSocket.emit('action',
-                    speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
-                let playedInstructionsAction = playedInstructions(blockId, trialId);
-                dispatch(playedInstructionsAction);
-                state.partnerInfo.peerSocket.emit('action', playedInstructionsAction);
-            } else {
-                state.partnerInfo.peerSocket.emit('createAction', {
-                    actionCreator: 'gotDirections',
-                    actionArgs: [blockId, trialId, `/recordings/${id}/${filename}`]
-                });
-            }
+            });
+            dispatch(playedInstructions(blockId, trialId));
         });
 }
 
@@ -307,21 +290,7 @@ export const recordDirections = (blockId, trialId, data = {}) =>
         dispatch(recordingState('recording'));
 };
 
-export const endTrial = (blockId, trialId, data = {}) =>
-    (dispatch, getState) => {
-        dispatch({
-            type: types.END_TRIAL,
-            blockId: blockId,
-            id: trialId,
-            data: data
-        });
-        let state = getState();
-        if(state.trialBlocks[blockId].trials.length === (trialId + 1)){
-            dispatch(notReadyToStart());
-        }
-    }
-
-export const partnerResponse = (blockId, trialId, theResponse, myRole, data = {}) =>
+export const partnerResponse = (blockId, trialId, theResponse, data = {}) =>
     (dispatch, getState) => {
         dispatch({
             type: types.PARTNER_RESPONSE,
@@ -335,20 +304,12 @@ export const partnerResponse = (blockId, trialId, theResponse, myRole, data = {}
 export const response = (blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        const myRole = 'partner';
-        const theirRole = 'speaker';
-        dispatch(partnerResponse(blockId, trialId, myResponse, myRole));
+        dispatch(partnerResponse(blockId, trialId, myResponse, data));
         dispatch(readyToStart());
-        state.partnerInfo.peerSocket.emit('createAction', {
-            actionCreator: 'partnerResponse',
-            actionArgs: [blockId, trialId, myResponse, theirRole]
-        });
         let trial = state.trialBlocks[blockId].trials[trialId];
         if(trial.response.length >= trial.stimuli.length - 1){
             setTimeout(() => {
                 dispatch(endTrial(blockId, trialId))
-                state.partnerInfo.peerSocket.emit('action',
-                    endTrial(blockId, trialId));
             }, 3000);
         }
     };
@@ -429,62 +390,26 @@ export const foundPartner = (peerId, publicId, data = {}) => ({
     data: data
 })
 
-const remoteCommands = {
-    startTrial: startTrial,
-    partnerResponse: partnerResponse,
-    gotDirections: gotDirections
-};
-
-export const createdConnection = (peerSocket, data = {}) =>
+export const mockConnection = (data = {}) =>
     (dispatch, getState) => {
         dispatch({
             type: types.CREATED_CONNECTION,
-            peerSocket: peerSocket,
+            peerSocket: 'mockSocket',
             data: data
         });
-        peerSocket.on('idOffer', (data) => {
-            dispatch(foundPartner(data.peerId, data.publicId));
-            dispatch(gotPartnerMicTest(data.micTestFile));
-            peerSocket.usePeerConnection = true;
-        });
-        peerSocket.on('askId', (data) => {
-            dispatch(foundPartner(data.peerId, data.publicId));
-            dispatch(gotPartnerMicTest(data.micTestFile));
-            dispatch(gotId(peerSocket.peerId));
-            peerSocket.usePeerConnection = true;
-            peerSocket.emit('idOffer', { peerId: peerSocket.peerId,
-                publicId: getState().selfInfo.publicId,
-                micTestFile: getState().selfInfo.micTestFile
-            });
-        });
-        peerSocket.on('imReady', (data) => {
-            dispatch(partnerReady());
-        });
-        peerSocket.on('notReady', (data) => {
-            dispatch(partnerNotReady());
-        });
-        peerSocket.on('action', action => {
-            if(action.type === types.PARTNER_RESPONSE){
-                getState().selfInfo.recorder.stop();
-            }
-            dispatch(action);
-        });
-        peerSocket.on('createAction', toCreate => {
-            dispatch(remoteCommands[toCreate.actionCreator](...toCreate.actionArgs));
-        });
-        peerSocket.on('upgrade', () => {
-            dispatch(gotId(peerSocket.peerId));
-            peerSocket.emit('askId', { peerId: peerSocket.peerId,
-                publicId: getState().selfInfo.publicId,
-                micTestFile: getState().selfInfo.micTestFile
-            });
-        });
-    }
+        dispatch(gotId('mockSocketId'));
+        dispatch(foundPartner('mockPartner', 'mockPartnerId'));
+        //simulate getting partner
+        // setTimeout(() => {
+        //     window.alert('Got a partner, please return to the webpage.')
+        //     dispatch(foundPartner('mockPartner', 'mockPartnerId'));
+        //     // dispatch(gotPartnerMicTest(data.micTestFile));
+        // }, 5000);
+    };
 
 export const getPartner = () =>
     (dispatch, getState) => {
-        dispatch(createdConnection(new P2P(io(),
-            {autoUpgrade: true, peerOpts: {trickle: true}})));
+        dispatch(mockConnection());
 };
 
 export const finishedBlockInstructions = (blockId, data = {}) => ({

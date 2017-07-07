@@ -4,7 +4,10 @@ import { response } from '../actions';
 import './Stimuli.css'
 import RecorderControlsContainer from './RecorderControlsContainer';
 
-const Stimuli = ({instructionsPlayed, participantRole, blockId, trialId, trialData, onColorClick}) => {
+const Stimuli = ({trialStarted, instructionsPlayed, participantRole, blockId, trialId, trialData, onColorClick}) => {
+    if(!trialStarted){
+        return null;
+    }
     let colorOptions = [];
     let selectedColors = [];
     let displayInstructions = trialId === 0 && (blockId === 0 || blockId === 1);
@@ -53,6 +56,7 @@ const Stimuli = ({instructionsPlayed, participantRole, blockId, trialId, trialDa
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        trialStarted: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
         instructionsPlayed: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].instructions_played
     };
 };
@@ -71,29 +75,6 @@ const PictureBox = ({picture, onClick}) => {
     return (
         <div style={style} className="Picture-box" onClick={onClick}>
             <img src={imgSrc} alt='' height="200" width="200" />
-        </div>
-    );
-};
-
-const WordBox = ({word, onClick}) => {
-    let style = {borderStyle: word === null ? 'dashed' : 'solid'};
-    return (
-        <div style={style} className="Word-box" onClick={onClick}>
-            {word}
-        </div>
-    );
-};
-
-const ColorBox = ({color, onClick}) => {
-    let style = {}
-    if (color === null){
-        style = {...style, borderStyle: 'dashed', backgroundColor: 'white' };
-    } else {
-        style = {...style, borderStyle: 'solid', backgroundColor: color };
-    }
-    return (
-        <div style={style} className="Color-box" onClick={onClick}>
-            {color === null ? '?' : ''}
         </div>
     );
 };

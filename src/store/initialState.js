@@ -9,7 +9,9 @@ export const consent = {
 }
 
 export const trialBlocks = [
-    {instructions: {
+    {
+        role: 'partner',
+        instructions: {
         finished_instructions: false,
         forSpeaker: 'You will see four pictures. Label each using a single word, starting with the pictures on the left and. Your partner will be trying to click on the same pictures in the same order as you say them aloud. Once your partner has selected all the pictures you will have completed this set and you will be asked to start the next set.',
         forPartner: 'You will see four pictures on the upper half of your screen and four dashed boxes on the lower half. Your partner will name each picture alound using a single word. Click on the picture that corresponds to each word in the order your hear them. When you click on a picture it will move to the lower half of your screen, replacing the dashed boxes below. Once you select the last picture you will copmlete this set and you will be asked to start the next set.'},
@@ -49,7 +51,9 @@ export const trialBlocks = [
             }
         ]
     },
-    {instructions: {
+    {
+        role: 'speaker',
+        instructions: {
         finished_instructions: false,
         forSpeaker: 'You will see four pictures. Label each using a single word, starting with the pictures on the left and. Your partner will be trying to click on the same pictures in the same order as you say them aloud. Once your partner has selected all the pictures you will have completed this set and you will be asked to start the next set.',
         forPartner: 'You will see four pictures on the upper half of your screen and four dashed boxes on the lower half. Your partner will name each picture alound using a single word. Click on the picture that corresponds to each word in the order your hear them. When you click on a picture it will move to the lower half of your screen, replacing the dashed boxes below. Once you select the last picture you will copmlete this set and you will be asked to start the next set.'},

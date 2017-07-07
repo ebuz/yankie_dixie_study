@@ -27,7 +27,7 @@ const partnerInfoInitialState = {
     readyToStart: false,
     audio: null,
     volume: 1,
-    micTestFile: null,
+    micTestFile: 'recordings/pre_recorded/mic_test_first.webm',
     micCheck: false
 }
 

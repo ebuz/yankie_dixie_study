@@ -54,6 +54,10 @@ const trials = (state = [], action) => {
     }
 }
 
+const role = (state = {}, action) => {
+    return state;
+}
+
 const instructions = (state = {}, action) => {
     switch (action.type) {
         case types.FINISHED_BLOCK_INSTRUCTIONS:
@@ -64,6 +68,7 @@ const instructions = (state = {}, action) => {
 }
 
 const trialBlock_shape = {
+    role: 'partner',
     instructions: {
         forSpeaker : "",
         forPartner : "",
@@ -73,6 +78,7 @@ const trialBlock_shape = {
 
 const trialBlock = (state = trialBlock_shape, action) => {
     return {
+        role: role(state.role, action),
         instructions: instructions(state.instructions, action),
         trials: trials(state.trials, action)
     }

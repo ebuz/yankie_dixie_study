@@ -19,7 +19,7 @@ const BlockInstructions = ({blockId, participantRole, instructions, onFinished})
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        instructions: state.trialBlocks[ownProps.blockId].instructions
+        instructions: state.trialBlocks[ownProps.blockId].instructions,
     }
 };
 
