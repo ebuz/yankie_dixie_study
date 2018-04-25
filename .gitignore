@@ -12,6 +12,9 @@ build
 # uploads
 recordings
 
+# stimuli
+public/stimuli
+
 # misc
 .DS_Store
 .env

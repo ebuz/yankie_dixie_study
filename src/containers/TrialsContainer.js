@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 import SyncPartnersContainer from './SyncPartnersContainer';
 import StimuliContainer from './StimuliContainer';
 
-const Trials = ({blockId, participantRole, finished_instructions, trialId, trialData}) => {
+const Trials = ({listId, blockId, participantRole, finished_instructions, trialId, trialData}) => {
     if(!finished_instructions || trialId === -1){
         return null;
     }
     return(
         <div className="Trial-box">
-            <SyncPartnersContainer blockId={blockId} trialId={trialId}
+            <SyncPartnersContainer listId={listId} blockId={blockId} trialId={trialId}
                 participantRole={participantRole} />
-            <StimuliContainer blockId={blockId} participantRole={participantRole}
-                trialId={trialId} trialData={trialData} />
+            <StimuliContainer listId={listId} blockId={blockId} trialId={trialId}
+                participantRole={participantRole} trialData={trialData} />
         </div>
     );
 };
 
-const getNextTrialId = (blockId, trialBlocks) => {
-    let trials = trialBlocks[blockId].trials
+const getNextTrialId = (listId, blockId, experimentalLists) => {
+    let trials = experimentalLists[listId][blockId].trials
     let trialId = trials.findIndex(trial => {return(!trial.completed)})
     return {
         trialId: trialId,
@@ -28,8 +28,8 @@ const getNextTrialId = (blockId, trialBlocks) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        finished_instructions: state.trialBlocks[ownProps.blockId].instructions.finished_instructions,
-        ...getNextTrialId(ownProps.blockId, state.trialBlocks)
+        finished_instructions: state.experimentalLists[ownProps.listId][ownProps.blockId].instructions.finished_instructions,
+        ...getNextTrialId(ownProps.listId, ownProps.blockId, state.experimentalLists)
     }
 };
 

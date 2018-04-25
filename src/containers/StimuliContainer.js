@@ -4,7 +4,7 @@ import { response } from '../actions';
 import './Stimuli.css'
 import RecorderControlsContainer from './RecorderControlsContainer';
 
-const Stimuli = ({trialStarted, instructionsPlayed, participantRole, blockId, trialId, trialData, onColorClick}) => {
+const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blockId, trialId, trialData, onColorClick}) => {
     if(!trialStarted){
         return null;
     }
@@ -23,7 +23,7 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, blockId, tr
             return <PictureBox picture={trialData.stimuli[value]}
                 key={index.toString()}
                 onClick={instructionsPlayed ? () => {
-                    return onColorClick(blockId, trialId, value);
+                    return onColorClick(listId, blockId, trialId, value);
                 } : () => {}} />
         });
         selectedColors = trialData.response.map((value, index) => {
@@ -49,22 +49,22 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, blockId, tr
                 {selectedColors}
             </div>
             <RecorderControlsContainer participantRole={participantRole}
-                blockId={blockId} trialId={trialId}/>
+                listId={listId} blockId={blockId} trialId={trialId}/>
         </div>
     );
 };
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        trialStarted: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
-        instructionsPlayed: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].instructions_played
+        trialStarted: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
+        instructionsPlayed: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].instructions_played
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onColorClick: (blockId, trialId, index) => {
-            dispatch(response(blockId, trialId, index));
+        onColorClick: (listId, blockId, trialId, index) => {
+            dispatch(response(listId, blockId, trialId, index));
         }
     };
 };

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import trialBlocks from './trialBlocksReducer';
+import experimentalLists from './experimentalListsReducer';
+import survey from './surveyReducer';
 import * as types from '../actionTypes'
 
-function consent(state = {consented: false, instructions: ''}, action) {
+const consent = (state = {consented: false, instructions: ''}, action) => {
     switch (action.type) {
         case types.CONSENT:
             return {...state, consented: true}
@@ -11,10 +12,19 @@ function consent(state = {consented: false, instructions: ''}, action) {
     }
 };
 
-function instructions(state = {finished_instructions: false, instructions: ''}, action) {
+const instructions = (state = {finished_instructions: false, instructions: ''}, action) => {
     switch (action.type) {
         case types.FINISHED_INSTRUCTIONS:
             return {...state, finished_instructions: true}
+        default:
+            return state;
+    }
+};
+
+const debrief = (state = {finished_debrief: false, debrief: ''}, action) => {
+    switch (action.type) {
+        case types.FINISHED_DEBRIEF:
+            return {...state, finished_debrief: true}
         default:
             return state;
     }
@@ -55,9 +65,10 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
 
 const mturkInfoInitialState = {
     workerId: null,
-    hidId: null,
+    hitId: null,
     assignmentId: null,
-    turkSubmitTo: null
+    turkSubmitTo: null,
+    listId: null
 }
 
 const mturkInfo = (state = mturkInfoInitialState, action) => {
@@ -70,6 +81,8 @@ const mturkInfo = (state = mturkInfoInitialState, action) => {
             return {...state, hitId: action.hitId};
         case types.GOT_ASSIGNMENTID:
             return {...state, assignmentId: action.assignmentId };
+        case types.GOT_LISTID:
+            return {...state, listId: action.listId };
         default:
             return state;
     }
@@ -116,9 +129,11 @@ const selfInfo = (state = selfInfoInitialState, action) => {
 };
 
 const reducer = combineReducers({
-    trialBlocks,
+    experimentalLists,
+    survey,
     consent,
     instructions,
+    debrief,
     partnerInfo,
     selfInfo,
     mturkInfo

@@ -2,15 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { participantConsent, getPartner} from '../actions';
 
-const Consent = ({haveMic, readInstructions, consent, onConsent}) => {
+const isInPreview = ({assignmentId, workerId, hitId, turkSubmitTo, listId}) => {
+    let result = assignmentId === null ||
+                ['ASSIGNMENT_ID_NOT_AVAILABLE', 'assignment_id_not_available', '']
+                .indexOf(assignmentId) >= 0
+    let missingParams = [workerId, hitId, turkSubmitTo, listId].filter(
+        (param) => param === null || ''
+    )
+    return result || missingParams.length > 0
+}
+
+const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => {
     if(haveMic === null || !haveMic || !readInstructions || consent.consented){
         return null;
     }
     return (
         <div className="Consent-box">
             <p>{consent.instructions}</p>
-            <button type='button' onClick={onConsent}>
-                I consent to participate
+            <button type='button' onClick={onConsent} disabled={inPreview}>
+                {inPreview ? 'cannot continue in preview mode' : 'I consent to participate'}
             </button>
         </div>
     );
@@ -18,6 +28,7 @@ const Consent = ({haveMic, readInstructions, consent, onConsent}) => {
 
 const mapStateToProps = (state) => {
     return {
+        inPreview : isInPreview(state.mturkInfo),
         haveMic: state.selfInfo.micSelfCheck,
         readInstructions: state.instructions.finished_instructions,
         consent: state.consent

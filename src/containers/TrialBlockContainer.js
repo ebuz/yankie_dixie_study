@@ -2,12 +2,13 @@ import React from 'react';
 import BlockInstructionsContainer from './BlockInstructionsContainer';
 import TrialsContainer from './TrialsContainer';
 
-const TrialBlock = ({blockId, participantRole}) => {
+const TrialBlock = ({listId, blockId, participantRole}) => {
     return(
         <div className="TrialBlock-box">
-            <BlockInstructionsContainer blockId={blockId}
+            <BlockInstructionsContainer listId={listId} blockId={blockId}
                 participantRole={participantRole} />
-            <TrialsContainer blockId={blockId} participantRole={participantRole} />
+            <TrialsContainer listId={listId} blockId={blockId}
+                participantRole={participantRole} />
         </div>
     )
 };

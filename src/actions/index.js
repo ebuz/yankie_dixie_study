@@ -25,6 +25,24 @@ export const mutePartner = (data = {}) =>
         })
     };
 
+export const uploadAssignment = () =>
+    (dispatch, getState) => {
+        let state = getState();
+        let form = new FormData();
+        form.append('assignmentId', state.mturkInfo.assignmentId)
+        form.append('data', JSON.stringify({
+            trialData: state.experimentalLists[state.mturkInfo.listId],
+            surveyData: state.survey,
+            mturkInfo: state.mturkInfo,
+        }))
+        fetch('/submitassignment', {
+            method: 'POST',
+            body: form
+        }).then(() => dispatch({
+            type: types.UPLOADED_ASSIGNMENT
+        }));
+    }
+
 export const unMutePartner = (volume = 1, data = {}) =>
     (dispatch, getState) => {
 // currently unavoidable side-effect
@@ -66,15 +84,21 @@ export const finishedInstructions = (data = {}) => ({
     data: data
 });
 
+export const finishedDebrief = (data = {}) => ({
+    type: types.FINISHED_DEBRIEF,
+    data: data
+});
+
 export const participantConsent = (data = {}) => ({
     type: types.CONSENT,
     data: data
 });
 
-export const cueSpeaker = (blockId, trialId, data = {}) =>
+export const cueSpeaker = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         const cueAction = {
             type: types.CUE_SPEAKER,
+            listId: listId,
             blockId: blockId,
             id: trialId,
             data: data
@@ -82,16 +106,17 @@ export const cueSpeaker = (blockId, trialId, data = {}) =>
         dispatch(cueAction);
     }
 
-export const displayWords = (blockId, trialId, data = {}) =>
+export const displayWords = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         const displayAction = {
             type: types.DISPLAY_WORDS,
+            listId: listId,
             blockId: blockId,
             id: trialId,
             data: data
         };
         dispatch(displayAction);
-        dispatch(cueSpeaker(blockId, trialId));
+        dispatch(cueSpeaker(listId, blockId, trialId));
     };
 
 export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
@@ -103,16 +128,18 @@ export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
     )
 };
 
-export const playedInstructions = (blockId, trialId) => ({
+export const playedInstructions = (listId, blockId, trialId) => ({
     type: types.INSTRUCTIONS_PLAYED,
+    listId: listId,
     blockId: blockId,
     id: trialId
 });
 
-export const endTrial = (blockId, trialId, data = {}) =>
+export const endTrial = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         dispatch({
             type: types.END_TRIAL,
+            listId: listId,
             blockId: blockId,
             id: trialId,
             data: data
@@ -121,19 +148,20 @@ export const endTrial = (blockId, trialId, data = {}) =>
         dispatch(partnerNotReady());
     };
 
-export const startTrial = (blockId, trialId, data = {}) =>
+export const startTrial = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         const startAction = {
             type: types.START_TRIAL,
+            listId: listId,
             blockId: blockId,
             id: trialId,
             data: data
         };
         dispatch(startAction);
-        dispatch(displayWords(blockId, trialId));
+        dispatch(displayWords(listId, blockId, trialId));
     };
 
-export const waitOnPartnerToStartTrial = (blockId, trialId, data = {}) =>
+export const waitOnPartnerToStartTrial = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
         //delay start by some amount
@@ -142,9 +170,9 @@ export const waitOnPartnerToStartTrial = (blockId, trialId, data = {}) =>
         setTimeout(() => {
             console.log(`simulate start of block ${blockId} trial ${trialId}`);
             dispatch(partnerReady());
-            dispatch(startTrial(blockId, trialId, data));
+            dispatch(startTrial(listId, blockId, trialId, data));
             const file_to_play =
-                state.trialBlocks[blockId].trials[trialId].mock_recording;
+                state.experimentalLists[listId][blockId].trials[trialId].mock_recording;
             fetch(file_to_play).then(fileResponse => {
                 return fileResponse.arrayBuffer()
             }).then(buffer => {
@@ -159,7 +187,7 @@ export const waitOnPartnerToStartTrial = (blockId, trialId, data = {}) =>
                         // account for recording onset time
                         let delay = decoded.duration + 0 + 0; // value in seconds
                         let playedInstructionsAction =
-                            playedInstructions(blockId, trialId);
+                            playedInstructions(listId, blockId, trialId);
                         setTimeout(() => {
                             source.start();
                             dispatch(playedInstructionsAction);
@@ -174,16 +202,17 @@ export const recordingState = (recording_state) => ({
     recording_state: recording_state
 });
 
-export const speakerRecording = (blockId, trialId, recordingUrl) => ({
+export const speakerRecording = (listId, blockId, trialId, recordingUrl) => ({
     type: types.SPEAKER_RECORDING,
+    listId: listId,
     blockId: blockId,
     id: trialId,
     speaker_recording: recordingUrl
 });
 
-export const gotDirections = (blockId, trialId, recordingUrl) =>
+export const gotDirections = (listId, blockId, trialId, recordingUrl) =>
     (dispatch, getState) => {
-        dispatch(speakerRecording(blockId, trialId, recordingUrl));
+        dispatch(speakerRecording(listId, blockId, trialId, recordingUrl));
         let state = getState();
         fetch(recordingUrl).then(fileResponse => {
             return fileResponse.arrayBuffer()
@@ -193,13 +222,13 @@ export const gotDirections = (blockId, trialId, recordingUrl) =>
                 source.buffer = decoded;
                 source.connect(state.selfInfo.speakerOutput.destination);
                 source.start(0);
-                let playedInstructionsAction = playedInstructions(blockId, trialId);
+                let playedInstructionsAction = playedInstructions(listId, blockId, trialId);
                 dispatch(playedInstructionsAction);
             });
         });
     };
 
-export const sendDirections = (blockId, trialId, blob, id, filename) =>
+export const sendDirections = (listId, blockId, trialId, blob, id, filename) =>
     (dispatch, getState) => {
         dispatch(recordingState('uploading'));
         let state = getState();
@@ -210,8 +239,8 @@ export const sendDirections = (blockId, trialId, blob, id, filename) =>
             {method: 'post', body: formD}
         ).then(() => {
             dispatch(recordingState('inactive'));
-            dispatch(speakerRecording(blockId, trialId, `/recordings/${id}/${filename}`));
-            const partner_rt_adjust = state.trialBlocks[blockId].trials[trialId].partner_rt_adjust;
+            dispatch(speakerRecording(listId, blockId, trialId, `/recordings/${id}/${filename}`));
+            const partner_rt_adjust = state.experimentalLists[listId][blockId].trials[trialId].partner_rt_adjust;
             //respond on behalf of partner
             //read in just-finished recording and get duration
             let reader = new FileReader();
@@ -222,11 +251,11 @@ export const sendDirections = (blockId, trialId, blob, id, filename) =>
                     setTimeout(() => {
                         //respond for partner
                         dispatch(partnerReady());
-                        dispatch(endTrial(blockId, trialId))
+                        dispatch(endTrial(listId, blockId, trialId))
                     }, (partner_rt * 1000) + 3000);
                 });
             });
-            dispatch(playedInstructions(blockId, trialId));
+            dispatch(playedInstructions(listId, blockId, trialId));
         });
 }
 
@@ -279,21 +308,22 @@ export const recordMicTest = (data = {}) =>
         dispatch(recordingState('recording'));
 };
 
-export const recordDirections = (blockId, trialId, data = {}) =>
+export const recordDirections = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
         state.selfInfo.recorder.record().then((blob) => {
-            dispatch(sendDirections(blockId, trialId, blob,
-                state.selfInfo.publicId, `${blockId}_${trialId}.` + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? 'webm' : 'ogg')
+            dispatch(sendDirections(listId, blockId, trialId, blob,
+                state.selfInfo.publicId, `${listId}_${blockId}_${trialId}.` + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? 'webm' : 'ogg')
             ));
         });
         dispatch(recordingState('recording'));
 };
 
-export const partnerResponse = (blockId, trialId, theResponse, data = {}) =>
+export const partnerResponse = (listId, blockId, trialId, theResponse, data = {}) =>
     (dispatch, getState) => {
         dispatch({
             type: types.PARTNER_RESPONSE,
+            listId: listId,
             blockId: blockId,
             id: trialId,
             response: theResponse,
@@ -301,15 +331,15 @@ export const partnerResponse = (blockId, trialId, theResponse, data = {}) =>
         });
 }
 
-export const response = (blockId, trialId, myResponse, data = {}) =>
+export const response = (listId, blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        dispatch(partnerResponse(blockId, trialId, myResponse, data));
+        dispatch(partnerResponse(listId, blockId, trialId, myResponse, data));
         dispatch(readyToStart());
-        let trial = state.trialBlocks[blockId].trials[trialId];
+        let trial = state.experimentalLists[listId][blockId].trials[trialId];
         if(trial.response.length >= trial.stimuli.length - 1){
             setTimeout(() => {
-                dispatch(endTrial(blockId, trialId))
+                dispatch(endTrial(listId, blockId, trialId))
             }, 3000);
         }
     };
@@ -412,8 +442,9 @@ export const getPartner = () =>
         dispatch(mockConnection());
 };
 
-export const finishedBlockInstructions = (blockId, data = {}) => ({
+export const finishedBlockInstructions = (listId, blockId, data = {}) => ({
     type: types.FINISHED_BLOCK_INSTRUCTIONS,
+    listId: listId,
     blockId: blockId,
     data: data
 });
@@ -450,6 +481,23 @@ export const gotMturkInfo = (urlParams) =>
                 turkSubmitTo: urlParams.query.turkSubmitTo
             });
         }
+        if (urlParams.query.listId) {
+            dispatch({
+                type: types.GOT_LISTID,
+                listId: parseInt(urlParams.query.listId, 10)
+            });
+        }
     };
 
 
+export const completeSurveyPage = (pageId) => ({
+    type: types.SURVEY_PAGE_COMPLETED,
+    pageId: pageId
+});
+
+export const updateQuestionValue = (pageId, questionId, value) => ({
+    type: types.SURVEY_QUESTION_VALUE,
+    pageId: pageId,
+    questionId: questionId,
+    value: value
+});

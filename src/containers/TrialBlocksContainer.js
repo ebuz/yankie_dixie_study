@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TrialBlockContainer from './TrialBlockContainer';
 
-const TrialBlocks = ({finishedSetup, blockId, participantRole}) => {
+const TrialBlocks = ({finishedSetup, listId, blockId, participantRole}) => {
     if(!finishedSetup || blockId === -1){
         return null;
     }
     return(
-        <TrialBlockContainer blockId={blockId} participantRole={participantRole} />
+        <TrialBlockContainer listId={listId} blockId={blockId}
+            participantRole={participantRole} />
     )
 };
 
@@ -19,13 +20,14 @@ const nextTrialBlock = (trialBlocks) => {
 }
 
 const mapStateToProps = (state) => {
-    let currentBlock = nextTrialBlock(state.trialBlocks);
+    let currentBlock = state.mturkInfo.listId !== null ? nextTrialBlock(state.experimentalLists[state.mturkInfo.listId]) : -1;
     let participantRole = null;
     if(currentBlock !== -1){
-        participantRole = state.trialBlocks[currentBlock].role;
+        participantRole = state.experimentalLists[state.mturkInfo.listId][currentBlock].role;
     }
     return {
         finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
+        listId: state.mturkInfo.listId,
         blockId: currentBlock,
         participantRole: participantRole,
     };

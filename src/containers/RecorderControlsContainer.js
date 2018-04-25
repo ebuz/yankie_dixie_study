@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { recordDirections, stopRecording } from '../actions';
 
-const RecorderControls = ({recorder, recording_state, trialStarted, providedInstructions, startRecordingAction, stopRecordingAction, participantRole, blockId, trialId}) => {
+const RecorderControls = ({recorder, recording_state, trialStarted, providedInstructions, startRecordingAction, stopRecordingAction, participantRole, listId, blockId, trialId}) => {
     if (!recorder || !trialStarted || participantRole !== 'speaker'){
         return null;
     }
@@ -25,15 +25,15 @@ const mapStateToProps = (state, ownProps) => {
     return {
         recorder: state.selfInfo.recorder,
         recording_state: state.selfInfo.recording_state,
-        trialStarted: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
-        providedInstructions: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].speaker_recording
+        trialStarted: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
+        providedInstructions: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].speaker_recording
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         startRecordingAction: () => {
-            dispatch(recordDirections(ownProps.blockId, ownProps.trialId));
+            dispatch(recordDirections(ownProps.listId, ownProps.blockId, ownProps.trialId));
         },
         stopRecordingAction: () => {
             dispatch(stopRecording());

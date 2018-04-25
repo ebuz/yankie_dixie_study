@@ -3,6 +3,12 @@ export const GOT_TURKSUBMITTO = 'GOT_TURKSUBMITTO';
 export const GOT_WORKERID = 'GOT_WORKERID';
 export const GOT_HITID = 'GOT_HITID';
 export const GOT_ASSIGNMENTID = 'GOT_ASSIGNMENTID';
+export const GOT_LISTID = 'GOT_LISTID';
+
+//survey related actions
+export const SURVEY_PAGE_INSTRUCTIONS = 'SURVEY_PAGE_INSTRUCTIONS';
+export const SURVEY_PAGE_COMPLETED = 'SURVEY_PAGE_COMPLETED';
+export const SURVEY_QUESTION_VALUE = 'SURVEY_QUESTION_VALUE';
 
 // trial block actions
 export const FINISHED_BLOCK_INSTRUCTIONS = 'FINISHED_BLOCK_INSTRUCTIONS';
@@ -20,6 +26,9 @@ export const END_TRIAL = 'END_TRIAL';
 // experiment related actions
 export const CONSENT = 'CONSENT';
 export const FINISHED_INSTRUCTIONS = 'FINISHED_INSTRUCTIONS';
+export const FINISHED_SURVEY = 'FINISHED_SURVEY';
+export const FINISHED_DEBRIEF = 'FINISHED_DEBRIEF';
+export const UPLOADED_ASSIGNMENT = 'UPLOADED_ASSIGNMENT,';
 
 
 // partner related actions

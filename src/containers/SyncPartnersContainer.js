@@ -33,7 +33,7 @@ class SyncPartners extends Component {
             }
             if(this.props.participantRole === 'speaker' && this.props.partnerReady){
                 return(<div className="PartnerSync-box">
-                    <button type='button' onClick={() => {this.props.initiateTrial(this.props.blockId, this.props.trialId, this.props.participantRole)}}>
+                    <button type='button' onClick={() => {this.props.initiateTrial(this.props.listId, this.props.blockId, this.props.trialId, this.props.participantRole)}}>
                         Click to start the trial
                     </button>
                 </div>
@@ -61,7 +61,7 @@ class SyncPartners extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        trialStarted: state.trialBlocks[ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
+        trialStarted: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
         havePartner: state.partnerInfo.peerId,
         micCheck: state.partnerInfo.micCheck,
         micTestFile: state.partnerInfo.micTestFile,
@@ -86,13 +86,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(readyToStart());
             if(ownProps.participantRole !== 'speaker'){
                 console.log('simulate speaker trial initiation')
-                dispatch(waitOnPartnerToStartTrial(ownProps.blockId,
+                dispatch(waitOnPartnerToStartTrial(ownProps.listId, ownProps.blockId,
                     ownProps.trialId));
             }
         },
         initiateTrial: () => {
             dispatch(readyToStart());
-            dispatch(startTrial(ownProps.blockId, ownProps.trialId));
+            dispatch(startTrial(ownProps.listId, ownProps.blockId, ownProps.trialId));
         },
         getPartnerReady: () => {
             setTimeout(() => {

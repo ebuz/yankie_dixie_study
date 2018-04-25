@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { finishedBlockInstructions } from '../actions';
 
-const BlockInstructions = ({blockId, participantRole, instructions, onFinished}) => {
+const BlockInstructions = ({listId, blockId, participantRole, instructions, onFinished}) => {
     if(instructions.finished_instructions){
         return null;
     }
@@ -19,14 +19,14 @@ const BlockInstructions = ({blockId, participantRole, instructions, onFinished})
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        instructions: state.trialBlocks[ownProps.blockId].instructions,
+        instructions: state.experimentalLists[ownProps.listId][ownProps.blockId].instructions,
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onFinished: () => {
-            dispatch(finishedBlockInstructions(ownProps.blockId));
+            dispatch(finishedBlockInstructions(ownProps.listId, ownProps.blockId));
         }
     };
 };

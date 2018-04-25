@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { recordMicTest, stopRecording, gotMicTest, workingMic } from '../actions';
+import './MicCheckContainer.css';
 
 const MicCheck = ({haveMic, okMic, micTestFile, recordingState, startRecordingAction, stopRecordingAction, redoRecordingAction, noRecordingAction, okMicAction}) => {
     if(haveMic === null || !haveMic || okMic){
