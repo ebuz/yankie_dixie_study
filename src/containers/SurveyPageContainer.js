@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SurveyQuestionContainer from './SurveyQuestionContainer';
 import { completeSurveyPage } from '../actions';
+import './SurveyPageContainer.css'
 
 const SurveyPage = ({pageId, surveyPage, handleFinishPage}) => {
     return(
@@ -16,7 +17,7 @@ const SurveyPage = ({pageId, surveyPage, handleFinishPage}) => {
                     />)
                 )}
             </div>
-            <button onClick={handleFinishPage}>
+            <button className="SurveyPageFinish-button" onClick={handleFinishPage}>
                 Click here to continue
             </button>
         </div>

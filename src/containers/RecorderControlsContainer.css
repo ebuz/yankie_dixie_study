@@ -1,12 +1,3 @@
-.MicCheck-box {
-    text-align: center;
-    margin: auto;
-}
-.MicCheckPassage-box {
-    border: 2px solid black;
-    padding: 5px;
-    margin: auto;
-}
 .RecordingOn-button {
     background-color: red;
     color: white;
@@ -23,13 +14,9 @@
     text-align: center;
     border-radius: 8px;
 }
-.RecordingOk-button {
-    margin: 5px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 8px;
-}
-.RecordingRedo-button {
+.RecordingDisable-button {
+    background-color: lightgrey;
+    color: white;
     margin: 5px;
     padding: 5px;
     text-align: center;

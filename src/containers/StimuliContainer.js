@@ -4,52 +4,74 @@ import { response } from '../actions';
 import './Stimuli.css'
 import RecorderControlsContainer from './RecorderControlsContainer';
 
-const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blockId, trialId, trialData, onColorClick}) => {
+const filledArray = (n, fillFunc = () => null) => {
+    return Array.from({length: n}, fillFunc);
+};
+
+const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blockId, trialId, trialData, onClick}) => {
     if(!trialStarted){
         return null;
     }
-    let colorOptions = [];
-    let selectedColors = [];
     let displayInstructions = trialId === 0 && (blockId === 0 || blockId === 1);
+
+    let selectedOptions = trialData.response.concat(
+        filledArray(trialData.stimuli.length - trialData.response.length));
+
+    let availableOptions = participantRole === 'partner' ? filledArray(trialData.stimuli.length, (_, i) => i) : trialData.speaker_order;
+    availableOptions = availableOptions.filter((el) => {
+        return(!trialData.response.includes(el));
+    });
+    availableOptions = availableOptions.concat(
+        filledArray(trialData.response.length));
+
     let instructionMsg = '';
+    let availableOptionComponents = [];
+
     if(participantRole === 'partner') {
         if(displayInstructions){
             instructionMsg = instructionsPlayed ? "Click the images in the order you hear them" : "Wait and listen for your partner's instructions";
         }
-        let options = [0, 1, 2, 3].filter((el) => {
-            return !trialData.response.includes(el);
-        });
-        colorOptions = options.map((value, index) => {
-            return <PictureBox picture={trialData.stimuli[value]}
-                key={index.toString()}
-                onClick={instructionsPlayed ? () => {
-                    return onColorClick(listId, blockId, trialId, value);
-                } : () => {}} />
-        });
-        selectedColors = trialData.response.map((value, index) => {
-            return <PictureBox key={index.toString()} picture={trialData.stimuli[value]} />
-        });
+        availableOptionComponents = availableOptions.map((value, index) => {
+                        return(
+                            <PictureBox
+                                picture={value === null ? null : trialData.stimuli[value]}
+                                key={index.toString()}
+                                onClick={instructionsPlayed && value !== null ? () => {onClick(listId, blockId, trialId, value)} : () => {}} />
+                        )
+                    })
     } else {
-        instructionMsg = displayInstructions ? "When you are ready, click the button to start recording, then name each picture from left to right" : '';
-        colorOptions = trialData.speaker_order.map((value, index) => {
-            return <PictureBox key={index.toString()} picture={trialData.stimuli[value]} />
-        });
+        if(displayInstructions){
+            instructionMsg = instructionsPlayed ? "" : "When you are ready, click the button to start recording, then name each picture from left to right";
+        }
+        availableOptionComponents = availableOptions.map((value, index) => {
+                        return(
+                            <PictureBox
+                                picture={value === null ? null : trialData.stimuli[value]}
+                                key={index.toString()} />
+                        )
+                    })
     }
     return (
         <div className="Stimulus-box">
             <div className="TrialInstructions-box">
                 {instructionMsg}
             </div>
-            <div className="Options-box">
-                {colorOptions}
-            </div>
-            <br />
-            <hr />
-            <div className="Selected-box">
-                {selectedColors}
-            </div>
             <RecorderControlsContainer participantRole={participantRole}
                 listId={listId} blockId={blockId} trialId={trialId}/>
+            <div className="Options-box">
+                {availableOptionComponents}
+            </div>
+            <br />
+            <div className="Selected-box">
+                {
+                    selectedOptions.map((value, index) => {
+                        return(
+                            <PictureBox key={index.toString()}
+                                picture={value === null ? null : trialData.stimuli[value]} />
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 };
@@ -63,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onColorClick: (listId, blockId, trialId, index) => {
+        onClick: (listId, blockId, trialId, index) => {
             dispatch(response(listId, blockId, trialId, index));
         }
     };
@@ -71,10 +93,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const PictureBox = ({picture, onClick}) => {
     let imgSrc = `stimuli/pictures/${picture}.jpg`;
-    let style = {borderStyle: picture === null ? 'dashed' : 'solid'};
+    let className = picture === null ? "Picture-holder-box" : "Picture-box";
     return (
-        <div style={style} className="Picture-box" onClick={onClick}>
-            <img src={imgSrc} alt='' height="200" width="200" />
+        <div className={className} onClick={onClick}>
+            {picture === null ? null : <img src={imgSrc} alt='' height="200" width="200" />}
         </div>
     );
 };

@@ -1,0 +1,10 @@
+.PartnerSync-box {
+    text-align: center;
+    margin: auto;
+}
+.PartnerSync-box > button {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+}

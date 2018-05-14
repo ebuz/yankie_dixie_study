@@ -1,21 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { recordDirections, stopRecording } from '../actions';
+import './RecorderControlsContainer.css';
 
-const RecorderControls = ({recorder, recording_state, trialStarted, providedInstructions, startRecordingAction, stopRecordingAction, participantRole, listId, blockId, trialId}) => {
+const RecorderControls = ({recorder, recordingState, trialStarted, providedInstructions, startRecordingAction, stopRecordingAction, participantRole, listId, blockId, trialId}) => {
     if (!recorder || !trialStarted || participantRole !== 'speaker'){
         return null;
     }
+    let buttonAction = recordingState === 'recording' ? stopRecordingAction : startRecordingAction;
+    let className = recordingState === 'inactive' ? 'RecordingOff-button' : 'RecordingOn-button';
+    let buttonText = recordingState === 'recording' ? 'Click to send send instructions' : 'Click to begin recording your instructions';
     if (providedInstructions){
-        return(
-            <div> Waiting for your partner to finish. </div>
-        );
+        className = '.RecordingDisable-button';
+        buttonText = 'Please wait till your partner finishes';
     }
-    let buttonAction = recording_state === 'recording' ? stopRecordingAction : startRecordingAction;
     return (
         <div className="RecorderControls-box">
-            <button type='button' onClick={buttonAction} >
-                    Click to {recording_state === 'recording' ? 'send instructions' : 'begin recording instructions'}
+            <button type='button' onClick={buttonAction}
+                disable={providedInstructions}
+                className={className}
+            >
+                {buttonText}
             </button>
         </div>
     );
@@ -24,7 +29,7 @@ const RecorderControls = ({recorder, recording_state, trialStarted, providedInst
 const mapStateToProps = (state, ownProps) => {
     return {
         recorder: state.selfInfo.recorder,
-        recording_state: state.selfInfo.recording_state,
+        recordingState: state.selfInfo.recording_state,
         trialStarted: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].displayed_pictures,
         providedInstructions: state.experimentalLists[ownProps.listId][ownProps.blockId].trials[ownProps.trialId].speaker_recording
     }

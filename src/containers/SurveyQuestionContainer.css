@@ -1,0 +1,20 @@
+.LikertQuestion-box, .SelectQuestion-box, .TextareaQuestion-box, .InputQuestion-box {
+    margin: 15px;
+}
+
+.LikertQuestion-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+}
+
+.LikertQuestion-list li {
+}
+
+.LikertQuestion-list li input[type=radio] {
+    display: block;
+    position: relative;
+    left: 50%;
+    margin-left: -6px;
+}

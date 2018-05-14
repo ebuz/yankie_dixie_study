@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { participantConsent, getPartner} from '../actions';
+import './ConsentContainer.css'
 
 const isInPreview = ({assignmentId, workerId, hitId, turkSubmitTo, listId}) => {
     let result = assignmentId === null ||
@@ -18,8 +19,14 @@ const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => 
     }
     return (
         <div className="Consent-box">
+            <p>Please read our <a href="/ExampleConsent.pdf" target="_blank">consent form</a>.</p>
+            <br />
             <p>{consent.instructions}</p>
-            <button type='button' onClick={onConsent} disabled={inPreview}>
+            <br />
+            <p>Once you consent we will begin matching you with a partner.</p>
+            <button type='button' onClick={onConsent} disabled={inPreview}
+                className="Consent-button"
+            >
                 {inPreview ? 'cannot continue in preview mode' : 'I consent to participate'}
             </button>
         </div>

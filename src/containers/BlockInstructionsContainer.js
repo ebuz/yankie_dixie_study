@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { finishedBlockInstructions } from '../actions';
+import './BlockInstructionsContainer.css'
 
 const BlockInstructions = ({listId, blockId, participantRole, instructions, onFinished}) => {
     if(instructions.finished_instructions){

@@ -164,9 +164,8 @@ export const startTrial = (listId, blockId, trialId, data = {}) =>
 export const waitOnPartnerToStartTrial = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        //delay start by some amount
+        //delay start by some amount, might be good idea to make this random
         let start_delay = 1000;
-        console.log(`delaying start by ${start_delay}`);
         setTimeout(() => {
             console.log(`simulate start of block ${blockId} trial ${trialId}`);
             dispatch(partnerReady());
@@ -278,6 +277,42 @@ export const workingPartnerMic = () => ({
     type: types.MIC_PARTNER_CHECK,
     micCheck: true
 });
+
+export const partnerMicTestRedo = () => ({
+    type: types.MIC_PARTNER_REDO_CHECK
+});
+
+export const requestNewPartnerMicTestFile = () =>
+    (dispatch, getState) => {
+        let state = getState();
+        //find new next audio file from set
+        let newMicTestFile =
+            state.partnerInfo.micTestFileSet[state.partnerInfo.micCheckRedos];
+        let newPartnerMicTestAction = gotPartnerMicTest(newMicTestFile);
+        // before dispatching we need to delay this so it's realistic
+        // download and decode fild to figure out length
+        fetch(newMicTestFile).then(fileResponse => {
+            return fileResponse.arrayBuffer()
+        }).then(buffer => {
+            // decode the buffer to get duration
+            state.selfInfo.speakerOutput.decodeAudioData(buffer).then(
+                decoded => {
+                    // set delay on triggering partner mic test
+                    // consider adding some slush for request?
+                    let delay = decoded.duration + 0; // value in seconds but setTimeout uses ms
+                    setTimeout(() => {
+                        dispatch(newPartnerMicTestAction);
+                    }, delay * 1000);
+                });
+        });
+    };
+
+export const requestNewPartnerMicTest = () =>
+    (dispatch, getState) => {
+        dispatch(gotPartnerMicTest(null));
+        dispatch(partnerMicTestRedo());
+        dispatch(requestNewPartnerMicTestFile());
+    };
 
 export const workingMic = () => ({
     type: types.MIC_SELF_CHECK,
@@ -428,13 +463,17 @@ export const mockConnection = (data = {}) =>
             data: data
         });
         dispatch(gotId('mockSocketId'));
-        dispatch(foundPartner('mockPartner', 'mockPartnerId'));
-        //simulate getting partner
-        // setTimeout(() => {
-        //     window.alert('Got a partner, please return to the webpage.')
-        //     dispatch(foundPartner('mockPartner', 'mockPartnerId'));
-        //     // dispatch(gotPartnerMicTest(data.micTestFile));
-        // }, 5000);
+        //simulate waiting for partner
+        let waitTime = 400 + 75 * 1000 + Math.random() * 60 * 1000;
+        setTimeout(() => {
+            window.alert('Got a partner, please return to the study!')
+            let state = getState();
+            let newMicTestFile =
+                state.partnerInfo.micTestFileSet[state.partnerInfo.micCheckRedos];
+            // dispatch new partner and new test file in one go
+            dispatch(foundPartner('mockPartner', 'mockPartnerId'));
+            dispatch(gotPartnerMicTest(newMicTestFile));
+        }, waitTime);
     };
 
 export const getPartner = () =>
@@ -501,3 +540,28 @@ export const updateQuestionValue = (pageId, questionId, value) => ({
     questionId: questionId,
     value: value
 });
+
+export const endEarly = (issue) => ({
+    type: types.ENDED_EARLY,
+    issue: issue,
+});
+
+export const finishSurvey = () =>
+    (dispatch, getState) => {
+        getState().survey.forEach((page, pageId) => {
+            dispatch(completeSurveyPage(pageId))
+        });
+    };
+
+export const finishTrials = () =>
+    (dispatch, getState) => {
+        let state = getState();
+        let listId = state.mturkInfo.listId;
+        let blocks = state.experimentalLists[listId];
+        blocks.forEach((block, blockId) => {
+            block.trials.forEach((trial, trialId) => {
+                dispatch(endTrial(listId, blockId, trialId))
+            })
+        })
+    };
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { finishedInstructions } from '../actions';
+import './InstructionsContainer.css'
 
 const Instructions = ({haveMic, instructions, onFinished}) => {
     if(haveMic === null || !haveMic || instructions.finished_instructions){
@@ -9,7 +10,9 @@ const Instructions = ({haveMic, instructions, onFinished}) => {
     return (
         <div className="Instructions-box">
             <p>{instructions.instructions}</p>
-            <button type='button' onClick={onFinished}>
+            <button type='button' onClick={onFinished}
+                className="Instructions-button"
+            >
                 I understand these instructions
             </button>
         </div>

@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
         participantRole = state.experimentalLists[state.mturkInfo.listId][currentBlock].role;
     }
     return {
-        finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
+        finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck && state.partnerInfo.micCheck,
         listId: state.mturkInfo.listId,
         blockId: currentBlock,
         participantRole: participantRole,

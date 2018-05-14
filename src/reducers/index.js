@@ -37,8 +37,10 @@ const partnerInfoInitialState = {
     readyToStart: false,
     audio: null,
     volume: 1,
-    micTestFile: 'recordings/pre_recorded/mic_test_first.webm',
-    micCheck: false
+    micTestFile: null,
+    micTestFileSet: [],
+    micCheck: false,
+    micCheckRedos: 0
 }
 
 const partnerInfo = (state = partnerInfoInitialState, action) => {
@@ -54,6 +56,8 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
             return {...state, micTestFile: action.micTestFile}
         case types.MIC_PARTNER_CHECK:
             return {...state, micCheck: true}
+        case types.MIC_PARTNER_REDO_CHECK:
+            return {...state, micCheckRedos: state.micCheckRedos + 1 }
         case types.FOUND_PARTNER:
             return {...state, peerId: action.peerId, publicId: action.publicId}
         case types.CREATED_CONNECTION:
@@ -97,7 +101,8 @@ const selfInfoInitialState = {
     recording_state: null,
     speakerOutput: null,
     micTestFile: null,
-    micSelfCheck: false
+    micSelfCheck: false,
+    endedEarly: null,
 }
 
 const selfInfo = (state = selfInfoInitialState, action) => {
@@ -123,6 +128,8 @@ const selfInfo = (state = selfInfoInitialState, action) => {
             return {...state, micTestFile: action.micTestFile}
         case types.MIC_SELF_CHECK:
             return {...state, micSelfCheck: true}
+        case types.ENDED_EARLY:
+            return {...state, endedEarly: action.issue}
         default:
             return state;
     }

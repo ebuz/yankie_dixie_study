@@ -1,0 +1,10 @@
+.Consent-box {
+    text-align: center;
+    margin: auto;
+}
+.Consent-button {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+}

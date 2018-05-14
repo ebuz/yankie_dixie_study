@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SetupContainer from './SetupContainer';
+// import SkipSectionsContainer from './SkipSectionsContainer';
+import FindPartnerContainer from './FindPartnerContainer.js'
 import TrialBlocksContainer from './TrialBlocksContainer';
 import SurveyContainer from './SurveyContainer';
 import DebriefContainer from './DebriefContainer';
@@ -17,6 +19,7 @@ class App extends Component {
             return(
                 <div className="Main-box">
                     <SetupContainer />
+                    <FindPartnerContainer />
                     <TrialBlocksContainer />
                     <SurveyContainer />
                     <DebriefContainer />
