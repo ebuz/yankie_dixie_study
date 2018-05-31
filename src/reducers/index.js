@@ -3,7 +3,7 @@ import experimentalLists from './experimentalListsReducer';
 import survey from './surveyReducer';
 import * as types from '../actionTypes'
 
-const consent = (state = {consented: false, instructions: ''}, action) => {
+const consent = (state = {consented: false, consentFileURL: '', instructions: ''}, action) => {
     switch (action.type) {
         case types.CONSENT:
             return {...state, consented: true}

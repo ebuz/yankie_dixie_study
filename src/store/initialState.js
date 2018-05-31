@@ -1,4 +1,5 @@
 import React from 'react';
+import { experimentalLists as expl } from './experimentalLists';
 
 export const instructions = {
     finished_instructions: false,
@@ -7,6 +8,7 @@ export const instructions = {
 
 export const consent = {
     consented: false,
+    consentFileURL: 'ExampleConsent.pdf',
     instructions: 'By clicking "I consent to participate" below, you confirm that you have read and understood the consent form, that you are willing to participate in this experiment, and that you acknowledge that the data you provide by participating in this experiment can be used in scientific publications (no identifying information will be used). After you consent we will start to try and pair you with a partner.'
 }
 
@@ -23,135 +25,12 @@ export const partnerInfo = {
     audio: null,
     volume: 1,
     micTestFile: null,
-    micTestFileSet: ['recordings/pre_recorded/mic_test_first.webm',
-        'recordings/pre_recorded/mic_test_second.webm',
-        'recordings/pre_recorded/mic_test_third.webm'],
+    micTestFileSet: ['recordings/mock_recordings/Reading_yankee.ogg'],
     micCheck: false,
     micCheckRedos: 0
 }
 
-const speakerInstructions = 'You will see four pictures. Your partner will see the same set of pictures but in a different order. Start recording yourself and name or describe the picture using a single word, starting with the pictures on the left. When you end your recording, it will be played to your partner. Your partner will try to click on the pictures in the order you say them. Once your partner has clicked on all the pictures the turn will end and another will begin.';
-
-const partnerInstructions = 'You will see four pictures on the upper half of your screen. Your partner sees the same set of pictures but in a different order. Your partner will record themselves naming or describing each picture using a single word in the order that they see them. After they finish, you will hear that recording. Click on the picture that corresponds to each word in the order that you hear them. When you click on a picture it will move to the lower half of your screen. Once you select the last picture the turn will end and another will begin.';
-
-const partnerTrialList1 = [
-    {stimuli: ['carrot', 'dog', 'medal', 'cupcake'],
-        speaker_order: [0, 3, 1, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_0.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    },
-    {stimuli: ['skull', 'scroll', 'clouds', 'blocks'],
-        speaker_order: [3, 0, 1, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_1.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    },
-    {stimuli: ['cup', 'lightning', 'hot_dog', 'bear'],
-        speaker_order: [3, 1, 0, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_2.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    }
-];
-
-const partnerTrialList2 = [
-    {stimuli: ['skull', 'scroll', 'clouds', 'blocks'],
-        speaker_order: [3, 0, 1, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_1.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    },
-    {stimuli: ['carrot', 'dog', 'medal', 'cupcake'],
-        speaker_order: [0, 3, 1, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_0.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    },
-    {stimuli: ['cup', 'lightning', 'hot_dog', 'bear'],
-        speaker_order: [3, 1, 0, 2],
-        response: [],
-        displayed_pictures: false,
-        completed: false,
-        instructions_played: false,
-        mock_recording: 'recordings/pre_recorded/0_2.ogg',
-        speaker_recording: null,
-        partner_rt_adjust: null,
-        data: {}
-    }
-];
-
-const experimentalList1 = [
-    {
-        role: 'partner',
-        instructions: {
-            finished_instructions: false,
-            forSpeaker: speakerInstructions,
-            forPartner: partnerInstructions
-        },
-        trials: partnerTrialList1
-    },
-    {
-        role: 'speaker',
-        instructions: {
-            finished_instructions: false,
-            forSpeaker: speakerInstructions,
-            forPartner: partnerInstructions
-        },
-        trials: partnerTrialList1
-    }
-];
-
-const experimentalList2 = [
-    {
-        role: 'partner',
-        instructions: {
-            finished_instructions: false,
-            forSpeaker: speakerInstructions,
-            forPartner: partnerInstructions
-        },
-        trials: partnerTrialList2
-    },
-    {
-        role: 'speaker',
-        instructions: {
-            finished_instructions: false,
-            forSpeaker: speakerInstructions,
-            forPartner: partnerInstructions
-        },
-        trials: partnerTrialList2
-    }
-];
-
-export const experimentalLists = [
-    experimentalList1,
-    experimentalList2
-];
+export const experimentalLists = expl;
 
 export const survey = [
     {

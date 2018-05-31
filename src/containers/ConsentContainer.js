@@ -19,7 +19,7 @@ const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => 
     }
     return (
         <div className="Consent-box">
-            <p>Please read our <a href="/ExampleConsent.pdf" target="_blank">consent form</a>.</p>
+            <p>Please read our <a href={consent.consentFileURL} target="_blank">consent form</a>.</p>
             <br />
             <p>{consent.instructions}</p>
             <br />

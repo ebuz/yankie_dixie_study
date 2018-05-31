@@ -42,7 +42,7 @@ const FindPartner = ({finishedSetup, havePartner, micTestFile, micCheck, micChec
     }
     return(
         <div className="FindPartner-box">
-            <p>We are looking for a partner for you. This may take a while. When one is found you'll get an alert. You can switch to another tab or window but do not close this page.</p>
+            <p>We are looking for a partner for you. This may take a while. When one is found you'll get an alert. You can switch to another tab or window but <span style={{fontWeight: 'bold'}}>do not close this page</span>.</p>
         </div>
     );
 }
