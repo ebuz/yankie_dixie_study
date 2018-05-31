@@ -20,14 +20,14 @@ io.on('connection', (socket) => {
     });
 });
 
+app.use('/recordings', express.static(path.join(__dirname, 'recordings')));
+app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
+
 app.use(express.static(__dirname + '/build'));
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './build', 'index.html'));
 });
-
-app.use('/recordings', express.static(path.join(__dirname, 'recordings')));
-app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
 
 const recordingFilter = (req, file, cb) => {
     // accept audio only
