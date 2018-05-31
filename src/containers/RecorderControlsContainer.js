@@ -17,7 +17,7 @@ const RecorderControls = ({recorder, recordingState, trialStarted, providedInstr
     return (
         <div className="RecorderControls-box">
             <button type='button' onClick={buttonAction}
-                disable={providedInstructions}
+                disabled={providedInstructions}
                 className={className}
             >
                 {buttonText}

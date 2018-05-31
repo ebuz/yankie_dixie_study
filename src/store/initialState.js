@@ -25,7 +25,8 @@ export const partnerInfo = {
     audio: null,
     volume: 1,
     micTestFile: null,
-    micTestFileSet: ['recordings/mock_recordings/Reading_yankee.ogg'],
+    micTestFileSet: ['recordings/mock_recordings/Reading_yankee.ogg',
+        'recordings/mock_recordings/Reading_yankee.ogg'],
     micCheck: false,
     micCheckRedos: 0
 }

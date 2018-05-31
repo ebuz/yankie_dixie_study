@@ -68,7 +68,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         notifyPartner: () => {
             dispatch(readyToStart());
             if(ownProps.participantRole !== 'speaker'){
-                console.log('simulate speaker trial initiation')
                 dispatch(waitOnPartnerToStartTrial(ownProps.listId, ownProps.blockId,
                     ownProps.trialId));
             }

@@ -165,9 +165,8 @@ export const waitOnPartnerToStartTrial = (listId, blockId, trialId, data = {}) =
     (dispatch, getState) => {
         let state = getState();
         //delay start by some amount, might be good idea to make this random
-        let start_delay = 1000;
+        let start_delay = 2000;
         setTimeout(() => {
-            console.log(`simulate start of block ${blockId} trial ${trialId}`);
             dispatch(partnerReady());
             dispatch(startTrial(listId, blockId, trialId, data));
             const file_to_play =
@@ -246,7 +245,7 @@ export const sendDirections = (listId, blockId, trialId, blob, id, filename) =>
             reader.readAsArrayBuffer(blob);
             reader.addEventListener("loadend", () => {
                 state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
-                    let partner_rt = decoded.duration * partner_rt_adjust;
+                    let partner_rt = decoded.duration + partner_rt_adjust; //do not multiply since partner_rt_adjust could be null
                     setTimeout(() => {
                         //respond for partner
                         dispatch(partnerReady());
