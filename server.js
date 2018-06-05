@@ -130,7 +130,7 @@ app.post('/submitassignment',
 
 app.post('/submitassignment', assignmentUpload.none(), saveAssignment);
 
-const serverPort = 8080;
+const serverPort = 3000;
 server.listen(serverPort, () => {
     console.log('listening on port ' + serverPort)
 });
