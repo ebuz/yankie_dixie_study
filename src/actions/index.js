@@ -1,10 +1,13 @@
-import 'webrtc-adapter';
+import adapter from 'webrtc-adapter';
 import AudioRecorder from './AudioRecorder';
 import { sha3_224 } from 'js-sha3';
 
 import * as types from '../actionTypes';
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
+const alert = window.alert;
+
+export { adapter, AudioContext };
 
 export const notReadyToStart = (data = {}) =>
     (dispatch, getState) => {
@@ -425,8 +428,8 @@ export const micError = (data = {}) => ({
 
 export const getAudioContext = () =>
     (dispatch, getState) => {
-    dispatch(gotAudioContext(new AudioContext()));
-};
+        dispatch(gotAudioContext(new AudioContext()));
+    };
 
 const constraints = {
     audio: {
@@ -442,9 +445,13 @@ const constraints = {
 
 export const getMic = () =>
     (dispatch, getState) => {
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        dispatch(gotMic(stream));
-    }).catch(() => dispatch(micError()));
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+                dispatch(gotMic(stream));
+            })
+            .catch((err) => {
+                dispatch(micError())
+            });
 };
 
 export const foundPartner = (peerId, publicId, data = {}) => ({
@@ -465,7 +472,7 @@ export const mockConnection = (data = {}) =>
         //simulate waiting for partner
         let waitTime = 400 + 75 * 1000 + Math.random() * 60 * 1000;
         setTimeout(() => {
-            window.alert('Got a partner, please return to the study!')
+            alert('Got a partner, please return to the study!')
             let state = getState();
             let newMicTestFile =
                 state.partnerInfo.micTestFileSet[state.partnerInfo.micCheckRedos];

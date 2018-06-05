@@ -1,20 +1,22 @@
-window.MediaRecorder = window.MediaRecorder;
+const MediaRecorder = window.MediaRecorder;
+
+export { MediaRecorder };
 
 export default class AudioRecorder {
     constructor(stream, onStart = null, onStop = null) {
         this.recordedChunks = [];
         this.recorderOptions = {};
         // mutually exclusive audio encoding formats beween chrome and firefox
-        if (window.MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+        if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
             this.recorderOptions = {mimeType: 'audio/webm;codecs=opus',
                 audioBitsPerSecond: 128000}; //chrome
-        } else if (window.MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')) {
+        } else if (MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')) {
             this.recorderOptions = {mimeType: 'audio/ogg;codecs=opus',
                 audioBitsPerSecond: 64000 }; //firefox
         } else {
             this.recorderOptions = {}; //let browser pick
         }
-        this.mediaRecorder = new window.MediaRecorder(stream, this.recorderOptions);
+        this.mediaRecorder = new MediaRecorder(stream, this.recorderOptions);
         this.mediaRecorder.ondataavailable = (event) => {
             if (event.data.size > 0) {
                 this.recordedChunks.push(event.data);

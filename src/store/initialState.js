@@ -101,7 +101,7 @@ export const survey = [
                 questionType: 'select',
                 name: 'dialectRegion',
                 label: ['What dialect region do you live in? Please look at ',
-                    <a key='dialectMap' target="_blank" href="http://www.aschmann.net/AmEng/#SmallMap">this map</a>, " for reference. If your dialect is specific to a smaller region please select 'Other' and specify its location in the next text box."
+                    <a key='dialectMap' target="_blank" rel="noopener noreferrer" href="http://www.aschmann.net/AmEng/#SmallMap">this map</a>, " for reference. If your dialect is specific to a smaller region please select 'Other' and specify its location in the next text box."
                 ],
                 options: ['', "The Midland", "The South", "The North",
                     'The North Central', 'The West',

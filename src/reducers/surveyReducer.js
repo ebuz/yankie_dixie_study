@@ -20,7 +20,7 @@ const questions = (state = [], action) => {
 
 const surveyPage = (state = {}, action) => {
     switch (action.type) {
-        case types.SURVEY_INSTRUCTIONS:
+        case types.SURVEY_PAGE_INSTRUCTIONS:
             return {...state, instructions: action.instructions}
         case types.SURVEY_PAGE_COMPLETED:
             return {...state, completed: true}
