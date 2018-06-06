@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { recordMicTest, stopRecording, gotMicTest, workingMic } from '../actions';
 import './MicCheckContainer.css';
 
-const MicCheck = ({haveMic, okMic, micTestFile, recordingState, startRecordingAction, stopRecordingAction, redoRecordingAction, noRecordingAction, okMicAction}) => {
+const MicCheck = ({haveMic, okMic, micTestFile, recordingState, startRecordingAction, stopRecordingAction, redoRecordingAction, okMicAction}) => {
     if(haveMic === null || !haveMic || okMic){
         return null;
     }
@@ -75,8 +75,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         redoRecordingAction: () => {
             dispatch(gotMicTest(null));
-        },
-        noRecordingAction: () => {
         },
         okMicAction: () => {
             dispatch(workingMic())

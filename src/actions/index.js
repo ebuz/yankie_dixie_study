@@ -6,6 +6,7 @@ import * as types from '../actionTypes';
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const alert = window.alert;
+const confirm = window.confirm;
 
 export { adapter, AudioContext };
 
@@ -229,36 +230,67 @@ export const gotDirections = (listId, blockId, trialId, recordingUrl) =>
         });
     };
 
+const getBlobDuration = (blob, audioContext) => {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.addEventListener("loadend", () => {
+            audioContext.decodeAudioData(reader.result)
+                .then(decoded => {
+                    resolve(decoded.duration)
+                })
+                .catch(err => reject(err))
+        })
+        reader.readAsArrayBuffer(blob);
+    })
+}
+
+const promiseConfirmDuration = (duration) => {
+  return new Promise((resolve, reject) => {
+    let confirmation = confirm("Your recording is very short. Press 'OK' if you meant it to be or Press 'Cancel' to re-record.")
+    if(confirmation === true) {
+      resolve(duration)
+    } else {
+      reject('redo')
+    }
+  })
+}
+
 export const sendDirections = (listId, blockId, trialId, blob, id, filename) =>
     (dispatch, getState) => {
-        dispatch(recordingState('uploading'));
         let state = getState();
-        let formD = new FormData();
-        formD.append('recording', blob, filename);
-        fetch(
-            `/recording/${id}`,
-            {method: 'post', body: formD}
-        ).then(() => {
-            dispatch(recordingState('inactive'));
-            dispatch(speakerRecording(listId, blockId, trialId, `/recordings/${id}/${filename}`));
-            const partner_rt_adjust = state.experimentalLists[listId][blockId].trials[trialId].partner_rt_adjust;
-            //respond on behalf of partner
-            //read in just-finished recording and get duration
-            let reader = new FileReader();
-            reader.readAsArrayBuffer(blob);
-            reader.addEventListener("loadend", () => {
-                state.selfInfo.speakerOutput.decodeAudioData(reader.result).then(decoded => {
-                    let partner_rt = decoded.duration + partner_rt_adjust; //do not multiply since partner_rt_adjust could be null
+        getBlobDuration(blob, state.selfInfo.speakerOutput)
+            .then(duration => {
+                if(duration < 1.5) {
+                    return promiseConfirmDuration(duration)
+                }
+                return duration
+            })
+            .then(duration => {
+                dispatch(recordingState('uploading'));
+                let formD = new FormData();
+                formD.append('recording', blob, filename);
+                fetch(
+                    `/recording/${id}`,
+                    {method: 'post', body: formD}
+                ).then(response => {
+                    dispatch(recordingState('inactive'));
+                    dispatch(speakerRecording(listId, blockId, trialId, `/recordings/${id}/${filename}`)); //maybe have server respond with recording url?
+                    dispatch(playedInstructions(listId, blockId, trialId));
+                    let partner_rt = duration + state.experimentalLists[listId][blockId].trials[trialId].partner_rt_adjust; //do not multiply since partner_rt_adjust could be null
+                    partner_rt = partner_rt < 2 ? (2 + Math.random()) : partner_rt; // make sure it's some minimum
                     setTimeout(() => {
                         //respond for partner
                         dispatch(partnerReady());
-                        dispatch(endTrial(listId, blockId, trialId))
+                        dispatch(endTrial(listId, blockId, trialId));
                     }, (partner_rt * 1000) + 3000);
-                });
-            });
-            dispatch(playedInstructions(listId, blockId, trialId));
-        });
-}
+                }).catch(err => {
+                    alert('There was a problem sending your recording to your partner. Please re-record and try again.')
+                })
+            })
+            .catch(err => {
+                // non-confirmed duration
+            })
+    }
 
 export const stopRecording = () =>
     (dispatch, getState) => {
@@ -323,16 +355,32 @@ export const workingMic = () => ({
 
 export const uploadTestRecording = (blob, id, filename = 'test_recording.ogg') =>
     (dispatch, getState) => {
-        dispatch(recordingState('uploading'));
-        let formD = new FormData();
-        formD.append('recording', blob, filename);
-        fetch(
-            `/recording/${id}`,
-            {method: 'post', body: formD}
-        ).then(() => {
-            dispatch(recordingState('inactive'));
-            dispatch(gotMicTest(`/recordings/${id}/${filename}`));
-        });
+        getBlobDuration(blob, getState().selfInfo.speakerOutput)
+            .then(duration => {
+                if(duration < 1.5) {
+                    return promiseConfirmDuration(duration)
+                }
+                return duration
+            })
+            .then(duration => {
+                dispatch(recordingState('uploading'));
+                let formD = new FormData();
+                formD.append('recording', blob, filename);
+                fetch(`/recording/${id}`,
+                    {method: 'post', body: formD})
+                    .then(() => {
+                        dispatch(gotMicTest(`/recordings/${id}/${filename}`));
+                    })
+                    .catch(err => {
+                        alert('There was a problem saving your recording. Please re-record and try again.')
+                    })
+                    .finally(() => {
+                        dispatch(recordingState('inactive'));
+                    });
+            })
+            .catch(err => { //duration was too low
+                dispatch(recordingState('inactive'));
+            })
     };
 
 export const recordMicTest = (data = {}) =>
