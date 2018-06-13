@@ -4,7 +4,7 @@ import { getAudioContext, getMic, adapter } from '../actions';
 import { MediaRecorder } from '../actions/AudioRecorder';
 import './MicSetupContainer.css'
 
-const MicSetup = ({haveMic, setupMic}) => {
+const MicSetup = ({completedExpSetup, haveMic, setupMic}) => {
     if(MediaRecorder === null || MediaRecorder === undefined || adapter.browserShim === null || adapter.browserShim === undefined){
         return(
             <div className="MicSetup-box">
@@ -13,7 +13,7 @@ const MicSetup = ({haveMic, setupMic}) => {
             </div>
         )
     }
-    if(haveMic){
+    if(!completedExpSetup || haveMic){
         return null;
     }
     if(haveMic === false){
@@ -40,7 +40,8 @@ const MicSetup = ({haveMic, setupMic}) => {
 
 const mapStateToProps = (state) => {
     return {
-        haveMic: state.selfInfo.micInput
+        completedExpSetup: (state.mturkInfo.assignmentId === '' && (state.mturkInfo.listId !== '' || state.mturkInfo.workerId !== '' || state.mturkInfo.turkSubmitTo !== '')) || state.mturkInfo.assignmentId !== '',
+        haveMic: state.selfInfo.micInput,
     }
 };
 

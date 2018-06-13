@@ -68,11 +68,11 @@ const partnerInfo = (state = partnerInfoInitialState, action) => {
 };
 
 const mturkInfoInitialState = {
-    workerId: null,
-    hitId: null,
-    assignmentId: null,
-    turkSubmitTo: null,
-    listId: null
+    workerId: '',
+    hitId: '',
+    assignmentId: '',
+    turkSubmitTo: '',
+    listId: ''
 }
 
 const mturkInfo = (state = mturkInfoInitialState, action) => {

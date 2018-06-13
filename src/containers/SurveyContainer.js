@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
     );
     return {
         finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
-        finishedTrials: state.mturkInfo.listId === null ? false : state.experimentalLists[state.mturkInfo.listId].every((block) =>
+        finishedTrials: state.mturkInfo.listId === '' ? false : state.experimentalLists[state.mturkInfo.listId].every((block) =>
             {return block.trials.every((trial) => {return trial.completed})}),
         currentSurveyPage: currentSurveyPage,
     };

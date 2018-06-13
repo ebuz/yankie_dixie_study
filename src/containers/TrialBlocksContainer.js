@@ -20,7 +20,7 @@ const nextTrialBlock = (trialBlocks) => {
 }
 
 const mapStateToProps = (state) => {
-    let currentBlock = state.mturkInfo.listId !== null ? nextTrialBlock(state.experimentalLists[state.mturkInfo.listId]) : -1;
+    let currentBlock = state.mturkInfo.listId !== '' ? nextTrialBlock(state.experimentalLists[state.mturkInfo.listId]) : -1;
     let participantRole = null;
     if(currentBlock !== -1){
         participantRole = state.experimentalLists[state.mturkInfo.listId][currentBlock].role;

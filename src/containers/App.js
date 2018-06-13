@@ -7,14 +7,16 @@ import TrialBlocksContainer from './TrialBlocksContainer';
 import SurveyContainer from './SurveyContainer';
 import DebriefContainer from './DebriefContainer';
 import MturkSubmitContainer from './MturkSubmitContainer';
-import { gotMturkInfo } from '../actions';
+import { gotQuery } from '../actions';
 import './App.css';
 
 class App extends Component {
     componentDidMount() {
-        this.props.parseMturkFields();
+        this.props.parseQueryString();
     }
     render() {
+        // avoid loading submit container because it will re-render
+        // with each state change since it builds a json payload to server
         if(!this.props.finishedStudy){
             return(
                 <div className="Main-box">
@@ -45,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        parseMturkFields: () => {
-            dispatch(gotMturkInfo(ownProps.location));
+        parseQueryString: () => {
+            dispatch(gotQuery(ownProps.location.query));
         }
     };
 };

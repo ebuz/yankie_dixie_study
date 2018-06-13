@@ -497,43 +497,62 @@ export const finishedBlockInstructions = (listId, blockId, data = {}) => ({
 export const gotPublicId = (publicId) => ({
     type: types.GOT_PUBLICID,
     publicId: publicId,
-})
+});
 
-export const gotMturkInfo = (urlParams) =>
+export const genPublicId = (identifier) =>
     (dispatch, getState) => {
-        if (urlParams.query.workerId) {
-            dispatch({
-                type: types.GOT_WORKERID,
-                workerId: urlParams.query.workerId
-            });
-            dispatch(gotPublicId(sha3_224(urlParams.query.workerId)));
+        dispatch(gotPublicId(sha3_224(identifier)));
+    };
+
+export const gotWorkerId = (workerId) => ({
+    type: types.GOT_WORKERID,
+    workerId: workerId
+});
+
+export const gotHitId = (hitId) => ({
+    type: types.GOT_HITID,
+    hitId: hitId
+});
+
+export const gotAssignmentId = (assignmentId) => ({
+    type: types.GOT_ASSIGNMENTID,
+    assignmentId: assignmentId
+});
+
+export const gotTurkSubmitTo = (turkSubmitTo) => ({
+    type: types.GOT_TURKSUBMITTO,
+    turkSubmitTo: (['https://www.mturk.com/', 'https://workersandbox.mturk.com/'].indexOf(turkSubmitTo) === -1) ? turkSubmitTo : turkSubmitTo + 'mturk/externalSubmit'
+});
+
+export const gotListId = (listId) => ({
+    type: types.GOT_LISTID,
+    listId: parseInt(listId, 10)
+});
+
+export const gotMturkInfo = (query) =>
+    (dispatch, getState) => {
+        if (query.workerId) {
+            dispatch(gotWorkerId(query.workerId));
+            dispatch(genPublicId(query.workerId));
         }
-        if (urlParams.query.hitId) {
-            dispatch({
-                type: types.GOT_HITID,
-                hitId: urlParams.query.hitId
-            });
+        if (query.hitId) {
+            dispatch(gotHitId(query.hitId));
         }
-        if (urlParams.query.assignmentId) {
-            dispatch({
-                type: types.GOT_ASSIGNMENTID,
-                assignmentId: urlParams.query.assignmentId
-            });
+        if (query.assignmentId) {
+            dispatch(gotAssignmentId(query.assignmentId));
         }
-        if (urlParams.query.turkSubmitTo) {
-            dispatch({
-                type: types.GOT_TURKSUBMITTO,
-                turkSubmitTo: urlParams.query.turkSubmitTo
-            });
-        }
-        if (urlParams.query.listId) {
-            dispatch({
-                type: types.GOT_LISTID,
-                listId: parseInt(urlParams.query.listId, 10)
-            });
+        if (query.turkSubmitTo) {
+            dispatch(gotTurkSubmitTo(query.turkSubmitTo));
         }
     };
 
+export const gotQuery = (query) =>
+    (dispatch, getState) => {
+        if (query.listId) {
+            dispatch(gotListId(query.listId));
+        }
+        dispatch(gotMturkInfo(query));
+    };
 
 export const completeSurveyPage = (pageId) => ({
     type: types.SURVEY_PAGE_COMPLETED,

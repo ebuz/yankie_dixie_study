@@ -1,4 +1,5 @@
 import React from 'react';
+import InitialDetailsSetupContainer from './InitialDetailsSetupContainer'
 import MturkStatusContainer from './MturkStatusContainer'
 import MicSetupContainer from './MicSetupContainer'
 import ConsentContainer from './ConsentContainer'
@@ -9,6 +10,7 @@ const Setup = () => {
     return(
         <div className="Setup-box">
             <MturkStatusContainer />
+            <InitialDetailsSetupContainer />
             <MicSetupContainer />
             <MicCheckContainer />
             <InstructionsContainer />

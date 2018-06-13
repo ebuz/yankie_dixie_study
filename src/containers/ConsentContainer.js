@@ -4,10 +4,9 @@ import { participantConsent, getPartner} from '../actions';
 import './ConsentContainer.css'
 
 const isInPreview = ({assignmentId, workerId, hitId, turkSubmitTo, listId}) => {
-    let result = assignmentId === null ||
-                ['ASSIGNMENT_ID_NOT_AVAILABLE', 'assignment_id_not_available', '']
+    let result = ['ASSIGNMENT_ID_NOT_AVAILABLE', 'assignment_id_not_available']
                 .indexOf(assignmentId) >= 0
-    let missingParams = [workerId, hitId, turkSubmitTo, listId].filter(
+    let missingParams = [workerId, turkSubmitTo, listId].filter(
         (param) => param === null || ''
     )
     return result || missingParams.length > 0
