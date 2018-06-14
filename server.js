@@ -11,6 +11,8 @@ let server = require('http').createServer(app);
 let p2pserver = require('socket.io-p2p-server').Server;
 let io = require('socket.io')(server);
 
+const db = require('./db.js');
+
 io.use(p2pserver);
 
 io.on('connection', (socket) => {
@@ -119,6 +121,48 @@ const saveAssignment = (req, res) => {
         });
 };
 
+const commitToDb = async (pool, insertFrame, insertValues) => {
+    const client = await pool.connect()
+    try {
+        await client.query('BEGIN')
+        if(insertValues){
+            await client.query(insertFrame, insertValues)
+        } else {
+            await client.query(insertFrame)
+        }
+        await client.query('COMMIT')
+    } catch (e) {
+        await client.query('ROLLBACK')
+        throw e
+    } finally {
+        client.release()
+    }
+}
+
+const saveAssignmentToDb = (req, res) => {
+    if (!req.body) {
+        console.log(`req has no body, sending 400`)
+        return res.sendStatus(400)
+    }
+    if (!req.body.data) {
+        console.log('no data, sending 400')
+        return res.sendStatus(400)
+    }
+    console.log('saving assignment to db')
+    commitToDb(db.pool,
+        'INSERT INTO assignments(assignmentId, data, datab) VALUES($1, $2, $3);',
+        [req.body.assignmentId, req.body.data, req.body.data])
+        .then(dbResponse => {
+            res.sendStatus(200);
+        })
+        .catch(e => {
+            // save to disk as fall back?
+            // will need to disable early fail if db isn't available
+            console.log(e);
+            res.sendStatus(500);
+        })
+};
+
 app.post('/submitassignment',
     (req, res, next) => {
         if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
@@ -126,11 +170,26 @@ app.post('/submitassignment',
         } else {
             next('route') //pass request onto multer
         }
-    }, urlencodedParser, saveAssignment);
+    }, urlencodedParser, saveAssignmentToDb);
 
-app.post('/submitassignment', assignmentUpload.none(), saveAssignment);
+app.post('/submitassignment', assignmentUpload.none(), saveAssignmentToDb);
 
 const serverPort = 3000;
 server.listen(serverPort, () => {
+    commitToDb(db.pool,
+        'CREATE TABLE IF NOT EXISTS assignments ( \
+            id serial PRIMARY KEY NOT NULL, \
+            assignmentId text, \
+            data json NOT NULL, \
+            datab jsonb NOT NULL);')
+        .then(async (dbResponse) => {
+            const { rows } = await db.pool.query('SELECT NOW()');
+            console.log(rows);
+        })
+        .catch(err => {
+            console.log(err);
+            console.log('issues connecting to database, exiting!');
+            process.exit(-1);
+        });
     console.log('listening on port ' + serverPort)
 });
