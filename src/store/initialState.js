@@ -35,56 +35,12 @@ export const experimentalLists = expl;
 
 export const survey = [
     {
-        instructions: "The main part of the study is done and you have been disconnected from your partner. Now we want you answer a series of questions about yourself and your experience in the study. Answering any of these questions is optional. Neither whether you answer nor what your answers are will not affect your payment for participating. However, we ask that you answer these questions to the best of your ability. Your responses help us to analyze yours and other's data. They also help us improve our future experiments. And they ensure that our research well represents the population.",
+        instructions: [<p>The main part of the study is done and you have been disconnected from your partner. Now we want you answer a series of questions about yourself and your experience in the study.</p>, <p>Answering any of these questions is <span style={{fontWeight: 'bold'}}>optional</span>. You answers will not affect your payment for participating. However, we ask that you answer these questions to the best of your ability. Your responses help us to analyze yours and other's data. They also help us improve our future experiments. And they ensure that our research well represents the population.</p>,],
         completed: false,
         questions: []
     },
     {
-        instructions: "We would like some demographic information. We collect this information partly to better analyze our data. We also collect this information at the request of organizations that monitor or fund our research. This includes the Vanderbilt University institutional review board and may also include the National Science Foundation and the National Institutes of Health. These organizations ask for the demographics of ours and other researcher's participants to ensure research involves a representative sample of the population. Collecting demographics also ensures certain subsets of the population (such as some minorities and women) who historically have been wittingly or unwittingly misrepresented in past research, are no longer misrepresented in scientific data.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'input',
-                type: 'number',
-                name: 'age',
-                label: 'Age',
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'sex',
-                label: 'Sex',
-                options: ['NA', 'Male', 'Female'],
-                value: '',
-            },
-            {
-                questionType: 'select',
-                name: 'ethnicity',
-                label: 'Ethnicity',
-                options: ['NA', 'Hispanic or Latino', 'Not Hispanic or Latino'],
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'race',
-                label: 'Race. Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.',
-                multiple: true,
-                options: ['American Indian', 'Black or African-American',
-                    'Native Hawaiian or Other pacific Islander', 'Asian',
-                    'White', 'Unknown', 'Other'],
-                value: []
-            },
-            {
-                questionType: 'input',
-                type: 'text',
-                name: 'raceOther',
-                label: "If you selected 'Other' feel free provide any details.",
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "Please answer these additional questions about your background.",
+        instructions: "Please answer these questions about your education and language history.",
         completed: false,
         questions: [
             {
@@ -99,9 +55,30 @@ export const survey = [
             },
             {
                 questionType: 'select',
+                name: 'nativeEnglish',
+                label: 'Did you learn English prior to the age of three?',
+                options: ['', 'Yes',
+                    "No"],
+                value: ''
+            },
+            {
+                questionType: 'input',
+                type: 'text',
+                name: 'otherNative',
+                label: "Did you learn any other languages prior to the age of three?",
+                value: ''
+            },
+        ]
+    },
+    {
+        instructions: "Please answer these additional questions about your language history.",
+        completed: false,
+        questions: [
+            {
+                questionType: 'select',
                 name: 'dialectRegion',
                 label: ['What dialect region do you live in? Please look at ',
-                    <a key='dialectMap' target="_blank" rel="noopener noreferrer" href="http://www.aschmann.net/AmEng/#SmallMap">this map</a>, " for reference. If your dialect is specific to a smaller region please select 'Other' and specify its location in the next text box."
+                    <a key='dialectMap' target="_blank" rel="noopener noreferrer" href="http://www.aschmann.net/AmEng/#SmallMap">this map</a>, " for reference. If your dialect is specific to a smaller region please select 'Other' and specify its location in the next question."
                 ],
                 options: ['', "The Midland", "The South", "The North",
                     'The North Central', 'The West',
@@ -137,9 +114,41 @@ export const survey = [
         ]
     },
     {
-        instructions: "Please answer some questions about the website, your computer, and your microphone.",
+        instructions: "Please answer some questions about this website, your computer, and your microphone.",
         completed: false,
         questions: [
+            {
+                questionType: 'select',
+                name: 'microphoneType',
+                label: 'Select the type of microphone you used for this task.',
+                options: ['',
+                    "Built into computer/laptop", "Head mounted", "Desk mounted"],
+                value: ''
+            },
+            {
+                questionType: 'input',
+                type: 'text',
+                name: 'microphoneModel',
+                label: "Please write in the make and model of your microphone. If it is built into your computer/laptop, write in the make and model of your computer/laptop. Write 'unknown' if you do not know.",
+                value: ''
+            },
+            {
+                questionType: 'select',
+                name: 'internetSpeed',
+                label: 'Select the type of internet connection you have.',
+                options: ['', 'Dial up',
+                    "Cable", "DSL", "Other high speed"],
+                value: ''
+            },
+            {
+                questionType: 'likert',
+                name: 'internetQuality',
+                label: 'How would you rate the quality of your internet connection?',
+                range: [1, 7],
+                rangeLabels: ['poor quality', '', '',
+                    'typical', '', '', 'high quality'],
+                value: ''
+            },
             {
                 questionType: 'likert',
                 name: 'websiteResponse',
@@ -156,84 +165,6 @@ export const survey = [
                 range: [1, 7],
                 rangeLabels: ['very unclear', '', '',
                     'neither clear nor unclear', '', '', 'very clear'],
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'internetSpeed',
-                label: 'Select the type of internet connection you have.',
-                options: ['', 'Dial up',
-                    "Cable", "DSL", "Other high speed"],
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'internetQuality',
-                label: 'How would you rate the quality of your internet?',
-                range: [1, 7],
-                rangeLabels: ['poor quality', '', '',
-                    'typical', '', '', 'high quality'],
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'microphoneType',
-                label: 'Select the type of microphone you used for this task.',
-                options: ['',
-                    "Built into computer/laptop", "Head mounted", "Desk mounted"],
-                value: ''
-            },
-            {
-                questionType: 'input',
-                type: 'text',
-                name: 'microphoneModel',
-                label: "Please write the make and model of your microphone. If it is built into your computer/laptop, please provide the make and model of your computer/laptop. Write 'unknown' if you do not know.",
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "Please answer these questions about your partner.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'likert',
-                name: 'partnerAccuracy',
-                label: 'How accurate was your partner at picking the right pictures?',
-                range: [1, 7],
-                rangeLabels: ['always wrong', '', '',
-                    'about half right', '', '', 'always right'],
-                value: ''
-            },
-            {
-                questionType: 'input',
-                type: 'number',
-                name: 'partnerMistakes',
-                label: 'About how many mistakes did your partner make?',
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'partnerRTPerception',
-                label: 'On average, how quickly did your partner respond?',
-                range: [1, 7],
-                rangeLabels: ['very slow', '', '',
-                    'typical', '', '', 'high quality'],
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'microphoneType',
-                label: 'Select the type of microphone you used for this task.',
-                options: ['',
-                    "Built into computer/laptop", "Head mounted", "Desk mounted"],
-                value: ''
-            },
-            {
-                questionType: 'input',
-                type: 'text',
-                name: 'microphoneModel',
-                label: "Please write the make and model of your microphone. If it is built into your computer/laptop, please provide the make and model of your computer/laptop. Write 'unknown' if you do not know.",
                 value: ''
             },
         ]
@@ -254,77 +185,6 @@ export const survey = [
                 questionType: 'textarea',
                 name: 'partnerImpression',
                 label: 'What was your overall impression of your partner?',
-                cols: 40,
-                rows: 2,
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "In this study some people were randomly paired with an actual person and some were paired with software meant to act like a person.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'likert',
-                name: 'partnerComputerLike',
-                label: 'Your partner was:',
-                range: [1, 7],
-                rangeLabels: ['a computer', 'highly likely a computer',
-                    'likely a computer',
-                    'unsure',
-                    'likely a human', 'highly likely a human', 'a human'],
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "You specifically were assigned to software meant to act like a person. Part of our research depends on making our software-based partners act believable and natural. Please answer some of these questions about how believable you thought the software was. Your answers will help improve future versions of our studies.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'likert',
-                name: 'coverStoryPlausibility',
-                label: 'How convinced were you by the cover story that we gave at the start of the study?',
-                range: [1, 7],
-                rangeLabels: ['not convinced',
-                    '', 'somewhat not convinced',
-                    '',
-                    'somewhat convinced', '',
-                    'convinced'],
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'partnerInteractivity',
-                label: 'During the experiment did you feel like you were interacting with another person?',
-                range: [1, 7],
-                rangeLabels: ['not at all',
-                    '', 'mostly not',
-                    '',
-                    'mostly', '',
-                    'absolutely'],
-                value: ''
-            },
-            {
-                questionType: 'textarea',
-                name: 'partnerRealization',
-                label: 'If you realized you were not interacting with an actual person, what caused you to come to that conclusion? If you found our software partner completely convincing you can leave this empty.',
-                cols: 40,
-                rows: 2,
-                value: ''
-            },
-            {
-                questionType: 'textarea',
-                name: 'partnerSuspicion',
-                label: 'If you were at least somewhat suspicious about whether your partner was an actual person, what caused you to be suspicious? If you were completely convinced you can leave this empty.',
-                cols: 40,
-                rows: 2,
-                value: ''
-            },
-            {
-                questionType: 'textarea',
-                name: 'partnerSuggestion',
-                label: "Are there any changes in how our software behaves that you feel might make it appear more like you are interacting with a person?",
                 cols: 40,
                 rows: 2,
                 value: ''
