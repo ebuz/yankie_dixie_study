@@ -1,3 +1,7 @@
+.RecorderControls-box {
+    text-align: center;
+    margin: auto;
+}
 .RecordingOn-button {
     background-color: red;
     color: white;

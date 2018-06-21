@@ -23,10 +23,14 @@ const FindPartner = ({finishedSetup, havePartner, micTestFile, micCheck, micChec
                 {micCheckRedos > 0 ? '' : <p>We found you a partner!</p>}
                 <p>We need you to check if you can hear your partner. Below is their microphone check recording (if it doesn't start playing automatically press the play button).</p>
                 <audio src={micTestFile} controls="controls" autoPlay="autoplay" />
+                <br />
                 <button type="button" onClick={okPartnerMic}>
                     Click here if you can hear your partner
                 </button>
-                <p>If you can't hear your partner, check your speaker volume and replay their recording. If you still can't hear your partner, click the button below to request a new recording from them.</p>
+                <p>If you can't hear your partner, check your speaker volume and replay their recording.</p>
+                <br />
+                <hr />
+                <p>If you still can't hear your partner, click the button below to request a new recording from them.</p>
                 <button type="button" onClick={notOkPartnerMic}>
                     Click here to ask for another recording
                 </button>

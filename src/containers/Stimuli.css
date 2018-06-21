@@ -1,3 +1,10 @@
+.TrialInstructions-box {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    margin: auto;
+}
+
 .Stimulus-box {
     border-style: solid;
 }
