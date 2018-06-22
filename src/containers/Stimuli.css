@@ -7,55 +7,63 @@
 
 .Stimulus-box {
     border-style: solid;
+    height: 100%;
 }
 
 .Options-box {
+    height: 25%;
     margin: 10px;
     padding: 10px;
     border: 1px white solid;
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
     justify-content: center;
 }
 
 .Selected-box {
+    height: 25%;
     margin: 10px;
     padding: 10px;
     border: 1px black solid;
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: center;
     background-color: grey;
 }
 
 .Color-box {
-    width: 100px;
-    height: 100px;
+    width: 30%;
     vertical-align: top;
     text-align: center;
 }
 
 .Picture-box {
-    width: 200px;
-    height: 200px;
     vertical-align: top;
     text-align: center;
+    flex-basis: 20%;
+    flex-grow: 0;
     border: 1px solid black;
+    background-color: lightgrey;
 }
 
 .Picture-holder-box {
-    width: 200px;
-    height: 200px;
     vertical-align: top;
     text-align: center;
+    flex-basis: 20%;
+    flex-grow: 0;
     border: 1px dashed black;
     background-color: lightgrey;
 }
 
 .Word-box {
-    width: 100px;
-    height: 100px;
+    width: 30%;
     vertical-align: top;
     text-align: center;
+    border: 1px dashed black;
+    background-color: lightgrey;
 }
 

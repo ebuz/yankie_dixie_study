@@ -92,11 +92,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const PictureBox = ({picture, onClick}) => {
+    picture = picture || 'placeholder';
     let imgSrc = `stimuli/pictures/${picture}.jpg`;
-    let className = picture === null ? "Picture-holder-box" : "Picture-box";
+    let className = picture === 'placeholder' ? "Picture-holder-box" : "Picture-box";
     return (
         <div className={className} onClick={onClick}>
-            {picture === null ? null : <img src={imgSrc} alt='' height="200" width="200" />}
+            <img src={imgSrc} alt='' width="100%" />
         </div>
     );
 };
