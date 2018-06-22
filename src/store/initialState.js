@@ -3,11 +3,11 @@ import { experimentalLists as expl } from './experimentalLists';
 
 export const instructions = {
     finished_instructions: false,
-    instructions: 'In this task you will interact with a partner to complete a picture matching game. During each turn of the game, you or your partner will direct the other person to order a set of pictures. The director will name the pictures out loud and the matcher will click on the pictures based on the order they hear them.'
+    instructions: 'You and your partner will play a matching game. You have to help each other put pictures in the right order. You will take turns sending each other messages about the order.'
 }
 
 export const consent = {
-    consented: false,
+    consented: true,
     consentFileURL: 'ExampleConsent.pdf',
     instructions: 'By clicking "I consent to participate" below, you confirm that you have read and understood the consent form, that you are willing to participate in this experiment, and that you acknowledge that the data you provide by participating in this experiment can be used in scientific publications (no identifying information will be used). After you consent we will start to try and pair you with a partner.'
 }
@@ -35,7 +35,7 @@ export const experimentalLists = expl;
 
 export const survey = [
     {
-        instructions: [<p>The main part of the study is done and you have been disconnected from your partner. Now we want you answer a series of questions about yourself and your experience in the study.</p>, <p>Answering any of these questions is <span style={{fontWeight: 'bold'}}>optional</span>. You answers will not affect your payment for participating. However, we ask that you answer these questions to the best of your ability. Your responses help us to analyze yours and other's data. They also help us improve our future experiments. And they ensure that our research well represents the population.</p>,],
+        instructions: [<p>Great job!</p>, <p>You and your partner finished the game!</p>,],
         completed: false,
         questions: []
     },

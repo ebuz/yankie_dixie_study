@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { finishedInstructions } from '../actions';
+import { finishedInstructions, getPartner } from '../actions';
 import './InstructionsContainer.css'
 
 const Instructions = ({haveMic, instructions, onFinished}) => {
@@ -13,7 +13,7 @@ const Instructions = ({haveMic, instructions, onFinished}) => {
             <button type='button' onClick={onFinished}
                 className="Instructions-button"
             >
-                I understand these instructions
+                I'm ready
             </button>
         </div>
     );
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onFinished: () => {
             dispatch(finishedInstructions());
+            dispatch(getPartner());
         }
     };
 };

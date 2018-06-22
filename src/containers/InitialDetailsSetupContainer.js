@@ -14,7 +14,8 @@ class InitialDetailsSetup extends Component {
     handleSubmit(event){
         event.preventDefault();
         //validate?
-        this.props.handleOnChange(this.workerId.value, this.listId.value, this.turkSubmitTo.value);
+        const turkSubmitTo = this.turkSubmitTo ? this.turkSubmitTo.value : '/submitassignment';
+        this.props.handleOnChange(this.workerId.value, this.listId.value, turkSubmitTo);
     }
 
     render(){
@@ -26,8 +27,8 @@ class InitialDetailsSetup extends Component {
                 <form onSubmit={this.handleSubmit} >
                     <div className="InputQuestion-box">
                         <label>
-                            Participant ID:
-                            <input type="text" placeholder="A unique ID"
+                            Participant name:
+                            <input type="text" placeholder="A unique name"
                                 defaultValue={this.props.workerId ? this.props.workerId : ""}
                                 required={true}
                                 ref={workerId => this.workerId = workerId}/>
@@ -50,17 +51,7 @@ class InitialDetailsSetup extends Component {
                         </label>
                     </div>
                     <br />
-                    <div className="InputQuestion-box">
-                        <label>
-                            Submit URL:
-                            <input type="text"
-                                defaultValue={this.props.turkSubmitTo ? this.props.turkSubmitTo : "/submitassignment"}
-                                required={true}
-                                ref={turkSubmitTo => this.turkSubmitTo = turkSubmitTo}/>
-                        </label>
-                    </div>
-                    <br />
-                    <input type="submit" value="Submit" />
+                    <input className="InitialSetup-Button" type="submit" value="Continue ➤ " />
                 </form>
             </div>
         )

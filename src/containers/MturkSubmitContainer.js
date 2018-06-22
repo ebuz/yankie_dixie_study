@@ -8,9 +8,13 @@ const MturkSubmitForm = ({turkSubmitTo, assignmentId, data}) => {
             <form action={turkSubmitTo} method='post'>
                 <input type='hidden' id='assignmentId' name='assignmentId' value={assignmentId} />
                 <input type='hidden' id='data' name='data' value={JSON.stringify(data)} />
-                <label htmlFor='comment'>Feel free to leave a comment!</label> <br />
-                <textarea cols={40} rows={2} id='comment' name='comment' /> <br />
-                <input type='submit' value='Click here to complete hit'
+                <label htmlFor='comment'>
+                    Study comments
+                    <textarea cols={40} rows={2} id='comment' name='comment' />
+                </label>
+                <br />
+                <br />
+                <input type='submit' value="Save data"
                     className="MturkSubmit-button"
                 />
             </form>

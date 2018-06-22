@@ -12,45 +12,38 @@ const MicCheck = ({haveMic, okMic, micTestFile, recordingState, startRecordingAc
             <div className="MicCheck-box">
                 <audio src={micTestFile} controls="controls" autoPlay="autoplay" />
                 <p style={{fontSize: 'x-small'}}>
-                    If your recording doesn't start on its own, press play above.
+                    If your recording doesn't start on its own, press play.
                 </p>
                 <br />
-                <p>Can you clearly hear yourself speaking?</p>
                 <button type="button" onClick={okMicAction}
                     className="RecordingOk-button"
                 >
-                    Click here if you are happy with the recording
+                    Send your message to your partner
                 </button>
                 <br />
                 <hr />
-                <p>Can't hear yourself?</p>
-                <p> Check that your speakers are on and the volume is up. If you still can't hear yourself, check that your microphone is on and its volume is up and try to re-record.</p>
+                <p>Can't hear yourself? Check that the speakers are on and the volume is up.</p>
                 <button type="button" onClick={redoRecordingAction}
                     className="RecordingRedo-button"
                 >
-                    Click here if you want to remake your recording
+                    Remake your message
                 </button>
             </div>
         )
     } else {
         return(
             <div className="MicCheck-box">
-                <p style={{color: recordingState === 'inactive' ? 'black' : 'lightgrey'}}
-                >
-                    Let's test your mic. We will have you read aloud a short passage while your microphone is on then have you listen to the recording. Click the botton below to start.</p>
+                <p>
+                    Tell your partner about yourself! Record a message saying your name, your favorite color, and your favorite food.
+                </p>
                 <button disabled={recordingState === 'uploading'}
                     type="button"
                     onClick={recordingState === 'inactive' ? startRecordingAction : stopRecordingAction}
                     className={recordingState === 'inactive' ? 'RecordingOff-button' : 'RecordingOn-button'}
                 >
-                    {recordingState === 'inactive' ? 'Click here to start recording' : 'Read the passage below and click here when you finish.'}
+                    {recordingState === 'inactive' ? 'Start recording a message' : 'Stop recording'}
                 </button>
                 <br />
-                <div className="MicCheckPassage-box"
-                    style={{visibility: recordingState === 'inactive' ? 'hidden' : 'visible'}}
-                >
-                    <p>Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, "and what is the use of a book," thought Alice "without pictures or conversations?"</p>
-                </div>
             </div>
         )
     }

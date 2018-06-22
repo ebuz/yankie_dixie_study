@@ -3,26 +3,38 @@
     margin: auto;
 }
 .RecordingOn-button {
-    background-color: red;
-    color: white;
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: red;
 }
 .RecordingOff-button {
-    background-color: green;
-    color: white;
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: palegreen;
 }
 .RecordingDisable-button {
-    background-color: lightgrey;
-    color: white;
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: lightgrey;
 }

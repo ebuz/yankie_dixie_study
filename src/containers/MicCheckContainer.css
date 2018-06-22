@@ -2,34 +2,52 @@
     text-align: center;
     margin: auto;
 }
-.MicCheckPassage-box {
-    border: 2px solid black;
-    padding: 5px;
-    margin: auto;
+.MicCheck-box > audio {
+    width: 50%;
+    height: 25%;
 }
 .RecordingOn-button {
-    background-color: red;
-    color: white;
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: red;
 }
 .RecordingOff-button {
-    background-color: green;
-    color: white;
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: palegreen;
 }
 .RecordingOk-button {
+    font-size: large;
+    position: fixed;
+    left: 60%;
+    width: 40%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: palegreen;
 }
 .RecordingRedo-button {
+    font-size: large;
+    position: fixed;
+    left: 0%;
+    width: 30%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;

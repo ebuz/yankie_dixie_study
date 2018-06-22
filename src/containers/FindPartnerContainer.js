@@ -20,26 +20,18 @@ const FindPartner = ({finishedSetup, havePartner, micTestFile, micCheck, micChec
     if(havePartner){
         if(micTestFile){
             return(<div className="FindPartner-box">
-                {micCheckRedos > 0 ? '' : <p>We found you a partner!</p>}
-                <p>We need you to check if you can hear your partner. Below is their microphone check recording (if it doesn't start playing automatically press the play button).</p>
+                <p>Your partner send you a message! Let's listen to it.</p>
                 <audio src={micTestFile} controls="controls" autoPlay="autoplay" />
                 <br />
                 <button type="button" onClick={okPartnerMic}>
-                    Click here if you can hear your partner
+                    I hear my partner
                 </button>
-                <p>If you can't hear your partner, check your speaker volume and replay their recording.</p>
-                <br />
-                <hr />
-                <p>If you still can't hear your partner, click the button below to request a new recording from them.</p>
-                <button type="button" onClick={notOkPartnerMic}>
-                    Click here to ask for another recording
-                </button>
+                <p>If you can't hear your partner, check your speaker volume and replay their message.</p>
             </div>
             );
         }
         return(
             <div className="FindPartner-box">
-                {micCheckRedos > 0 ? '' : <p>We found you a partner!</p>}
                 <p>Your partner is making a microphone check recording like the one you made earlier. When they are finished you will be asked to confirm you can hear it.</p>
             </div>
         );
@@ -53,7 +45,7 @@ const FindPartner = ({finishedSetup, havePartner, micTestFile, micCheck, micChec
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        finishedSetup: state.consent.consented && state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
+        finishedSetup: state.instructions.finished_instructions && state.selfInfo.micSelfCheck,
         havePartner: state.partnerInfo.peerId,
         micTestFile: state.partnerInfo.micTestFile,
         micCheck: state.partnerInfo.micCheck,

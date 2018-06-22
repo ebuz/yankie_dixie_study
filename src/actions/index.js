@@ -168,7 +168,7 @@ export const waitOnPartnerToStartTrial = (listId, blockId, trialId, data = {}) =
     (dispatch, getState) => {
         let state = getState();
         //delay start by some amount, might be good idea to make this random
-        let start_delay = 2000;
+        let start_delay = 0;
         setTimeout(() => {
             dispatch(partnerReady());
             dispatch(startTrial(listId, blockId, trialId, data));
@@ -461,6 +461,21 @@ export const foundPartner = (peerId, publicId, data = {}) => ({
     data: data
 })
 
+export const mockConnectionChild = (data = {}) =>
+    (dispatch, getState) => {
+        dispatch({
+            type: types.CREATED_CONNECTION,
+            peerSocket: 'mockSocket',
+            data: data
+        });
+        dispatch(gotId('mockSocketId'));
+        dispatch(foundPartner('mockPartner', 'mockPartnerId'));
+        let newMicTestFile =
+            getState().partnerInfo.micTestFileSet[0];
+        dispatch(gotPartnerMicTest(newMicTestFile));
+        //simulate waiting for partner
+    };
+
 export const mockConnection = (data = {}) =>
     (dispatch, getState) => {
         dispatch({
@@ -484,7 +499,7 @@ export const mockConnection = (data = {}) =>
 
 export const getPartner = () =>
     (dispatch, getState) => {
-        dispatch(mockConnection());
+        dispatch(mockConnectionChild());
 };
 
 export const finishedBlockInstructions = (listId, blockId, data = {}) => ({

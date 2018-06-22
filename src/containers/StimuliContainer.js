@@ -29,7 +29,7 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blo
 
     if(participantRole === 'partner') {
         if(displayInstructions){
-            instructionMsg = instructionsPlayed ? "Click the images in the order you hear them" : "Wait and listen for your partner's instructions";
+            instructionMsg = instructionsPlayed ? "Press the pictures as you hear them" : "Wait for your partner's message";
         }
         availableOptionComponents = availableOptions.map((value, index) => {
                         return(

@@ -22,11 +22,10 @@ const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => 
             <br />
             <p>{consent.instructions}</p>
             <br />
-            <p>Once you consent we will begin matching you with a partner.</p>
             <button type='button' onClick={onConsent} disabled={inPreview}
                 className="Consent-button"
             >
-                {inPreview ? 'cannot continue in preview mode' : 'I consent to participate'}
+                {inPreview ? 'cannot continue in preview mode' : 'I assent to participate'}
             </button>
         </div>
     );
@@ -37,7 +36,9 @@ const mapStateToProps = (state) => {
         inPreview : isInPreview(state.mturkInfo),
         haveMic: state.selfInfo.micSelfCheck,
         readInstructions: state.instructions.finished_instructions,
-        consent: state.consent
+        consent: {consentFileUrl: '',
+            instructions: '',
+            consented: true}
     }
 };
 

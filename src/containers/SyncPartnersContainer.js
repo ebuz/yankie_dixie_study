@@ -17,26 +17,11 @@ class SyncPartners extends Component {
         if(!this.props.micCheck || this.props.trialStarted){
             return null;
         }
-        if(this.props.participantRole === 'speaker' && this.props.partnerReady){
-            return(
-                <div className="PartnerSync-box">
-                    <button type='button' onClick={() => {this.props.initiateTrial(this.props.listId, this.props.blockId, this.props.trialId, this.props.participantRole)}}>
-                        You are the director this turn. Click to start the trial
-                    </button>
-                </div>
-            );
-        };
-        if(!this.props.readyToStart){
-            return(<div className="PartnerSync-box">
-                <button type='button' onClick={this.props.notifyPartner}>
-                    Click to tell your partner you are ready
-                </button>
-            </div>
-            );
-        }
         return(
             <div className="PartnerSync-box">
-                <p>Waiting on your partner to start the trial, <span style={{fontWeight: "bold"}}>stay put</span>!</p>
+                <button type='button' onClick={this.props.initiateTrial}>
+                    {this.props.participantRole === 'speaker' ? "I'm ready to make a message" : "I'm ready to sort pictures"}
+                </button>
             </div>
         );
     }
@@ -74,12 +59,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         initiateTrial: () => {
             dispatch(readyToStart());
-            dispatch(startTrial(ownProps.listId, ownProps.blockId, ownProps.trialId));
+            if(ownProps.participantRole !== 'speaker'){
+                dispatch(waitOnPartnerToStartTrial(ownProps.listId, ownProps.blockId,
+                    ownProps.trialId));
+            } else {
+                dispatch(startTrial(ownProps.listId, ownProps.blockId, ownProps.trialId));
+            }
         },
         getPartnerReady: () => {
-            setTimeout(() => {
-                dispatch(partnerReady());
-            }, 500 + getRandomInt(200, 2000));
+            dispatch(partnerReady());
         }
     };
 };

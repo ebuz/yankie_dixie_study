@@ -32,7 +32,7 @@ const MicSetup = ({completedExpSetup, haveMic, setupMic}) => {
             <button type="button" onClick={setupMic}
                 className="MicAccess-button"
             >
-                Click here to grant us access
+                Start microphone
             </button>
         </div>
     )

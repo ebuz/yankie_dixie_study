@@ -12,7 +12,7 @@ const BlockInstructions = ({listId, blockId, participantRole, instructions, onFi
         <div className="BlockInstructions-box">
             <p>{displayedInstructions}</p>
             <button type='button' onClick={onFinished}>
-                I understand these instructions
+                {participantRole === 'speaker' ? "My turn to send messages" : "My turn to sort pictures"}
             </button>
         </div>
     );

@@ -9,10 +9,10 @@ const RecorderControls = ({recorder, recordingState, trialStarted, providedInstr
     }
     let buttonAction = recordingState === 'recording' ? stopRecordingAction : startRecordingAction;
     let className = recordingState === 'inactive' ? 'RecordingOff-button' : 'RecordingOn-button';
-    let buttonText = recordingState === 'recording' ? 'Click to send send instructions' : 'Click to begin recording your instructions';
+    let buttonText = recordingState === 'recording' ? 'Send your message' : 'Record your message';
     if (providedInstructions){
-        className = '.RecordingDisable-button';
-        buttonText = 'Please wait till your partner finishes';
+        className = 'RecordingDisable-button';
+        buttonText = 'You partner is working';
     }
     return (
         <div className="RecorderControls-box">

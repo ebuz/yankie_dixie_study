@@ -3,8 +3,14 @@
     margin: auto;
 }
 .FindPartner-box > button {
+    font-size: large;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    bottom: 5px;
     margin: 5px;
     padding: 5px;
     text-align: center;
     border-radius: 8px;
+    background-color: palegreen;
 }
