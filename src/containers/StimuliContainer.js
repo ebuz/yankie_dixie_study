@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { response } from '../actions';
+import { selectOption, unSelectOption } from '../actions';
 import './Stimuli.css'
 import RecorderControlsContainer from './RecorderControlsContainer';
 
@@ -8,7 +8,7 @@ const filledArray = (n, fillFunc = () => null) => {
     return Array.from({length: n}, fillFunc);
 };
 
-const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blockId, trialId, trialData, onClick}) => {
+const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blockId, trialId, trialData, onSelect, onUnSelect}) => {
     if(!trialStarted){
         return null;
     }
@@ -36,7 +36,7 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blo
                             <PictureBox
                                 picture={value === null ? null : trialData.stimuli[value]}
                                 key={index.toString()}
-                                onClick={instructionsPlayed && value !== null ? () => {onClick(listId, blockId, trialId, value)} : () => {}} />
+                                onClick={instructionsPlayed && value !== null ? () => {onSelect(listId, blockId, trialId, value)} : () => {}} />
                         )
                     })
     } else {
@@ -53,24 +53,29 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blo
     }
     return (
         <div className="Stimulus-box">
-            <div className="TrialInstructions-box">
-                {instructionMsg}
+            <div className="Header">
+                <div className="TrialInstructions-box">
+                    {instructionMsg}
+                </div>
+                <div className="Options-box">
+                    {availableOptionComponents}
+                </div>
+                <div className="Selected-box">
+                    {
+                        selectedOptions.map((value, index) => {
+                            return(
+                                <PictureBox key={index.toString()}
+                                    picture={value === null ? null : trialData.stimuli[value]}
+                                    onClick={instructionsPlayed && value !== null ? () => {onUnSelect(listId, blockId, trialId, value)} : () => {}}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </div>
-            <RecorderControlsContainer participantRole={participantRole}
-                listId={listId} blockId={blockId} trialId={trialId}/>
-            <div className="Options-box">
-                {availableOptionComponents}
-            </div>
-            <br />
-            <div className="Selected-box">
-                {
-                    selectedOptions.map((value, index) => {
-                        return(
-                            <PictureBox key={index.toString()}
-                                picture={value === null ? null : trialData.stimuli[value]} />
-                        )
-                    })
-                }
+            <div className="Footer">
+                <RecorderControlsContainer participantRole={participantRole}
+                    listId={listId} blockId={blockId} trialId={trialId}/>
             </div>
         </div>
     );
@@ -85,9 +90,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (listId, blockId, trialId, index) => {
-            dispatch(response(listId, blockId, trialId, index));
-        }
+        onSelect: (listId, blockId, trialId, index) => {
+            dispatch(selectOption(listId, blockId, trialId, index));
+        },
+        onUnSelect: (listId, blockId, trialId, index) => {
+            dispatch(unSelectOption(listId, blockId, trialId, index));
+        },
     };
 };
 
@@ -97,7 +105,7 @@ const PictureBox = ({picture, onClick}) => {
     let className = picture === 'placeholder' ? "Picture-holder-box" : "Picture-box";
     return (
         <div className={className} onClick={onClick}>
-            <img src={imgSrc} alt='' width="100%" />
+            <img src={imgSrc} alt='' />
         </div>
     );
 };

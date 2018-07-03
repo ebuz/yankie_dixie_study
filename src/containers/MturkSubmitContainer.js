@@ -6,17 +6,20 @@ const MturkSubmitForm = ({turkSubmitTo, assignmentId, data}) => {
     return (
         <div className="MturkSubmit-box">
             <form action={turkSubmitTo} method='post'>
-                <input type='hidden' id='assignmentId' name='assignmentId' value={assignmentId} />
-                <input type='hidden' id='data' name='data' value={JSON.stringify(data)} />
-                <label htmlFor='comment'>
-                    Study comments
-                    <textarea cols={40} rows={2} id='comment' name='comment' />
-                </label>
-                <br />
-                <br />
-                <input type='submit' value="Save data"
-                    className="MturkSubmit-button"
-                />
+                <div className="Header">
+                    <input type='hidden' id='assignmentId' name='assignmentId' value={assignmentId} />
+                    <input type='hidden' id='data' name='data' value={JSON.stringify(data)} />
+                    <label htmlFor='comment'>
+                        Study comments
+                        <br />
+                        <textarea cols={40} rows={2} id='comment' name='comment' />
+                    </label>
+                </div>
+                <div className="Footer">
+                    <input type='submit' value="Save data"
+                        className="MturkSubmit-button GreenButton CenterButton"
+                    />
+                </div>
             </form>
         </div>
     )

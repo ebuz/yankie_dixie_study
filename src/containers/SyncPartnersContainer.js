@@ -19,9 +19,15 @@ class SyncPartners extends Component {
         }
         return(
             <div className="PartnerSync-box">
-                <button type='button' onClick={this.props.initiateTrial}>
-                    {this.props.participantRole === 'speaker' ? "I'm ready to make a message" : "I'm ready to sort pictures"}
-                </button>
+                <div className="Header">
+                </div>
+                <div className="Footer">
+                    <button type='button' onClick={this.props.initiateTrial}
+                        className="GreenButton CenterButton"
+                    >
+                        {this.props.participantRole === 'speaker' ? "I'm ready to make a message" : "I'm ready to sort pictures"}
+                    </button>
+                </div>
             </div>
         );
     }
@@ -36,10 +42,6 @@ const mapStateToProps = (state, ownProps) => {
         readyToStart: state.selfInfo.readyToStart,
         partnerReady: state.partnerInfo.readyToStart
     }
-};
-
-const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

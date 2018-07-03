@@ -18,15 +18,18 @@ const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => 
     }
     return (
         <div className="Consent-box">
-            <p>Please read our <a href={consent.consentFileURL} target="_blank">consent form</a>.</p>
-            <br />
-            <p>{consent.instructions}</p>
-            <br />
-            <button type='button' onClick={onConsent} disabled={inPreview}
-                className="Consent-button"
-            >
-                {inPreview ? 'cannot continue in preview mode' : 'I assent to participate'}
-            </button>
+            <div className="Header">
+                <p>Please read our <a href={consent.consentFileURL} target="_blank">consent form</a>.</p>
+                <br />
+                <p>{consent.instructions}</p>
+            </div>
+            <div className="Footer">
+                <button type='button' onClick={onConsent} disabled={inPreview}
+                    className="Consent-button GreenButton CenterButton"
+                >
+                    {inPreview ? 'cannot continue in preview mode' : 'I assent to participate'}
+                </button>
+            </div>
         </div>
     );
 };

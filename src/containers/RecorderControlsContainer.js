@@ -8,14 +8,14 @@ const RecorderControls = ({recorder, recordingState, trialStarted, providedInstr
         return null;
     }
     let buttonAction = recordingState === 'recording' ? stopRecordingAction : startRecordingAction;
-    let className = recordingState === 'inactive' ? 'RecordingOff-button' : 'RecordingOn-button';
+    let className = recordingState === 'inactive' ? 'GreenButton' : 'RedButton';
     let buttonText = recordingState === 'recording' ? 'Send your message' : 'Record your message';
     if (providedInstructions){
-        className = 'RecordingDisable-button';
+        className = 'GreyButton';
         buttonText = 'You partner is working';
     }
     return (
-        <div className="RecorderControls-box">
+        <div className="RecorderControls-box CenterButton">
             <button type='button' onClick={buttonAction}
                 disabled={providedInstructions}
                 className={className}

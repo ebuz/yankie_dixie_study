@@ -56,7 +56,7 @@ const SurveyQuestion = ({pageId, questionId, question, handleOnChange, handleOnC
                                         <input type='radio' name={name} value={item}
                                             checked={numberStringEqCheck(subparts.value, item)}
                                             onChange={handleOnChange}
-                                        />
+                                        /> <br />
                                         {subparts.rangeLabels[index]}
                                     </label>
                                 </li>

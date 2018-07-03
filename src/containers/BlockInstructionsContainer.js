@@ -10,10 +10,15 @@ const BlockInstructions = ({listId, blockId, participantRole, instructions, onFi
     let displayedInstructions = participantRole === 'speaker' ? instructions.forSpeaker : instructions.forPartner;
     return (
         <div className="BlockInstructions-box">
-            <p>{displayedInstructions}</p>
-            <button type='button' onClick={onFinished}>
-                {participantRole === 'speaker' ? "My turn to send messages" : "My turn to sort pictures"}
-            </button>
+            <div className="Header">
+                <p>{displayedInstructions}</p>
+            </div>
+            <div className="Footer">
+                <button type='button' onClick={onFinished}
+                className="GreenButton CenterButton">
+                    {participantRole === 'speaker' ? "My turn to send messages" : "My turn to sort pictures"}
+                </button>
+            </div>
         </div>
     );
 };

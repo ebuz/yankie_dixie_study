@@ -9,12 +9,16 @@ const Debrief = ({finishedSurvey, debrief, onFinished}) => {
     }
     return (
         <div className="Debrief-box">
-            <p>{debrief.debrief}</p>
-            <button type='button' onClick={onFinished}
-                className="Debrief-button"
-            >
-                I have read this debriefing
-            </button>
+            <div className="Header">
+                <p>{debrief.debrief}</p>
+            </div>
+            <div className="Footer">
+                <button type='button' onClick={onFinished}
+                    className="Debrief-button GreenButton CenterButton"
+                >
+                    I have read this debriefing
+                </button>
+            </div>
         </div>
     );
 };

@@ -9,12 +9,16 @@ const Instructions = ({haveMic, instructions, onFinished}) => {
     }
     return (
         <div className="Instructions-box">
-            <p>{instructions.instructions}</p>
-            <button type='button' onClick={onFinished}
-                className="Instructions-button"
-            >
-                I'm ready
-            </button>
+            <div className="Header">
+                <p>{instructions.instructions}</p>
+            </div>
+            <div className="Footer">
+                <button type='button' onClick={onFinished}
+                    className="Instructions-button GreenButton CenterButton"
+                >
+                    I'm ready
+                </button>
+            </div>
         </div>
     );
 };

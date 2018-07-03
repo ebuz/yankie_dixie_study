@@ -356,22 +356,34 @@ export const recordDirections = (listId, blockId, trialId, data = {}) =>
         dispatch(recordingState('recording'));
 };
 
-export const partnerResponse = (listId, blockId, trialId, theResponse, data = {}) =>
+export const partnerSelect = (listId, blockId, trialId, optionSelected, data = {}) =>
     (dispatch, getState) => {
         dispatch({
-            type: types.PARTNER_RESPONSE,
+            type: types.PARTNER_SELECTION,
             listId: listId,
             blockId: blockId,
             id: trialId,
-            response: theResponse,
+            optionSelected: optionSelected,
             data: data
         });
 }
 
-export const response = (listId, blockId, trialId, myResponse, data = {}) =>
+export const partnerUnSelect = (listId, blockId, trialId, optionSelected, data = {}) =>
+    (dispatch, getState) => {
+        dispatch({
+            type: types.PARTNER_UNSELECTION,
+            listId: listId,
+            blockId: blockId,
+            id: trialId,
+            optionSelected: optionSelected,
+            data: data
+        });
+}
+
+export const selectOption = (listId, blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
-        dispatch(partnerResponse(listId, blockId, trialId, myResponse, data));
+        dispatch(partnerSelect(listId, blockId, trialId, myResponse, data));
         dispatch(readyToStart());
         let trial = state.experimentalLists[listId][blockId].trials[trialId];
         if(trial.response.length >= trial.stimuli.length - 1){
@@ -379,6 +391,12 @@ export const response = (listId, blockId, trialId, myResponse, data = {}) =>
                 dispatch(endTrial(listId, blockId, trialId))
             }, 3000);
         }
+    };
+
+export const unSelectOption = (listId, blockId, trialId, myResponse, data = {}) =>
+    (dispatch, getState) => {
+        dispatch(partnerUnSelect(listId, blockId, trialId, myResponse, data));
+        dispatch(readyToStart());
     };
 
 export const gotId = (peerId, data = {}) => ({

@@ -27,8 +27,10 @@ const trial = (state = trial_shape, action) => {
             return {...state, speaker_recording: action.speaker_recording};
         case types.INSTRUCTIONS_PLAYED:
             return {...state, instructions_played: true};
-        case types.PARTNER_RESPONSE:
-            return {...state, response: state.response.concat(action.response)};
+        case types.PARTNER_SELECTION:
+            return {...state, response: state.response.concat(action.optionSelected)};
+        case types.PARTNER_UNSELECTION:
+            return {...state, response: state.response.filter(i => i !== action.optionSelected)};
         default:
             return state;
     }
@@ -40,7 +42,8 @@ const trials = (state = [], action) => {
         case types.END_TRIAL:
         case types.DISPLAY_WORDS:
         case types.CUE_SPEAKER:
-        case types.PARTNER_RESPONSE:
+        case types.PARTNER_SELECTION:
+        case types.PARTNER_UNSELECTION:
         case types.SPEAKER_RECORDING:
         case types.INSTRUCTIONS_PLAYED:
             return state.map((item, index) => {

@@ -9,36 +9,50 @@ const FindPartner = ({finishedSetup, havePartner, micTestFile, micCheck, micChec
     }
     if(micCheckRedos >= 2){
         return(
-            <div className="FindPartner-box">
-                <p>You seem to be having technical issues that prevent you from hearing your partner. It is likely that you will have issues with other partners as well. We cannot troubleshoot problems like this while a study is running so we need to cut short your participation.</p>
-                <button type="button" onClick={endStudyEarly}>
-                    Click here to continue
-                </button>
+            <div className="Header">
+                <div className="FindPartner-box">
+                    <p>You seem to be having technical issues that prevent you from hearing your partner. It is likely that you will have issues with other partners as well. We cannot troubleshoot problems like this while a study is running so we need to cut short your participation.</p>
+                </div>
+                <div className="Footer">
+                    <button type="button" onClick={endStudyEarly}>
+                        Click here to continue
+                    </button>
+                </div>
             </div>
         );
     }
     if(havePartner){
         if(micTestFile){
-            return(<div className="FindPartner-box">
-                <p>Your partner send you a message! Let's listen to it.</p>
-                <audio src={micTestFile} controls="controls" autoPlay="autoplay" />
-                <br />
-                <button type="button" onClick={okPartnerMic}>
-                    I hear my partner
-                </button>
-                <p>If you can't hear your partner, check your speaker volume and replay their message.</p>
-            </div>
+            return(
+                <div className="FindPartner-box">
+                    <div className="Header">
+                        <p>Your partner send you a message! Let's listen to it.</p>
+                        <audio src={micTestFile} controls="controls" autoPlay="autoplay" />
+                        <br />
+                        <p>If you can't hear your partner, check your speaker volume and replay their message.</p>
+                    </div>
+                    <div className="Footer">
+                        <button type="button" onClick={okPartnerMic}
+                            className="GreenButton CenterButton">
+                            I hear my partner
+                        </button>
+                    </div>
+                </div>
             );
         }
         return(
             <div className="FindPartner-box">
-                <p>Your partner is making a microphone check recording like the one you made earlier. When they are finished you will be asked to confirm you can hear it.</p>
+                <div className="Header">
+                    <p>Your partner is making a microphone check recording like the one you made earlier. When they are finished you will be asked to confirm you can hear it.</p>
+                </div>
             </div>
         );
     }
     return(
         <div className="FindPartner-box">
-            <p>We are looking for a partner for you. This may take a while. When one is found you'll get an alert. You can switch to another tab or window but <span style={{fontWeight: 'bold'}}>do not close this page</span>.</p>
+            <div className="Header">
+                <p>We are looking for a partner for you. This may take a while. When one is found you'll get an alert. You can switch to another tab or window but <span style={{fontWeight: 'bold'}}>do not close this page</span>.</p>
+            </div>
         </div>
     );
 }

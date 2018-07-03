@@ -40,23 +40,27 @@ export const survey = [
         questions: []
     },
     {
-        instructions: "Please answer these questions about your education and language history.",
+        instructions: "Child age, education, and language history.",
         completed: false,
         questions: [
             {
-                questionType: 'select',
-                name: 'education',
-                label: 'Education',
-                options: ['NA', "Didn't finish high school",
-                    'Finished high school', 'Attended college',
-                    'Finished college',
-                    'Started and/or finished graduate education'],
+                questionType: 'input',
+                type: 'text',
+                name: 'childAge',
+                label: "How old?",
+                value: ''
+            },
+            {
+                questionType: 'input',
+                type: 'text',
+                name: 'childSchoolGrade',
+                label: "What grade in school?",
                 value: ''
             },
             {
                 questionType: 'select',
                 name: 'nativeEnglish',
-                label: 'Did you learn English prior to the age of three?',
+                label: 'Did the child learn English prior to the age of three?',
                 options: ['', 'Yes',
                     "No"],
                 value: ''
@@ -65,7 +69,7 @@ export const survey = [
                 questionType: 'input',
                 type: 'text',
                 name: 'otherNative',
-                label: "Did you learn any other languages prior to the age of three?",
+                label: "Did the child learn any other languages prior to the age of three?",
                 value: ''
             },
         ]
@@ -77,7 +81,7 @@ export const survey = [
             {
                 questionType: 'select',
                 name: 'dialectRegion',
-                label: ['What dialect region do you live in? Please look at ',
+                label: ['What dialect region does the child live in? Please look at ',
                     <a key='dialectMap' target="_blank" rel="noopener noreferrer" href="http://www.aschmann.net/AmEng/#SmallMap">this map</a>, " for reference. If your dialect is specific to a smaller region please select 'Other' and specify its location in the next question."
                 ],
                 options: ['', "The Midland", "The South", "The North",
@@ -90,13 +94,13 @@ export const survey = [
                 questionType: 'input',
                 type: 'text',
                 name: 'dialctRegionOther',
-                label: "Please specify your dialect region if you selected 'Other'.",
+                label: "Please specify the dialect region if 'Other'.",
                 value: ''
             },
             {
                 questionType: 'select',
                 name: 'dialectRegionBirth',
-                label: 'If you grow up in a different region, please select it.',
+                label: 'What prior region might the child have lived in?',
                 options: ['I grew up in the same region I live in now',
                     "The Midland", "The South", "The North",
                     'The North Central', 'The West',
@@ -108,85 +112,7 @@ export const survey = [
                 questionType: 'input',
                 type: 'text',
                 name: 'dialctRegionBirthOther',
-                label: "Please specify your early dialect region if you selected 'Other'.",
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "Please answer some questions about this website, your computer, and your microphone.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'select',
-                name: 'microphoneType',
-                label: 'Select the type of microphone you used for this task.',
-                options: ['',
-                    "Built into computer/laptop", "Head mounted", "Desk mounted"],
-                value: ''
-            },
-            {
-                questionType: 'input',
-                type: 'text',
-                name: 'microphoneModel',
-                label: "Please write in the make and model of your microphone. If it is built into your computer/laptop, write in the make and model of your computer/laptop. Write 'unknown' if you do not know.",
-                value: ''
-            },
-            {
-                questionType: 'select',
-                name: 'internetSpeed',
-                label: 'Select the type of internet connection you have.',
-                options: ['', 'Dial up',
-                    "Cable", "DSL", "Other high speed"],
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'internetQuality',
-                label: 'How would you rate the quality of your internet connection?',
-                range: [1, 7],
-                rangeLabels: ['poor quality', '', '',
-                    'typical', '', '', 'high quality'],
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'websiteResponse',
-                label: 'How responsive was the website?',
-                range: [1, 7],
-                rangeLabels: ['poorly responsive', '', '',
-                    'typical to other websites', '', '', 'very responsive'],
-                value: ''
-            },
-            {
-                questionType: 'likert',
-                name: 'instructionClarity',
-                label: 'How clear were the instructions about this task?',
-                range: [1, 7],
-                rangeLabels: ['very unclear', '', '',
-                    'neither clear nor unclear', '', '', 'very clear'],
-                value: ''
-            },
-        ]
-    },
-    {
-        instructions: "Please write about your overall impressions.",
-        completed: false,
-        questions: [
-            {
-                questionType: 'textarea',
-                name: 'studyImpression',
-                label: 'What was your overall impression of the study?',
-                cols: 40,
-                rows: 2,
-                value: ''
-            },
-            {
-                questionType: 'textarea',
-                name: 'partnerImpression',
-                label: 'What was your overall impression of your partner?',
-                cols: 40,
-                rows: 2,
+                label: "Please specify the dialect region if 'Other'.",
                 value: ''
             },
         ]

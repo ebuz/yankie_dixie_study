@@ -25,33 +25,37 @@ class InitialDetailsSetup extends Component {
         return(
             <div className="InitialSetup-Box">
                 <form onSubmit={this.handleSubmit} >
-                    <div className="InputQuestion-box">
-                        <label>
-                            Participant name:
-                            <input type="text" placeholder="A unique name"
-                                defaultValue={this.props.workerId ? this.props.workerId : ""}
-                                required={true}
-                                ref={workerId => this.workerId = workerId}/>
-                        </label>
+                    <div className="Header">
+                        <div className="InputQuestion-box">
+                            <label>
+                                Participant name:
+                                <input type="text" placeholder="A unique name"
+                                    defaultValue={this.props.workerId ? this.props.workerId : ""}
+                                    required={true}
+                                    ref={workerId => this.workerId = workerId}/>
+                            </label>
+                        </div>
+                        <br />
+                        <div className="SelectQuestion-box">
+                            <label>
+                                List:
+                                <select name="listId" defaultValue={this.props.listId}
+                                    required={true}
+                                    ref={listId => this.listId = listId} >
+                                    {this.props.availableLists.map((item, _) => {
+                                        return (
+                                            <option key={item} value={item}>{item}</option>
+                                        )
+                                    })
+                                    }
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <br />
-                    <div className="SelectQuestion-box">
-                        <label>
-                            List:
-                            <select name="listId" defaultValue={this.props.listId}
-                                required={true}
-                                ref={listId => this.listId = listId} >
-                                {this.props.availableLists.map((item, _) => {
-                                    return (
-                                        <option key={item} value={item}>{item}</option>
-                                    )
-                                })
-                                }
-                            </select>
-                        </label>
+                    <div className="Footer">
+                        <input className="InitialSetup-Button CenterButton GreenButton" type="submit" value="Continue ➤ " />
                     </div>
-                    <br />
-                    <input className="InitialSetup-Button" type="submit" value="Continue ➤ " />
                 </form>
             </div>
         )

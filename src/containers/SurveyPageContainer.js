@@ -7,19 +7,23 @@ import './SurveyPageContainer.css'
 const SurveyPage = ({pageId, surveyPage, handleFinishPage}) => {
     return(
         <div className="SurveyPage-box">
-            <p>{surveyPage.instructions}</p>
-            <div className="SurveyQuestions-box">
-                {surveyPage.questions.map((item, i) =>
-                    (<SurveyQuestionContainer key={i}
-                        pageId={pageId}
-                        questionId={i}
-                        question={item}
-                    />)
-                )}
+            <div className="Header">
+                <p>{surveyPage.instructions}</p>
+                <div className="SurveyQuestions-box">
+                    {surveyPage.questions.map((item, i) =>
+                        (<SurveyQuestionContainer key={i}
+                            pageId={pageId}
+                            questionId={i}
+                            question={item}
+                        />)
+                    )}
+                </div>
             </div>
-            <button className="SurveyPageFinish-button" onClick={handleFinishPage}>
-                Click here to continue
-            </button>
+            <div className="Footer">
+                <button className="SurveyPageFinish-button GreenButton CenterButton" onClick={handleFinishPage}>
+                    Click here to continue
+                </button>
+            </div>
         </div>
     )
 };
