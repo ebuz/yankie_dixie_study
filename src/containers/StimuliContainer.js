@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectOption, unSelectOption } from '../actions';
 import './Stimuli.css'
-import RecorderControlsContainer from './RecorderControlsContainer';
+import StimuliControlsContainer from './StimuliControlsContainer';
 
 const filledArray = (n, fillFunc = () => null) => {
     return Array.from({length: n}, fillFunc);
@@ -74,7 +74,7 @@ const Stimuli = ({trialStarted, instructionsPlayed, participantRole, listId, blo
                 </div>
             </div>
             <div className="Footer">
-                <RecorderControlsContainer participantRole={participantRole}
+                <StimuliControlsContainer participantRole={participantRole}
                     listId={listId} blockId={blockId} trialId={trialId}/>
             </div>
         </div>

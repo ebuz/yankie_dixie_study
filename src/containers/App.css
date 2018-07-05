@@ -48,7 +48,7 @@ input[type=button], input[type=submit], button {
     vertical-align: middle;
     border-radius: 8px;
 }
-.Footer>button, .Footer>input[type=submit] {
+.Footer button, .Footer input[type=submit] {
     height: 100%;
 }
 .GreenButton {
@@ -72,22 +72,13 @@ input[type=button], input[type=submit], button {
     grid-column-start: 3;
     grid-column-end: 4;
 }
-.MicCheck-box > audio {
+.MicCheck-box>audio {
     width: 50%;
     height: 25%;
 }
 .MturkSubmit-box {
     text-align: center;
     margin: auto;
-}
-.MturkSubmit-button {
-}
-.RecorderControls-box {
-    height: 100%;
-    text-align: center;
-}
-.RecorderControls-box>button {
-    height: 100%;
 }
 .TrialInstructions-box {
     height: 8%;
@@ -97,7 +88,6 @@ input[type=button], input[type=submit], button {
     padding-top: 1vh;
 }
 .Stimulus-box {
-    height: 100%;
 }
 .Options-box {
     margin: 0%;

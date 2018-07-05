@@ -348,10 +348,14 @@ export const recordMicTest = (data = {}) =>
 export const recordDirections = (listId, blockId, trialId, data = {}) =>
     (dispatch, getState) => {
         let state = getState();
+        const stimuli = state.experimentalLists[listId][blockId].trials[trialId].stimuli;
+        const speakerOrder = state.experimentalLists[listId][blockId].trials[trialId].speaker_order;
+        const speakerOrderedStimuli = speakerOrder.map(i => stimuli[i]);
+        const recordingInfo = [listId, blockId, trialId].concat(speakerOrderedStimuli);
+        const recordingName = recordingInfo.join('_') + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? '.webm' : '.ogg');
+        const publicId = state.selfInfo.publicId
         state.selfInfo.recorder.record().then((blob) => {
-            dispatch(sendDirections(listId, blockId, trialId, blob,
-                state.selfInfo.publicId, `${listId}_${blockId}_${trialId}.` + (state.selfInfo.recorder.recorderOptions.mimeType.startsWith('audio/webm') ? 'webm' : 'ogg')
-            ));
+            dispatch(sendDirections(listId, blockId, trialId, blob, publicId, recordingName));
         });
         dispatch(recordingState('recording'));
 };
@@ -382,21 +386,25 @@ export const partnerUnSelect = (listId, blockId, trialId, optionSelected, data =
 
 export const selectOption = (listId, blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
-        let state = getState();
         dispatch(partnerSelect(listId, blockId, trialId, myResponse, data));
         dispatch(readyToStart());
-        let trial = state.experimentalLists[listId][blockId].trials[trialId];
-        if(trial.response.length >= trial.stimuli.length - 1){
-            setTimeout(() => {
-                dispatch(endTrial(listId, blockId, trialId))
-            }, 3000);
-        }
     };
 
 export const unSelectOption = (listId, blockId, trialId, myResponse, data = {}) =>
     (dispatch, getState) => {
         dispatch(partnerUnSelect(listId, blockId, trialId, myResponse, data));
         dispatch(readyToStart());
+    };
+
+export const finishResponse = (listId, blockId, trialId, data = {}) =>
+    (dispatch, getState) => {
+        let trial = getState().experimentalLists[listId][blockId].trials[trialId];
+        if(trial.response.length >= trial.stimuli.length - 1){
+            setTimeout(() => {
+                dispatch(readyToStart());
+                dispatch(endTrial(listId, blockId, trialId));
+            }, 0);
+        }
     };
 
 export const gotId = (peerId, data = {}) => ({
