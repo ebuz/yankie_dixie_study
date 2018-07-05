@@ -23,7 +23,7 @@ class InitialDetailsSetup extends Component {
             return null
         }
         return(
-            <div className="InitialSetup-Box">
+            <div className="InitialSetup-box">
                 <form onSubmit={this.handleSubmit} >
                     <div className="Header">
                         <div className="InputQuestion-box">

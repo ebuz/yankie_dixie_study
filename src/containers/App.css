@@ -87,7 +87,8 @@ input[type=button], input[type=submit], button {
     font-weight: bold;
     padding-top: 1vh;
 }
-.Stimulus-box {
+.InputQuestion-box {
+    padding-top: 1vh;
 }
 .Options-box {
     margin: 0%;

@@ -5,6 +5,9 @@ import { MediaRecorder } from '../actions/AudioRecorder';
 import './MicSetupContainer.css'
 
 const MicSetup = ({completedExpSetup, haveMic, setupMic}) => {
+    if(!completedExpSetup || haveMic){
+        return null;
+    }
     if(MediaRecorder === null || MediaRecorder === undefined || adapter.browserShim === null || adapter.browserShim === undefined){
         return(
             <div className="MicSetup-box">
@@ -14,9 +17,6 @@ const MicSetup = ({completedExpSetup, haveMic, setupMic}) => {
                 </div>
             </div>
         )
-    }
-    if(!completedExpSetup || haveMic){
-        return null;
     }
     if(haveMic === false){
         return(
