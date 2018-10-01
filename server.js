@@ -6,12 +6,19 @@ const bodyParser  = require('body-parser');
 const mkdirp = require('mkdirp');
 
 let app = express();
+let router = express.Router();
+
 let server = require('http').createServer(app);
 
 let p2pserver = require('socket.io-p2p-server').Server;
 let io = require('socket.io')(server);
 
 const db = require('./db.js');
+
+router.use(function(req, res, next) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+  next();
+});
 
 io.use(p2pserver);
 
@@ -22,12 +29,12 @@ io.on('connection', (socket) => {
     });
 });
 
-app.use('/recordings', express.static(path.join(__dirname, 'recordings')));
-app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
+router.use('/recordings', express.static(path.join(__dirname, 'recordings')));
+router.use('/profiles', express.static(path.join(__dirname, 'profiles')));
 
-app.use(express.static(__dirname + '/build'));
+router.use(express.static(__dirname + '/build'));
 
-app.get('/*', function (req, res) {
+router.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './build', 'index.html'));
 });
 
@@ -84,13 +91,13 @@ const assignmentUpload = multer({
     fileFilter: profileFilter,
 });
 
-app.post('/recording/:speakerid', recordingUpload.single('recording'),
+router.post('/recording/:speakerid', recordingUpload.single('recording'),
     function(req, res, next) {
         console.log(`got recording ${req.file.originalname} from ${req.params.speakerid}`)
         res.sendStatus(200)
     });
 
-app.post('/profile/:speakerid',
+router.post('/profile/:speakerid',
     profileUpload.fields([{ name: 'profileImage', maxCount: 1 },
         { name: 'profileMessage', maxCount: 1 }]),
     function(req, res, next) {
@@ -163,7 +170,7 @@ const saveAssignmentToDb = (req, res) => {
         })
 };
 
-app.post('/submitassignment',
+router.post('/submitassignment',
     (req, res, next) => {
         if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
             next() //pass request onto bodyParser
@@ -172,9 +179,11 @@ app.post('/submitassignment',
         }
     }, urlencodedParser, saveAssignmentToDb);
 
-app.post('/submitassignment', assignmentUpload.none(), saveAssignmentToDb);
+router.post('/submitassignment', assignmentUpload.none(), saveAssignmentToDb);
 
-const serverPort = 3000;
+app.use('/yd', router);
+
+const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {
     commitToDb(db.pool,
         'CREATE TABLE IF NOT EXISTS assignments ( \

@@ -25,7 +25,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -47,7 +47,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -69,7 +69,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -91,7 +91,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -113,7 +113,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -265,7 +265,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -287,7 +287,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -309,7 +309,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -331,7 +331,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -353,7 +353,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -505,7 +505,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -527,7 +527,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -549,7 +549,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -571,7 +571,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -593,7 +593,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -745,7 +745,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -767,7 +767,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -789,7 +789,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -811,7 +811,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -833,7 +833,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -985,7 +985,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1007,7 +1007,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1029,7 +1029,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1051,7 +1051,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1073,7 +1073,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1225,7 +1225,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1247,7 +1247,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1269,7 +1269,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1291,7 +1291,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1313,7 +1313,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1465,7 +1465,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1487,7 +1487,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1509,7 +1509,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1531,7 +1531,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1553,7 +1553,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1705,7 +1705,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1727,7 +1727,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1749,7 +1749,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1771,7 +1771,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1793,7 +1793,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1945,7 +1945,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1967,7 +1967,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -1989,7 +1989,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2011,7 +2011,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2143,7 +2143,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2165,7 +2165,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2187,7 +2187,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2209,7 +2209,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2231,7 +2231,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2383,7 +2383,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2405,7 +2405,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2427,7 +2427,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2449,7 +2449,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2471,7 +2471,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2623,7 +2623,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2645,7 +2645,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2667,7 +2667,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2689,7 +2689,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2711,7 +2711,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2863,7 +2863,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2885,7 +2885,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2907,7 +2907,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2929,7 +2929,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -2951,7 +2951,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3103,7 +3103,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3125,7 +3125,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3147,7 +3147,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3169,7 +3169,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3191,7 +3191,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3343,7 +3343,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3365,7 +3365,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3387,7 +3387,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3409,7 +3409,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3431,7 +3431,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3583,7 +3583,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3605,7 +3605,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3627,7 +3627,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3649,7 +3649,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3671,7 +3671,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3823,7 +3823,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3845,7 +3845,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3867,7 +3867,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3889,7 +3889,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -3911,7 +3911,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4063,7 +4063,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4085,7 +4085,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4107,7 +4107,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4129,7 +4129,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4261,7 +4261,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4283,7 +4283,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4305,7 +4305,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4327,7 +4327,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4349,7 +4349,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4501,7 +4501,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4523,7 +4523,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4545,7 +4545,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4567,7 +4567,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4589,7 +4589,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4741,7 +4741,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4763,7 +4763,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4785,7 +4785,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4807,7 +4807,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4829,7 +4829,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -4981,7 +4981,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5003,7 +5003,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5025,7 +5025,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5047,7 +5047,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5069,7 +5069,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5221,7 +5221,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5243,7 +5243,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5265,7 +5265,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5287,7 +5287,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5309,7 +5309,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5461,7 +5461,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5483,7 +5483,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5505,7 +5505,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5527,7 +5527,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5549,7 +5549,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5701,7 +5701,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5723,7 +5723,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5745,7 +5745,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5767,7 +5767,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5789,7 +5789,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5941,7 +5941,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5963,7 +5963,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -5985,7 +5985,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6007,7 +6007,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6029,7 +6029,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6181,7 +6181,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6203,7 +6203,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6225,7 +6225,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6247,7 +6247,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6379,7 +6379,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6401,7 +6401,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6423,7 +6423,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6445,7 +6445,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6467,7 +6467,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6619,7 +6619,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6641,7 +6641,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6663,7 +6663,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6685,7 +6685,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6707,7 +6707,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6859,7 +6859,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6881,7 +6881,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6903,7 +6903,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6925,7 +6925,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -6947,7 +6947,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7099,7 +7099,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7121,7 +7121,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7143,7 +7143,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__13.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__13.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7165,7 +7165,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_18.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7187,7 +7187,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7339,7 +7339,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_8.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_8.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7361,7 +7361,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__6.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__6.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7383,7 +7383,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7405,7 +7405,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__12.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__12.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7427,7 +7427,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7579,7 +7579,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__4.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__4.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7601,7 +7601,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_17.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7623,7 +7623,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7645,7 +7645,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_20.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7667,7 +7667,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__5.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__5.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7819,7 +7819,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_3.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_3.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7841,7 +7841,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__2.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__2.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7863,7 +7863,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_15.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7885,7 +7885,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__19.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__19.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -7907,7 +7907,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_10.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_10.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8059,7 +8059,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8081,7 +8081,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_16.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8103,7 +8103,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__21.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__21.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8125,7 +8125,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_1.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_1.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8147,7 +8147,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/normal__14.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/normal__14.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8299,7 +8299,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_low_frequency_filler_22.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8321,7 +8321,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__9.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__9.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8343,7 +8343,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/filler_filler_11.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/filler_filler_11.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}
@@ -8365,7 +8365,7 @@ export const experimentalLists = [
                     "displayed_pictures": false,
                     "completed": false,
                     "instructions_played": false,
-                    "mock_recording": "recordings/mock_recordings/slang__7.ogg",
+                    "mock_recording": process.env.PUBLIC_URL + "/recordings/mock_recordings/slang__7.ogg",
                     "speaker_recording": null,
                     "partner_rt_adjust": null,
                     "data": {}

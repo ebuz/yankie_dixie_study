@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const PictureBox = ({picture, onClick}) => {
-    let imgSrc = `stimuli/pictures/${picture}.jpg`;
+    let imgSrc = `${process.env.PUBLIC_URL}stimuli/pictures/${picture}.jpg`;
     let className = picture === null ? "Picture-holder-box" : "Picture-box";
     return (
         <div className={className} onClick={onClick}>

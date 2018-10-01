@@ -38,7 +38,7 @@ export const uploadAssignment = () =>
             surveyData: state.survey,
             mturkInfo: state.mturkInfo,
         }))
-        fetch('/submitassignment', {
+        fetch(process.env.PUBLIC_URL + '/submitassignment', {
             method: 'POST',
             body: form
         }).then(() => dispatch({
@@ -126,7 +126,7 @@ export const saveRecording = (blob, id, filename = 'introduction.ogg') => {
     let formD = new FormData();
     formD.append('recording', blob, filename);
     fetch(
-        `/recording/${id}`,
+        process.env.PUBLIC_URL + `/recording/${id}`,
         {method: 'post', body: formD}
     )
 };
@@ -236,11 +236,11 @@ export const sendDirections = (listId, blockId, trialId, blob, id, filename) =>
         let formD = new FormData();
         formD.append('recording', blob, filename);
         fetch(
-            `/recording/${id}`,
+            process.env.PUBLIC_URL + `/recording/${id}`,
             {method: 'post', body: formD}
         ).then(() => {
             dispatch(recordingState('inactive'));
-            dispatch(speakerRecording(listId, blockId, trialId, `/recordings/${id}/${filename}`));
+            dispatch(speakerRecording(listId, blockId, trialId, process.env.PUBLIC_URL + `/recordings/${id}/${filename}`));
             const partner_rt_adjust = state.experimentalLists[listId][blockId].trials[trialId].partner_rt_adjust;
             //respond on behalf of partner
             //read in just-finished recording and get duration
@@ -327,11 +327,11 @@ export const uploadTestRecording = (blob, id, filename = 'test_recording.ogg') =
         let formD = new FormData();
         formD.append('recording', blob, filename);
         fetch(
-            `/recording/${id}`,
+            process.env.PUBLIC_URL + `/recording/${id}`,
             {method: 'post', body: formD}
         ).then(() => {
             dispatch(recordingState('inactive'));
-            dispatch(gotMicTest(`/recordings/${id}/${filename}`));
+            dispatch(gotMicTest(process.env.PUBLIC_URL + `/recordings/${id}/${filename}`));
         });
     };
 

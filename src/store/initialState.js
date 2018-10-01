@@ -8,7 +8,7 @@ export const instructions = {
 
 export const consent = {
     consented: false,
-    consentFileURL: 'ExampleConsent.pdf',
+    consentFileURL: 'Stamped-ICD_Qualtrics.pdf',
     instructions: 'By clicking "I consent to participate" below, you confirm that you have read and understood the consent form, that you are willing to participate in this experiment, and that you acknowledge that the data you provide by participating in this experiment can be used in scientific publications (no identifying information will be used). After you consent we will start to try and pair you with a partner.'
 }
 
@@ -25,8 +25,8 @@ export const partnerInfo = {
     audio: null,
     volume: 1,
     micTestFile: null,
-    micTestFileSet: ['recordings/mock_recordings/Reading_yankee.ogg',
-        'recordings/mock_recordings/Reading_yankee.ogg'],
+    micTestFileSet: [process.env.PUBLIC_URL + '/recordings/mock_recordings/Reading_yankee.ogg',
+        process.env.PUBLIC_URL + '/recordings/mock_recordings/Reading_yankee.ogg'],
     micCheck: false,
     micCheckRedos: 0
 }

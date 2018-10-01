@@ -18,7 +18,7 @@ const Consent = ({inPreview, haveMic, readInstructions, consent, onConsent}) => 
     }
     return (
         <div className="Consent-box">
-            <p>Please read our <a href={consent.consentFileURL} target="_blank">consent form</a>.</p>
+            <p>Please read our <a href={process.env.PUBLIC_URL + '/' + consent.consentFileURL} target="_blank">consent form</a>.</p>
             <br />
             <p>{consent.instructions}</p>
             <br />
