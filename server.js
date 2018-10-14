@@ -181,7 +181,7 @@ router.post('/submitassignment',
 
 router.post('/submitassignment', assignmentUpload.none(), saveAssignmentToDb);
 
-app.use('/yd', router);
+app.use('/', router);
 
 const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {

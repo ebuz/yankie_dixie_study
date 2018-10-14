@@ -13,7 +13,7 @@ const store = configureStore(initialState);
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={App} />
+            <Route path={`${process.env.PUBLIC_URL}/`} component={App} />
         </Router>
     </Provider>,
     document.getElementById('root')
