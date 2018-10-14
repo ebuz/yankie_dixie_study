@@ -2,7 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './MturkSubmitContainer.css'
 
-const MturkSubmitForm = ({turkSubmitTo, assignmentId, data}) => {
+const MturkSubmitForm = ({turkSubmitTo, assignmentId, qualtricsCompletionCode, data}) => {
+    let turkSubmitToURL = new URL(turkSubmitTo);
+    if(turkSubmitToURL.hostname.endsWith('qualtrics.com')){
+        let redirectCompletionCodeURL = turkSubmitToURL.origin + turkSubmitToURL.pathname + '?redirectCompletionCode=' + qualtricsCompletionCode + '&' + turkSubmitToURL.search.slice(1);
+        return (
+            <div className="MturkSubmit-box">
+                <p>Thank you for participating. Here is your validation code:</p>
+                <br />
+                <h3>{qualtricsCompletionCode}</h3>
+                <br />
+                <a href={redirectCompletionCodeURL}>Click here to return to the qualtics survey</a>
+            </div>
+        )
+    }
     return (
         <div className="MturkSubmit-box">
             <form action={turkSubmitTo} method='post'>
@@ -22,6 +35,7 @@ const mapStateToProps = (state) => {
     return {
         turkSubmitTo: state.mturkInfo.turkSubmitTo,
         assignmentId: state.mturkInfo.assignmentId,
+        qualtricsCompletionCode: 'qualtricsEBYD2018',
         data: {
             trialData: state.experimentalLists[state.mturkInfo.listId],
             surveyData: state.survey,
