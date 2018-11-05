@@ -7,7 +7,7 @@ import './SurveyPageContainer.css'
 const SurveyPage = ({pageId, surveyPage, handleFinishPage}) => {
     return(
         <div className="SurveyPage-box">
-            <p>{surveyPage.instructions}</p>
+            {surveyPage.instructions}
             <div className="SurveyQuestions-box">
                 {surveyPage.questions.map((item, i) =>
                     (<SurveyQuestionContainer key={i}

@@ -40,7 +40,7 @@ export const survey = [
         questions: []
     },
     {
-        instructions: "Please answer these questions about your education and language history.",
+        instructions: <p>Please answer these questions about your education and language history.</p>,
         completed: false,
         questions: [
             {
@@ -71,7 +71,7 @@ export const survey = [
         ]
     },
     {
-        instructions: "Please answer these additional questions about your language history.",
+        instructions: <p>Please answer these additional questions about your language history.</p>,
         completed: false,
         questions: [
             {
@@ -114,7 +114,7 @@ export const survey = [
         ]
     },
     {
-        instructions: "Please answer some questions about this website, your computer, and your microphone.",
+        instructions: <p>Please answer some questions about this website, your computer, and your microphone.</p>,
         completed: false,
         questions: [
             {
@@ -170,7 +170,7 @@ export const survey = [
         ]
     },
     {
-        instructions: "Please write about your overall impressions.",
+        instructions: <p>Please write about your overall impressions.</p>,
         completed: false,
         questions: [
             {
